@@ -1,0 +1,46 @@
+header section #logo {
+    width: 50px;
+}
+
+#main-section  #btn-color{
+    background-color: #01276d;
+}
+header{
+    background-color: #F4F4F4;
+}
+
+input:focus, select:focus, select, a.btn:focus {
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+header span #logo-remaster{
+    width: 170px;
+    height: auto;
+}
+
+#footer{
+    background-color: #01276d;
+    color: #fff;
+}
+#footer a{
+    text-decoration: none;
+    color: #fff;
+}
+#logo{
+    font-family: 'Yatra One', cursive;
+}
+#logo-lg{
+    font-family: 'Yatra One', cursive;
+    font-size: 3rem;
+}
+
+input:focus, select:focus, select, input.form-control:focus {
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}

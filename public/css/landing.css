@@ -1,0 +1,157 @@
+html{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ /* header{
+    background-color: #01276d;
+}  */
+header .navbar-brand #main-logo{
+    width: 50px;
+    height: auto;
+}
+header nav .nav-item #img-user{
+    width: 40px;
+    height: 40px;
+}
+
+section #img-card_bottom #img-user{
+    width: 45px;
+    height: 45px;
+}
+section #btn-color{
+    color: #fff;
+    background-color: #01276d;
+}
+/* #header-container-lg{
+    background: #000428;  
+    background: -webkit-linear-gradient(to right, #004e92, #000428);  
+    background: linear-gradient(to right, #004e92, #000428); 
+} */
+#header-container{
+    position: relative;
+    /* background-color: #01276d; */
+    /* background: #2980b9;   
+    background: -webkit-linear-gradient(to right, #2c3e50, #2980b9);  
+    background: linear-gradient(to right, #2c3e50, #2980b9);   */
+    /* background: #141E30;   
+    background: -webkit-linear-gradient(to right, #243B55, #141E30);   
+    background: linear-gradient(to right, #243B55, #141E30);  */
+    /* background: #000428;  
+    background: -webkit-linear-gradient(to right, #004e92, #000428);  
+    background: linear-gradient(to right, #002a4e, #000428);   */
+    /* background: #282623;  
+    background: -webkit-linear-gradient(to right, #000f50, #282623);  
+    background: linear-gradient(to right, #000f50, #282623);  */
+    /* background: #093028;  
+    background: -webkit-linear-gradient(to right, #237A57, #093028); 
+    background: linear-gradient(to right, #237A57, #093028);  */
+    /* background: #000000;  
+    background: -webkit-linear-gradient(to right, #0f9b0f, #000000); 
+    background: linear-gradient(to right, #0f9b0f, #000000); */
+}
+body{
+    background-color: #000428;
+    background-image: linear-gradient(135deg, #002a4e 0%, #000428 46%, #000211 100%);
+}
+
+#section-carousel{
+    /* background-color: #111; */
+    width: 100%;
+    height: 420px;
+}
+#carouselExampleCaptions{
+    margin: auto;
+    margin-top: 10px;
+    width: 60%;
+}
+#brand-container{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 4rem;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    /* height: 300px; */
+}
+#nav-container{
+    position: absolute;
+} 
+
+#logo{
+    font-family: 'Yatra One', cursive;
+}
+#logo-lg{
+    font-family: 'Yatra One', cursive;
+    font-size: 3rem;
+}
+#section-info{
+    margin: auto;
+    width: 80%;
+    border-radius: 15px;
+    background-color: #dadada;
+}
+#section-info #section-card{
+    background-color: #fff;
+}
+#section-info-2{
+    margin: auto;
+    width: 80%;
+    border-radius: 15px;
+    background-color: #dadada;
+}
+#section-info-2 #section-card-2{
+    background-color: #fff;
+}
+ ::-webkit-scrollbar {
+    display: none;
+} 
+html,body{
+    overflow-x: hidden;
+    width:100%;
+    margin: 0px;
+    padding: 0px;
+  }
+/* header div #banner{
+    object-fit: cover;
+    width: 50%;
+    height: 100px;
+} */
+
+/* input:focus, select:focus, select, a.btn:focus {
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    color: #fff;
+} */
+
+#footer{
+    background-color: #01276d;
+    color: #fff;
+}
+#footer a{
+    text-decoration: none;
+    color: #fff;
+}
+
+
+@media (min-width: 800px) {
+    header .navbar-brand #main-logo{
+        width: 60px;
+        height: auto;
+    }
+    html{
+        font-size: 62.5%;
+    }
+    header a{
+        font-size: 2rem;
+    }
+    footer{
+        font-size: 2rem;
+    }
+}
+/* @media (min-width: 1430px) {
+    #section-carousel{
+        height: 300px;
+    }
+} */

@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header{
+    background-color: #274aa2;
+}
+header .navbar-brand #main-logo{
+    width: 120px;
+    height: auto;
+}
+header nav .nav-item #img-user{
+    width: 40px;
+    height: 40px;
+}
+#btn-user{
+    background-color: #01276d;
+}
+
+#main #img-user{
+    width: 100px;
+    height: 100px;
+}
+/* #main #img-user-md{
+    width: 140px;
+    height: 140px;
+} */
+
+@media (min-width: 800px) {
+    header .navbar-brand #main-logo{
+        width: 145px;
+        height: 45px;
+    }
+    html{
+        font-size: 62.5%;
+    }
+    header a{
+        font-size: 2rem;
+    }
+    footer{
+        font-size: 2rem;
+    }
+    main{
+        font-size: 2.5rem;
+    }
+
+}
+@media (min-width: 800px){
+    #main #img-user-md{
+        width: 170px;
+        height: 170px;
+    }
+}

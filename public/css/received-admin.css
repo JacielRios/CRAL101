@@ -1,0 +1,27 @@
+header{
+    background-color: #274aa2;
+}
+header .navbar-brand #main-logo{
+    width: 50px;
+    height: auto;
+}
+header nav .nav-item #img-user{
+    width: 40px;
+    height: 40px;
+}
+
+@media (min-width: 800px) {
+    header .navbar-brand #main-logo{
+        width: 145px;
+        height: 45px;
+    }
+    html{
+        font-size: 62.5%;
+    }
+    header a{
+        font-size: 2rem;
+    }
+    footer{
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,45 @@
+header section #logo {
+    width: 50px;
+}
+
+#main-section  #btn-color{
+    background-color: #01276d;
+}
+header{
+    background-color: #274aa2;
+}
+header .navbar-brand #main-logo{
+    width: 120px;
+    height: auto;
+}
+
+header nav .nav-item #img-user{
+    width: 40px;
+    height: 40px;
+}
+section #img-card_bottom #img-user{
+    width: 45px;
+    height: 45px;
+}
+
+input:focus, select:focus, select, a.btn:focus {
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+input:focus, select:focus, select, input.form-control:focus {
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+ @media (min-width: 800px) {
+    header .navbar-brand #main-logo{
+        width: 145px;
+        height: 45px;
+    }
+} 
