@@ -113,8 +113,8 @@
         
                                     <div class="">
                                         <select class="form-select @error('group') is-invalid @enderror" name="turn" id="turn" required>
-                                            <option value="matutino">Matutino</option>
-                                            <option value="vespertino">Vespertino</option>
+                                            <option value="Matutino">Matutino</option>
+                                            <option value="Vespertino">Vespertino</option>
                                         </select>
         
                                         @error('group')

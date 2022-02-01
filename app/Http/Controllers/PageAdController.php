@@ -108,7 +108,6 @@ class PageAdController extends Controller
     public function update(PostRequest $request, Post $post)
     {
         $post->update($request->all());
-
         if ($request->file('file')) {
             Storage::disk('public')->delete($post->file);
             $post->file = $request->file('file')->store('posts', 'public');

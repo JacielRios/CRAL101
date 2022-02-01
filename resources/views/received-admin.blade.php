@@ -52,7 +52,7 @@
                     >Información general</a> 
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link ps-lg-5" href="{{ url('posts/admin') }}"
+                  <a class="nav-link ps-lg-5" href="{{ route('homework.index') }}"
                     >Tareas</a
                   >
                 </li>
@@ -100,51 +100,39 @@
 
       <main>
         <section class="container mt-3 mb-3 d-lg-none">
+          @foreach($homeworks_received as $received)
             <div class="row">
-                <div class="col-12">
-                    <div class="card border-0">
-                        <a href="{{ url('evaluation/admin') }}" class="card-body text-start btn btn-outline-primary pb-0">
-                            <h4>Ensayo</h4>
+                <div class="col-12 mt-2 ">
+                    <div class="card border-0 ">
+                        <a href="#" class="card-body text-start btn btn-outline-primary pb-0 pt-2 ps-2 pe-2">
+                            <p class="fs-5 m-0">{{ $received->title }}</p>
                             <p class="text-muted mb-0">
-                                <p>Jaciel Benito Rios Martinez <br>
-                                5-C</p>
+                                <p class="m-0">{{ $received->name }}<br>
+                                  {{ $received->grade }}-{{ $received->group }}</p>
                             </p>
                         </a>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section class="container mt-3 mb-3 d-lg-none">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card border-0">
-                        <a href="#" class="card-body text-start btn btn-outline-primary pb-0">
-                            <h4>Ensayo</h4>
-                            <p class="text-muted mb-0">
-                                <p>Jaciel Benito Rios Martinez <br>
-                                5-C</p>
-                            </p>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </section>
 
         <section class="container mt-3 mb-3 d-none d-lg-block">
+          @foreach($homeworks_received as $received)
             <div class="row justify-content-center">
-                <div class="col-8">
+                <div class="col-8 mt-2 ">
                     <div class="card border-0">
-                        <a href="{{ url('evaluation/admin') }}" class="card-body text-start btn btn-outline-primary pb-0">
-                            <h2>Ensayo</h2>
+                        <a href="{{ route('received', $received) }}" class="card-body text-start btn btn-outline-primary pb-0" id="scale">
+                            <h2>{{ $received->title }}</h2>
                             <p class="text-muted mb-0">
-                                <p class="fs-3">Jaciel Benito Rios Martinez <br>
-                                5-C</p>
+                                <p class="fs-3">{{ $received->name }}<br>
+                                {{ $received->grade }}-{{ $received->group }}</p>
                             </p>
                         </a>
                     </div>
                 </div>
             </div>
+            @endforeach
         </section>
     </main>
 

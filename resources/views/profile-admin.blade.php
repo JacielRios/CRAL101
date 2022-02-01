@@ -47,7 +47,7 @@
                     >Información general</a> 
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link ps-lg-5" href="{{ url('posts/admin') }}"
+                  <a class="nav-link ps-lg-5" href="{{ route('homework.index') }}"
                     >Tareas</a
                   >
                 </li>

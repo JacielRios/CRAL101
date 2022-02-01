@@ -25,6 +25,24 @@ input:focus, select:focus, select, input.btn:focus {
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
 }
+#text-file{
+    text-align: center;
+    color: #fff;
+}
+div #file-container{
+    position: relative;
+    background-color: #01276d;
+}
+#btn-file{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+} 
 
 #footer{
     background-color: #000;

@@ -49,8 +49,8 @@
                             {{-- <p class="btn text-white p-0 fs-2" id="logo" class="text-white">CRAL101</p> --}}
                             <span><img class="col-6" src="{{asset('images/logo-remaster2.png')}}" alt=""></span>
                         </div>
-                        <div class="col-5 ms-5">
-                            <a class="btn text-white p-0 pt-4" href="{{ route('login') }}">Iniciar sesión</a>
+                        <div class="col-5 ms-5" >
+                            <a class="btn text-white p-0 pt-4"  href="{{ route('login') }}">Iniciar sesión</a>
                         </div>
                         <div class="col-1 ps-0">
                             <a class="btn text-white p-0 pt-4" href="{{ route('role') }}">Regístrate</a>
@@ -82,10 +82,10 @@
 
                     </div>
                     <div class="col-5 ms-5">
-                        <a class="btn text-white p-0 fs-1 pt-4" href="{{ route('login') }}">Iniciar sesión</a>
+                        <a class="btn text-white p-0 fs-1 pt-4" id="scale" href="{{ route('login') }}">Iniciar sesión</a>
                     </div>
                     <div class="col-1 ps-0">
-                        <a class="btn text-white p-0 fs-1 ms-5 pt-4" href="{{ route('role') }}">Regístrate</a>
+                        <a class="btn text-white p-0 fs-1 ms-5 pt-4" id="scale" href="{{ route('role') }}">Regístrate</a>
                     </div>
                 </div>
             </div>
@@ -118,7 +118,7 @@
                 </div>
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img id="banner" src="{{ asset('images/3.2.jpg') }}" class="d-block w-100" alt="...">
+                    <img id="banner" src="{{ asset('images/3.2.jpg') }}" class="d-block w-100 rounded" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <div class="m-0 p-0 ">
                             {{-- <h1 class="text-dark fw-bold shadow-lg">Toda tu información académica <br> en un solo lugar</h1> --}}
@@ -127,13 +127,13 @@
                     </div>
                   </div>
                   <div class="carousel-item">
-                    <img id="banner" src="{{ asset('images/1.2.jpg') }}" class="d-block w-100" alt="...">
+                    <img id="banner" src="{{ asset('images/1.2.jpg') }}" class="d-block w-100 rounded" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         {{-- <h1 class="text-dark fw-bold shadow-lg">Toda tu información académica <br> en un solo lugar</h1> --}}
                     </div>
                   </div>
                   <div class="carousel-item">
-                    <img id="banner" src="{{ asset('images/4.2.jpg') }}" class="d-block w-100" alt="...">
+                    <img id="banner" src="{{ asset('images/4.2.jpg') }}" class="d-block w-100 rounded" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         {{-- <h1 class="text-dark fw-bold shadow-lg">Toda tu información académica <br> en un solo lugar</h1> --}}
                     </div>

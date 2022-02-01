@@ -301,14 +301,16 @@
                             <label class="form-check-label" for="check2">Vespertino</label>
                           </div>
                         </div>
-                    <div class="form-group">
-                        <label class="fs-3 fw-bold" for="">Archivo, imagen (opcional)</label>
-                        <input type="file" name="file" class="form-control fs-3">
+                    <div class="row d-flex justify-content-end">
+                      <div class="col-2 btn fs-3 mt-2 "  id="file-container" >
+                        <label class="" for="btn-file" id="text-file">Seleccionar archivo</label> 
+                        <input type="file" name="file" class="" id="btn-file">
                     </div>
-                    <div class="mt-2 text-end">
+                    <div class="mt-2 d-flex justify-content-end col-1 p-0 pe-4">
                         @csrf
-                        <input type="submit" value="Crear" class="btn fs-3 col-1" id="btn-color">
+                        <input type="submit" value="Crear" class="btn fs-3 " id="btn-color">
                     </div>
+                  </div>
                 </form>
             </div>
         </div>

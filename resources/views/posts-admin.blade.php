@@ -1,6 +1,6 @@
 @extends('layouts.app')
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,7 +51,7 @@
                 >Información general</a> 
             </li>
             <li class="nav-item">
-              <a class="nav-link ps-lg-5" href="{{ url('posts/admin') }}"
+              <a class="nav-link ps-lg-5" href="{{ route('homework.index') }}"
                 >Tareas</a
               >
             </li>
@@ -104,7 +104,7 @@
                     <span class="fs-3 fw-bold">Tareas subidas</span>
                 </div>
                 <div class="col-5 text-end mt-2 ms-md-3">
-                    <a href="{{ url('create/admin') }}" id="btn-color" class="btn ">Subir nueva</a>
+                    <a href="{{ route('homework.create') }}" id="btn-color" class="btn ">Subir nueva</a>
                 </div>
             </div>
         </section>
@@ -115,70 +115,65 @@
                     <span class="fs-1 fw-bold">Tareas subidas</span>
                 </div>
                 <div class="col-4 text-end mt-2 fs-1">
-                    <a href="{{ url('create/admin') }}" id="btn-color" class="btn fs-4">Subir nueva</a>
+                    <a href="{{ route('homework.create') }}" id="btn-color" class="btn fs-4">Subir nueva</a>
                 </div>
             </div>
         </section>
 
         <section class="container mt-2 d-lg-none">
+          @foreach ($homeworks as $homework)
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 ">
                     <div class="card mb-4 border-2 border-dark">
                         <div class="card-body">
-                            <h3 class="card-title ">Ensayo</h3>
-                            <p class="card-text fs-5 mb-0">Realizar un ensayo</p>
-                            <a href="{{ url('post/admin') }}" class="btn btn-outline-primary">Leer más..</a>
+                            <h3 class="card-title ">{{ $homework->title }}</h3>
+                            <p class="card-text fs-5 mb-0">{{ $homework->body }}</p>
+                            <a href="{{ route('homework.show', $homework) }}" class="btn btn-outline-primary">Leer más..</a>
                             <p class="text-muted mb-0">
                                 <strong>
-                                    Grupo: 5-C
+                                    Grupo: {{ $homework->grade }}-{{ $homework->group }}
+                                    Turno: {{ $homework->turn }}
                                 </strong><br>
-                                    Fecha de entrega: 10/11/2021
+                                    Fecha de entrega: {{ date('j F, Y', strtotime($homework->date))}}
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section class="container mt-2 d-lg-none">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-10">
-                    <div class="card mb-4 border-2 border-dark">
-                        <div class="card-body">
-                            <h3 class="card-title">Ensayo</h3>
-                            <p class="card-text fs-5 mb-0">Realizar un ensayo</p>
-                            <a href="#" class="btn btn-outline-primary">Leer más..</a>
-                            <p class="text-muted mb-0">
-                                <strong>
-                                    Grupo: 5-A
-                                </strong><br>
-                                    Fecha de entrega: 10/11/2021
-                            </p>
-                        </div>
-                    </div>
-                </div>
+            @endforeach
+            <div >
+              {{ $homeworks->links() }}
             </div>
         </section>
+  
 
         <section class="container mt-2 d-none d-lg-block">
+        @foreach ($homeworks as $homework)
             <div class="row justify-content-center">
                 <div class="col-10">
                     <div class="card mb-4 border-2 border-dark">
                         <div class="card-body">
-                            <h2 class="card-title">Ensayo</h2>
-                            <p class="card-text fs-3">Realizar un ensayo</p>
-                            <a href="{{ url('post/admin') }}" class="btn btn-outline-primary fs-4">Leer más..</a>
+                            <h2 class="card-title fw-bold">{{ $homework->title }}</h2>
+                            <p class="card-text fs-3">{{ $homework->body }}</p>
+                            <a href="{{ route('homework.show', $homework)  }}" class="btn btn-outline-primary fs-4">Leer más..</a>
                             <p class="text-muted mb-0 fs-4">
                                 <strong>
-                                    Grupo: 5-A
+                                    Grupo:  {{ $homework->grade }}-{{ $homework->group }}
+                                    Turno: {{ $homework->turn }}
                                 </strong><br>
-                                    Fecha de entrega: 10/11/2021
+                                    Fecha de entrega: {{ date('j F, Y', strtotime($homework->date))}}
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
+            <div class="fs-3 ms-5 ps-5">
+              {{ $homeworks->links() }}
+            </div>
         </section>
+        
+       
         
 
         <!-- <section class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

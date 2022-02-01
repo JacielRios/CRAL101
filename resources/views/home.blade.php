@@ -52,7 +52,7 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link ps-lg-5" href="{{ url('posts/user') }}"
+                <a class="nav-link ps-lg-5" href="{{ route('homeworks.index')  }}"
                   >Tareas</a
                 >
               </li>

@@ -52,7 +52,7 @@
                     >Información general</a> 
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link ps-lg-5" href="{{ url('posts/admin') }}"
+                  <a class="nav-link ps-lg-5" href="{{ route('homework.index') }}"
                     >Tareas</a
                   >
                 </li>
@@ -103,18 +103,37 @@
             <div class="col-11">
               <div class="card border-dark">
                 <div class="card-body">
-                  <h2 class="card-title">Ensayo</h2>
+                  <div class="row">
+                    <div class="col-10 ps-2">
+                      <p class="card-title m-0 fs-3">{{ $homework->title }}</p>
+                    </div>
+                    <div class="col-2 p-0 ps-4">
+                        <a class="dropdown p-0"id="navbarDropdown"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                          <img
+                          src="{{ asset('images/options-icon.png') }}"
+                          alt="Opciones"/>           
+                          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                          <form class="dropdown-item text-center" action="{{ route('homework.destroy', $homework) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="Eliminar" class="btn">
+                          </form>
+                      </a>
+                      </div>
+                    </div>
+                  </div>
                   <p class="card-text">
-                    Realizar un ensayo
+                    {{ $homework->body }}
                   </p>
                   <p class="text-muted mb-0">
                       <strong>
-                          Grupo: 5-C
+                          Grupo: {{ $homework->grade }}-{{ $homework->group }}
+                          Turno: {{ $homework->turn }}
                       </strong><br>
-                          Fecha de entrega: 10/11/2021
+                          Fecha de entrega: {{ date('j F, Y', strtotime($homework->date))}}
                   </p>
                   <a href="{{ url('received/admin') }}" class="btn btn-outline-success">Ver tareas recibidas</a>
-                  <a href="{{ url('create/admin') }}" class="btn" id="btn_color">Editar</a>
+                  <a href="{{ route('homework.edit', $homework) }}" class="btn" id="btn_color">Editar</a>
                 </div>
               </div>
             </div>
@@ -126,18 +145,39 @@
             <div class="col-8">
               <div class="card border-dark">
                 <div class="card-body fs-4">
-                  <h2 class="card-title fs-1">Ensayo</h2>
+                  <div class="row">
+                    <div class="col-8">
+                      <p class="fs-2 fw-bold" id="font-s">
+                        {{ $homework->title }}
+                      </p>
+                    </div>
+                    <div class="col-4 text-end">
+                      <a class="dropdown "id="navbarDropdown"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <img
+                        src="{{ asset('images/options-icon.png') }}"
+                        alt="Opciones"/>           
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <form class="dropdown-item text-center" action="{{ route('homework.destroy', $homework) }}" method="POST">
+                          @csrf
+                          @method('DELETE')
+                          <input type="submit" value="Eliminar" class="btn fs-4">
+                        </form>
+                      </div>
+                    </div>
+                  </div>
                   <p class="card-text">
-                    Realizar un ensayo
+                    {{ $homework->body }}
                   </p>
                   <p class="text-muted mb-0">
                       <strong>
-                          Grupo: 5-A
+                          Grupo: {{ $homework->grade }}-{{ $homework->group }}
+                            Turno: {{ $homework->turn }}
                       </strong><br>
-                          Fecha de entrega: 10/11/2021
+                          Fecha de entrega: {{ date('j F, Y', strtotime($homework->date))}}
                   </p>
-                  <a href="{{ url('received/admin') }}" class="btn btn-outline-success fs-4 mt-3">Ver tareas recibidas</a>
-                  <a href="{{ url('create/admin') }}" class="btn fs-4 mt-3" id="btn_color">Editar</a>
+                  <a href="{{ route('index', $homework->id) }}" class="btn btn-outline-success fs-4 mt-3">Ver tareas recibidas</a>
+                  <a href="{{ route('homework.edit', $homework) }}" class="btn fs-4 mt-3" id="btn_color">Editar</a>
                 </div>
               </div>
             </div>

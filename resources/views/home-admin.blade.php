@@ -53,7 +53,7 @@
                   >Información general</a> 
               </li>
               <li class="nav-item">
-                <a class="nav-link ps-lg-5" href="{{ url('posts/admin') }}"
+                <a class="nav-link ps-lg-5" href="{{ route('homework.index') }}"
                   >Tareas</a
                 >
               </li>
@@ -533,7 +533,7 @@
                       <form class="dropdown-item text-center" action="{{ route('home.destroy', $post) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <input type="submit" value="Eliminar" class="btn fs-3">
+                        <input type="submit" value="Eliminar" class="btn fs-4">
                       </form>
                     </div>
                   </div>
@@ -562,6 +562,7 @@
               </div>
             </div>
             @endforeach
+
             <div class="fs-3">
               {{ $posts->links() }}
             </div>

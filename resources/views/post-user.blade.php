@@ -53,7 +53,7 @@
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link ps-lg-5" href="{{ url('posts/user') }}"
+                  <a class="nav-link ps-lg-5" href="{{ route('homeworks.index')  }}"
                     >Tareas</a
                   >
                 </li>
@@ -105,17 +105,34 @@
             <div class="col-11">
               <div class="card border-dark">
                 <div class="card-body">
-                  <h2 class="card-title">Ensayo</h2>
+                  <h2 class="card-title">{{ $homework->title }}</h2>
                   <p class="card-text">
-                    Realizar un ensayo
+                   {{ $homework->body }}
                   </p>
                   <p class="text-muted mb-0">
-                    <strong> Ingles </strong><br />
-                    Fecha de entrega: 10/11/2021
+                    <strong>MATERIA</strong><br />
+                    Grupo: {{ $homework->grade }}-{{ $homework->group }}
+                    Fecha de entrega: {{ date('j F, Y', strtotime($homework->date))}}
                   </p>
+                  @if($exist == false)
+                  <section class="container mt-2 d-lg-none">
+                    <div class="row justify-content-center">
+                      <div class="col-12">
+                          <div class="card mb-4 border-2 border-dark">
+                              <div class="card-body p-2">
+                                  <p class="card-title fs-6 fw-bold">{{ $complete->title }}</p>
+                                  <p class="card-text fs-6 mb-0">{{ $complete->body }}</p>
+                                  @if($complete->file)
+                                  <a href="{{ $complete->file }}" download>Descargar</a>
+                                  @endif
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  </section>
+                  @endif
                   <form action="">
-                    <input type="file" class="col-9" id="btn_color"/>
-                    <button type="button" class="btn-sm" id="btn_color">Subir</button>
+                    <a href="{{ route('homeworks.create', $homework) }}" class="btn-sm" id="btn_color">Subir</a>
                   </form>
                 </div>
               </div>
@@ -128,25 +145,49 @@
             <div class="col-8">
               <div class="card border-dark">
                 <div class="card-body fs-4">
-                  <h2 class="card-title fs-1">Ensayo</h2>
+                  <h2 class="card-title fs-1">{{ $homework->title }}</h2>
                   <p class="card-text">
-                    Realizar un ensayo
+                    {{ $homework->body }}
                   </p>
                   <p class="text-muted mb-0">
                       <strong>
-                          Ingles
+                          MATERIA
                       </strong><br>
-                          Fecha de entrega: 10/11/2021
+                      Grupo: {{ $homework->grade }}-{{ $homework->group }}
+                      Fecha de entrega: {{ date('j F, Y', strtotime($homework->date))}}
                   </p>
-                  <form action="">
-                    <input class="btn fs-4 m-0" id="btn_color" type="file"/>
-                    <button type="button" class="btn-lg fs-4 col-2" id="btn_color">Subir</button>
-                  </form>
+                  @if($exist == false)
+                  <section class="container mt-4 mb-4 d-none d-lg-block">
+                    <div class="row justify-content-center">
+                      <div class="col-12 col-md-12">
+                          <div class="card mb-4 border-2 border-dark">
+                              <div class="card-body">
+                                  <h3 class="card-title fs-3 fw-bold">{{ $complete->title }}</h3>
+                                  <p class="card-text fs-3 mb-0">{{ $complete->body }}</p>
+                                  @if($complete->file)
+                                  <a href="{{ $complete->file }}" download>Descargar</a>
+                                  @endif
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  </section>
+                  @endif
+                  @if ($exist == true)
+                  <div class="mt-3">
+                    <a href="{{ route('create', $homework )}}" class="btn-lg fs-4 col-2" id="btn_color">Subir</a>
+                  </div>
+                  @elseif($exist == false)
+                  <div class="mt-3">
+                    <a href="{{ route('homeworks.edit', $homework )}}" class="btn-lg fs-4 col-2" id="btn_color">Actualizar</a>
+                  </div>
+                  @endif
                 </div>
               </div>
             </div>
           </div>
         </section>
+
       </main>
   
       <script

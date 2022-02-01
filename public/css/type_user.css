@@ -4,6 +4,14 @@
 header{
     background-color: #F4F4F4;
 }
+#btn-color{
+    transform: scale(1);
+    transition: 0.3s transform;
+}
+#btn-color:hover{
+    transform: scale(1.1);
+    color: #fff;
+}
 
 
 input:focus, select:focus, select, a.btn:focus {

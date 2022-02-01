@@ -52,7 +52,7 @@
                     >Información general</a> 
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link ps-lg-5" href="{{ url('posts/admin') }}"
+                  <a class="nav-link ps-lg-5" href="{{ route('homework.index') }}"
                     >Tareas</a
                   >
                 </li>
@@ -103,19 +103,24 @@
                 <div class="col-12">
                     <div class="card mt-2 border-dark">
                         <div class="card-body">
-                            <h2>Ensayo</h2>
+                            <h2>{{ $received->title }}</h2>
                             <a href="https://docs.google.com/document/d/19HUWw5_I66zs02wf3Fo8USobiirlFKTV/edit?usp=sharing&ouid=112756981818013118610&rtpof=true&sd=true"><img src="./assets/icons/archivo-de-word.png" alt=""></a>
                             <p class="text-muted mt-3">
-                                <strong>Jaciel Benito Rios Martinez</strong><br>
-                                5-C
+                                <strong>{{ $received->name }}</strong><br>
+                                {{ $received->grade }}-{{ $received->group }}
                             </p>
-                            <form action="">
+                            <form 
+                            action="{{ route('received.update', $received) }}"
+                            method="POST" 
+                            enctype="multipart/form-data">
                                 <div class="input-group mb-3">
                                     <input type="number" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
                                     <span class="input-group-text">/</span>
                                     <span class="input-group-text">100</span>
                                 </div>
-                                <button class="btn" id="btn_color">Calificar</button>
+                                @csrf
+                                @method('PUT')
+                                <input type="submit" value="Calificar" class="btn" id="btn_color">
                             </form>
                         </div>
                     </div>
@@ -128,19 +133,37 @@
                 <div class="col-8">
                     <div class="card mt-4 border-dark">
                         <div class="card-body">
-                            <h2 class="fs-1">Ensayo</h2>
+                            <h2 class="fs-1">{{ $received->title }}</h2>
                             <a href="https://docs.google.com/document/d/19HUWw5_I66zs02wf3Fo8USobiirlFKTV/edit?usp=sharing&ouid=112756981818013118610&rtpof=true&sd=true"><img src="{{ asset('images/word.png') }}" alt=""></a>
                             <p class="text-muted mt-3">
-                                <strong>Jaciel Benito Rios Martinez</strong><br>
-                                5-C
+                                <strong>{{ $received->name }}</strong><br>
+                                {{ $received->grade}}-{{ $received->group }}
                             </p>
-                            <form action="">
+                            @if ($errors->any())
+                              <div class="alert alert-danger">
+                                  <ul>
+                                    @foreach ($errors->all() as $error)
+                                      <li>{{ $error }}</li>
+                                    @endforeach
+                                  </ul>
+                                </div>
+                            @endif
+                            <form
+                              action="{{ route('received.update', $received) }}"
+                              method="POST" 
+                              enctype="multipart/form-data">
                                 <div class="input-group mb-3">
-                                    <input type="number" class="form-control fs-3" aria-label="Dollar amount (with dot and two decimal places)">
+                                  @if(isset($received->quali))
+                                  <input type="number" name="quali" class="form-control fs-3" value="{{ old('quali', $received->quali)}}">
+                                  @else
+                                  <input type="number" name="quali" class="form-control fs-3">
+                                  @endif
                                     <span class="input-group-text fs-3">/</span>
                                     <span class="input-group-text fs-3">100</span>
                                 </div>
-                                <button class="btn fs-3" id="btn_color">Calificar</button>
+                                @csrf
+                                @method('PUT')
+                                  <input type="submit" class="btn fs-3" value="Calificar" id="btn_color">
                             </form>
                         </div>
                     </div>

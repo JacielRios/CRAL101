@@ -52,7 +52,7 @@
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link ps-lg-5" href="{{ url('posts/user') }}"
+                  <a class="nav-link ps-lg-5" href="{{ route('homeworks.index') }}"
                     >Tareas</a
                   >
                 </li>
@@ -115,63 +115,51 @@
         </section>
 
         <section class="container mt-2 d-lg-none">
+          @foreach ($homeworks as $homework)
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 ">
                     <div class="card mb-4 border-2 border-dark">
                         <div class="card-body">
-                            <h3 class="card-title ">Ensayo</h3>
-                            <p class="card-text fs-5 mb-0">Realizar un ensayo</p>
-                            <a href="{{ url('post/user') }}" class="btn btn-outline-primary">Leer más..</a>
+                            <h3 class="card-title ">{{ $homework->title }}</h3>
+                            <p class="card-text fs-5 mb-0">{{ $homework->body }}</p>
+                            <a href="{{ route('homeworks.show',$homework->id) }}" class="btn btn-outline-primary">Leer más..</a>
                             <p class="text-muted mb-0">
                                 <strong>
-                                    Materia: Ingles
+                                  Materia: Ingles <br>
+                                  Turno: {{ $homework->turn }} <br>
+                                  Grupo : {{ $homework->grade }}-{{ $homework->group }}
                                 </strong><br>
-                                    Fecha de entrega: 10/11/2021
+                                    Fecha de entrega:  {{ date('j F, Y', strtotime($homework->date))}}
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section class="container mt-2 d-lg-none">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-10 ">
-                    <div class="card mb-4 border-2 border-dark">
-                        <div class="card-body">
-                            <h3 class="card-title ">Ensayo</h3>
-                            <p class="card-text fs-5 mb-0">Realizar un ensayo</p>
-                            <a href="{{ url('post/user') }}" class="btn btn-outline-primary">Leer más..</a>
-                            <p class="text-muted mb-0">
-                                <strong>
-                                    Materia: Ingles
-                                </strong><br>
-                                    Fecha de entrega: 10/11/2021
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </section>
 
         <section class="container mt-2 fs-3 d-none d-lg-block">
+          @foreach($homeworks as $homework)
             <div class="row justify-content-center">
                 <div class="col-8">
                     <div class="card mb-4 border-2 border-dark">
                         <div class="card-body">
-                            <h2 class="card-title fs-1">Ensayo</h2>
-                            <p class="card-text mb-0">Realizar un ensayo</p>
-                            <a href="{{ url('post/user') }}" class="btn btn-outline-primary fs-3">Leer más..</a>
+                            <h2 class="card-title fs-1">{{ $homework->title }}</h2>
+                            <p class="card-text mb-0">{{ $homework->body }} </p>
+                            <a href="{{ route('homeworks.show',$homework->id) }}" class="btn btn-outline-primary fs-3">Leer más..</a>
                             <p class="text-muted mb-0">
                                 <strong>
-                                    Materia: Ingles
+                                    Materia: Ingles <br>
+                                    Turno: {{ $homework->turn }} <br>
+                                    Grupo : {{ $homework->grade }}-{{ $homework->group }}
                                 </strong><br>
-                                    Fecha de entrega: 10/11/2021
+                                    Fecha de entrega: {{ date('j F, Y', strtotime($homework->date))}}
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
         </section>
     </main>
     

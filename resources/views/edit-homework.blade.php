@@ -52,7 +52,7 @@
                     >Información general</a> 
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link ps-lg-5" href="{{ url('posts/admin') }}"
+                  <a class="nav-link ps-lg-5" href="{{ route('homework.index') }}"
                     >Tareas</a
                   >
                 </li>
@@ -103,20 +103,20 @@
             <div class="card-header fw-bold">Crear tarea</div>
             <div class="card-body">
                 <form
-                      action="{{ route('homework.store') }}"
+                      action="{{ route('homework.update', $homework) }}"
                         method="POST" 
                         enctype="multipart/form-data">
                     <div class="form-group">
                         <label class="">Titulo *</label>
-                        <input type="text" name="title" class="form-control" required>
+                        <input type="text" name="title" class="form-control" required value="{{ old('title', $homework->title) }}">
                     </div>
                     <div class="form-group">
                         <label>Contenido *</label>
-                        <textarea name="body" rows="6" class="form-control" required></textarea>
+                        <textarea name="body" rows="6" class="form-control" required >{{ old('body', $homework->body) }}</textarea>
                     </div>
                     <div class="form-group">
                         <label>Grado *</label>
-                        <select class="form-select" name="grade" id="grade">
+                        <select class="form-select" name="grade" id="grade" value="{{ old('grade', $homework->grade) }}">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -127,7 +127,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Grupo *</label>
-                        <select class="form-select" name="group" id="group">
+                        <select class="form-select" name="group" id="group" value="{{ old('group', $homework->group) }}">
                             <option value="a">A</option>
                             <option value="b">B</option>
                             <option value="c">C</option>
@@ -136,14 +136,14 @@
                     </div>
                     <div class="form-group">
                       <label class="fs-3" for="">Turno *</label>
-                      <select class="form-select fs-3" name="turn" id="turn">
+                      <select class="form-select fs-3" name="turn" id="turn" value="{{ old('turn', $homework->turn) }}">
                           <option value="Matutino">Matutino</option>
                           <option value="Vespertino">Vespertino</option>
                       </select>
                   </div>
                     <div class="form-group">
                         <label>Fecha limite</label>
-                        <input name="date" class="form-control" type="date">
+                        <input name="date" class="form-control" type="date" value="{{ old('date', $homework->date) }}">
                     </div>
                     <div class="form-group">
                         <label for="">Archivo</label>
@@ -151,7 +151,8 @@
                     </div>
                     <div class="mt-2 text-end">
                       @csrf
-                        <input type="submit" value="Crear" class="btn" id="btn">
+                      @method('PUT')
+                        <input type="submit" value="Actualizar" class="btn" id="btn">
                     </div>
                 </form>
             </div>
@@ -172,20 +173,20 @@
         </div>
         <div class="card-body">
             <form
-                action="{{ route('homework.store') }}"
+                action="{{ route('homework.update', $homework) }}"
                 method="POST" 
                 enctype="multipart/form-data">
                 <div class="form-group">
-                    <label class="fs-3">Titulo *</label>
-                    <input type="text" name="title" class="form-control fs-3" required>
+                    <label class="fs-3">Titulo</label>
+                    <input type="text" name="title" class="form-control fs-3" required value="{{ old('title', $homework->title) }}">
                 </div>
                 <div class="form-group">
-                    <label class="fs-3">Contenido *</label>
-                    <textarea name="body" rows="6" class="form-control fs-3" required></textarea>
+                    <label class="fs-3">Contenido</label>
+                    <textarea name="body" rows="6" class="form-control fs-3" required>{{ old('body', $homework->body) }}</textarea>
                 </div>
                 <div class="form-group">
                     <label class="fs-3">Grado *</label>
-                    <select class="form-select fs-3" name="grade" id="grade">
+                    <select class="form-select fs-3" name="grade" id="grade" value="{{ old('grade', $homework->grade) }}">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -196,7 +197,7 @@
                 </div>
                 <div class="form-group">
                     <label class="fs-3" for="">Grupo *</label>
-                    <select class="form-select fs-3" name="group" id="group">
+                    <select class="form-select fs-3" name="group" id="group" value="{{ old('group', $homework->group) }}">
                         <option value="A">A</option>
                         <option value="B">B</option>
                         <option value="C">C</option>
@@ -205,14 +206,14 @@
                 </div>
                 <div class="form-group">
                   <label class="fs-3" for="">Turno *</label>
-                  <select class="form-select fs-3" name="turn" id="turn">
+                  <select class="form-select fs-3" name="turn" id="turn" value="{{ old('turn', $homework->turn) }}">
                       <option value="Matutino">Matutino</option>
                       <option value="Vespertino">Vespertino</option>
                   </select>
               </div>
                 <div class="form-group">
                     <label class="fs-3">Fecha limite</label>
-                    <input type="date" name="date" class="form-control fs-3" >
+                    <input type="date" name="date" class="form-control fs-3" value="{{ old('date', $homework->date) }}">
                 </div>
                 <div class="form-group">
                     <label class="fs-3" for="">Archivo</label>
@@ -220,7 +221,8 @@
                 </div>
                 <div class="mt-2 text-end">
                   @csrf
-                    <input type="submit" value="Crear" class="btn fs-3" id="btn-color">
+                  @method('PUT')
+                    <input type="submit" value="Actualizar" class="btn fs-3" id="btn-color">
                 </div>
             </form>
         </div>

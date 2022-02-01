@@ -9,6 +9,13 @@ header nav .nav-item #img-user{
     width: 40px;
     height: 40px;
 }
+#scale{
+    transform: scale(1);
+    transition: 0.5s transform;
+}
+#scale:hover{
+    transform: scale(1.05);
+}
 
 @media (min-width: 800px) {
     header .navbar-brand #main-logo{

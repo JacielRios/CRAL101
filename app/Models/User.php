@@ -61,6 +61,15 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    public function homework()
+    {
+        return $this->hasMany(Homework::class);
+    }
+
+    public function homeworks_send()
+    {
+        return $this->hasMany(Homework_send::class);
+    }
     // public function chat()
     // {
     //     return $this->hasMany(Chat::class);
