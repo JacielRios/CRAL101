@@ -148,7 +148,7 @@
             </div>
         </section>
 
-        <section class="d-md-none" id="section-info">
+        <section class="d-md-none mt-4 mb-4" id="section-info">
             <div class="row">
                 <div class="container">
                     <div class="row justify-content-center p-0">
@@ -182,7 +182,7 @@
                         </div>
                     </div>
                     <div class="row justify-content-center ">
-                        <a class="btn btn-outline-dark col-9 mb-3" id="" href="{{ route('user.index') }}">Registrarse como alumno</a>
+                        <a class="btn btn-outline-light col-9 mb-3" id="" href="{{ route('user.index') }}">Registrarse como alumno</a>
                     </div>
                 </div>
             </div>
@@ -226,41 +226,41 @@
                 </div>
         </section>
 
-        <section class="d-md-none" id="section-info-2">
+        <section class="d-md-none mb-4" id="section-info-2">
             <!-- <div class="row"> -->
                 <div class="container">
                     <div class="row justify-content-center">
-                        <h4 class="mt-3 text-center ">Funciones <br> para profesores</h4>
+                        <h4 class="mt-3 text-center text-white">Funciones <br> para profesores</h4>
                         <div class="card mt-2 mb-3 col-10 rounded" id="section-card-2">
                             <div>
                                 <img src="{{asset('images/card-icon.png')}}" alt="">
                             </div>
                             <div class="card-body p-0 pt-2 ps-1">
-                                <h5 class="">Información general</h5>
+                                <h5 class="text-white">Información general</h5>
                                 <p class="text-muted">Podrá subir avisos de manera más organizada eligiendo cual grupo desea que lo vea.</p>
                             </div>
                         </div>
-                        <div class="card mt-2 mb-3 col-10 rounded" id="section-card">
+                        <div class="card mt-2 mb-3 col-10 rounded" id="section-card-2">
                             <div>
                                 <img src="{{asset('images/card-icon.png')}}" alt="">
                             </div>
                             <div class="card-body p-0 pt-2 ps-1">
-                                <h5 class="">Historial de calificaciones</h5>
+                                <h5 class="text-white">Historial de calificaciones</h5>
                                 <p class="text-muted">Apartado donde podrá calcular el promedio automáticamente al ingresar la calificación de cada actividad.</p>
                             </div>
                         </div>
-                        <div class="card mt-2 mb-3 col-10 rounded" id="section-card">
+                        <div class="card mt-2 mb-3 col-10 rounded" id="section-card-2">
                             <div>
                                 <img src="{{asset('images/card-icon.png')}}" alt="">
                             </div>
                             <div class="card-body p-0 pt-2 ps-1">
-                                <h5 class="">Tareas</h5>
+                                <h5 class="text-white">Tareas</h5>
                                 <p class="text-muted">Podrá subir y recibir las tareas de sus grupos.</p>
                             </div>
                         </div>
                     </div>
                     <div class="row justify-content-center ">
-                        <a class="btn btn-outline-dark col-9 mb-3" id="" href="{{ route('register') }}">Registrarse como profesor</a>
+                        <a class="btn btn-outline-light col-9 mb-3" id="" href="{{ route('register') }}">Registrarse como profesor</a>
                     </div>
                 </div>
             </div>
