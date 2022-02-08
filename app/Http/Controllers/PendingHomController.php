@@ -21,14 +21,24 @@ class PendingHomController extends Controller
             $id_homework[] = ['homework_id' => $exists->homework_id];
         }
 
-        foreach($id_homework as $id){
-            $all = DB::table('Homework')
-            ->where('id', '=', $id['homework_id'])
-            ->get();
-            $alls[] = $all[0];
+        if (isset($id_homework)) {
+            foreach($id_homework as $id){
+                $all = DB::table('Homework')
+                ->where('id', '=', $id['homework_id'])
+                ->where('grade', '=', auth()->user()->semester)
+                ->where('group', '=', auth()->user()->group)
+                ->where('turn', '=', auth()->user()->turn)
+                ->where('carrer', '=', auth()->user()->carrer)
+                ->get();
+                $alls[] = $all[0];
+            }
         }
-        // dd($homeworks);
-        $tareas = DB::table('Homework')->get();
+        $tareas = DB::table('Homework')
+        ->where('grade', '=', auth()->user()->semester)
+        ->where('group', '=', auth()->user()->group)
+        ->where('turn', '=', auth()->user()->turn)
+        ->where('carrer', '=', auth()->user()->carrer)
+        ->get();
         // dd($tareas);
         // foreach($tareas as $tarea){
         //     $datas = DB::table('Homework')
@@ -47,17 +57,22 @@ class PendingHomController extends Controller
         $pending_homework = json_decode($tareas);
         foreach($pending_homework as $ph){
             $encontrado = false;
-            foreach($alls as $all){
-                if ($all == $ph){
-                    $encontrado = true;
+            if (isset($alls)) {
+                foreach($alls as $all){
+                    if ($all == $ph){
+                        $encontrado = true;
+                    }
                 }
             }
             if ($encontrado == false){
                 $homeworks[] = $ph;
             }
         }
-        // dd($homeworks);
-        
-        return view('pending-user', compact('homeworks'));
+        if (isset($homeworks)) {
+            return view('pending-user', compact('homeworks'));
+        }else{
+            return view('pending-user');
+        }
+            
     }
 }

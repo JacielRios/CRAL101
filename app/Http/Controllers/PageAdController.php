@@ -64,16 +64,46 @@ class PageAdController extends Controller
      */
     public function store(PostRequest $request)
     {
-        // dd($request);
-        $post = Post::create([
+        $max_size = (int)ini_get('upload_max_filesize') * 1024;
+        $file = $request->file('file');
+        $image = $request->file('image');
+        
+        if ($request->hasFile('file')) {
+            if ($request->hasFile('image')){
+                if (Storage::putFileAs('/public/post' . '/', $file, $file->getClientOriginalName())){
+                    Storage::putFileAs('/public/post' . '/', $image, $image->getClientOriginalName());
+                    Post::create([
+                    'user_id' => auth()->user()->id,
+                    'file' => $file->getClientOriginalName(),
+                    'image' => $image->getClientOriginalName(),]
+                    + $request->all());
+            }
+        }else{
+            if(Storage::putFileAs('/public/post' . '/', $file, $file->getClientOriginalName())) {
+                Post::create([
+                'user_id' => auth()->user()->id,
+                'file' => $file->getClientOriginalName()]
+                + $request->all());
+            }
+        }
+        alert()->success('¡Éxito!','¡Has creado una nueva publicación!')->showConfirmButton('Bien', '#01276d');
+        return redirect()->route('home.index');
+
+    }elseif($request->hasFile('image')){
+        if(Storage::putFileAs('/public/post' . '/', $image, $image->getClientOriginalName())) {
+            Post::create([
+            'user_id' => auth()->user()->id,
+            'image' => $image->getClientOriginalName()]
+            + $request->all());
+        }
+        alert()->success('¡Éxito!','¡Has creado una nueva publicación!')->showConfirmButton('Bien', '#01276d');
+        return redirect()->route('home.index');
+    }
+        Post::create([
             'user_id' => auth()->user()->id]
             + $request->all());
-            
-         if ($request->file('file')) {
-             $post->file = $request->file('file')->store('posts', 'public');
-             $post->save();
-         }
-         return redirect()->route('home.index');
+            alert()->success('¡Éxito!','¡Has creado una nueva publicación!')->showConfirmButton('Bien', '#01276d');
+        return redirect()->route('home.index');
     }
 
     /**
@@ -107,14 +137,47 @@ class PageAdController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
+        if($post->file){
+            if($request->file('file')){
+                unlink(storage_path('../public/storage/post/'.$post->file));
+            }
+        }
+        if($post->image){
+            if($request->file('image')){
+                unlink(storage_path('../public/storage/post/'.$post->image));
+            }
+        }
         $post->update($request->all());
-        if ($request->file('file')) {
-            Storage::disk('public')->delete($post->file);
-            $post->file = $request->file('file')->store('posts', 'public');
+        $file = $request->file('file');
+        $image = $request->file('image');
+        
+        if ($request->hasFile('file')) {
+            if ($request->hasFile('image')){
+                if (Storage::putFileAs('/public/post' . '/', $file, $file->getClientOriginalName())){
+                    Storage::putFileAs('/public/post' . '/', $image, $image->getClientOriginalName());
+                    $post->file = $file->getClientOriginalName();
+                    $post->image = $image->getClientOriginalName();
+                    $post->save();
+            }
+        }else{
+            if(Storage::putFileAs('/public/post' . '/', $file, $file->getClientOriginalName())) {
+                $post->file = $file->getClientOriginalName();
+                $post->save();
+            }
+        }
+        alert()->success('¡Éxito!','¡Has actualizado esta publicación!')->showConfirmButton('Bien', '#01276d');
+        return redirect()->route('home.index');
+
+    }elseif($request->hasFile('image')){
+        if(Storage::putFileAs('/public/post' . '/', $image, $image->getClientOriginalName())) {
+            $post->image = $image->getClientOriginalName();
             $post->save();
         }
-        
+        alert()->success('¡Éxito!','¡Has actualizado esta publicación!')->showConfirmButton('Bien', '#01276d');
         return redirect()->route('home.index');
+    }
+    alert()->success('¡Éxito!','¡Has actualizado esta publicación!')->showConfirmButton('Bien', '#01276d');        
+    return redirect()->route('home.index');
     }
 
     /**
@@ -126,6 +189,7 @@ class PageAdController extends Controller
     public function destroy(Post $post)
     {
         Storage::disk('public')->delete($post->file);
+        Storage::disk('public')->delete($post->image);
         $post->delete();
 
         return back();

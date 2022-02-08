@@ -17,6 +17,9 @@ class adminViews
      */
     public function handle(Request $request, Closure $next, ...$roles)
     {
+        if (auth::guest()) {
+            return redirect('login');
+        }
         $user = auth::user()->role;
 
     if ($user =='user'){

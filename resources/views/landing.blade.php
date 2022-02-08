@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +18,7 @@
                     <div class="row justify-content-center text-end" id="nav-text">
                         <div class="col-1 p-0">
                             {{-- <p class="btn text-white p-0 fs-5" id="logo" class="text-white">CRAL101</p> --}}
-                            <span><img class="p-0 pb-2" src="{{asset('images/logo-remaster2.png')}}" alt=""></span>
+                            <span><img class="p-0 pb-2" src="{{asset('images/Logo-Cral.png')}}" style="height:50px; width:120px;" alt=""></span>
                         </div>
                         <div class="col-6 col-md-3 ms-5">
                             <a class="btn text-white p-0 pt-2" href="{{ route('login') }}">Iniciar sesión</a>
@@ -41,13 +41,13 @@
         </nav>
     </header>
 
-    <header class="d-none d-md-block d-lg-none">
+    {{-- <header class="d-none d-md-block d-lg-none">
         <nav id="header-container">
                 <div class="container" id="nav-container">
                     <div class="row justify-content-center text-end" id="nav-text">
                         <div class="col-5 pt-1  text-start">
-                            {{-- <p class="btn text-white p-0 fs-2" id="logo" class="text-white">CRAL101</p> --}}
-                            <span><img class="col-6" src="{{asset('images/logo-remaster2.png')}}" alt=""></span>
+                            {{-- <p class="btn text-white p-0 fs-2" id="logo" class="text-white">CRAL101</p>
+                            <span><img class="col-6" src="{{asset('images/Logo-Cral.png')}}" alt=""></span>
                         </div>
                         <div class="col-5 ms-5" >
                             <a class="btn text-white p-0 pt-4"  href="{{ route('login') }}">Iniciar sesión</a>
@@ -70,15 +70,15 @@
             </div>
         </div>
         </nav>
-    </header>
+    </header> --}}
 
-    <header class="d-none d-lg-block">
+    <header class="d-none d-md-block">
         <nav id="header-container-lg" class="pb-2">
             <div class="container" id="">
                 <div class="row justify-content-center text-end">
                     <div class="col-4 text-start">
-                        {{-- <p class="btn text-white p-0 " id="logo-lg" class="text-white">CRAL101</p> --}}
-                        <span><img class="col-4 p-0" src="{{asset('images/logo-remaster2.png')}}" alt=""></span> 
+                        {{--<p class="btn text-white p-0 " id="logo-lg" class="text-white">CRAL101</p>--}}
+                        <span><img class="col-4 p-0" src="{{asset('images/Logo-Cral.png')}}" alt=""></span> 
 
                     </div>
                     <div class="col-5 ms-5">
@@ -90,26 +90,24 @@
                 </div>
             </div>
         </nav>
-                {{-- <div class="row text-end mt-5 fs-1" id="">
+                {{--<div class="row text-end mt-5 fs-1" id="">
                     <div class="text-white fw-bold mt-5 pt-2">
                         <p class="mt-5 pt-5 fs-1" id="slogan">Toda tu información académica <br> en un solo lugar</p>
-                        <!-- <a href="#info-button" class="btn btn-outline-light shadow-lg fs-2">Más Información</a> -->
+                        <a href="#info-button" class="btn btn-outline-light shadow-lg fs-2">Más Información</a> -->
                     </div>
                 </div> --}}
             {{-- <div class="p-0">
                 <img class="col-12" src="{{asset('images/banner1.2.jfif')}}" alt="">
             </div> --}}
-            
-    {{-- </nav> --}}
     </header>
 
     <main class="p-0 m-0">
-        <section class="d-none d-lg-block">
+        <section class="d-none d-md-block">
             <div class="text-white" id="brand-container">
                 <p>Toda tu información academica <br> en un solo lugar</p>
             </div>
         </section>
-        <section id="section-carousel" class="pt-1 d-none d-lg-block">
+        <section id="section-carousel" class="pt-1 d-none d-md-block">
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                   <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -150,7 +148,7 @@
             </div>
         </section>
 
-        <section class="d-lg-none" id="section-info">
+        <section class="d-md-none" id="section-info">
             <div class="row">
                 <div class="container">
                     <div class="row justify-content-center p-0">
@@ -190,17 +188,17 @@
             </div>
         </section>
 
-        <section class="d-none d-lg-block mt-3 mb-4" id="section-info">
+        <section class="d-none d-md-block mt-3 mb-4" id="section-info">
                 <div class="container">
                     <div class="row justify-content-center p-0 fs-3">
-                        <h2 class="text-dark mt-3 text-center fs-1 p-0">Funciones <br> para alumnos</h2>
+                        <h2 class="text-white mt-3 text-center fs-1 p-0">Funciones <br> para alumnos</h2>
                         <div class="card mt-2 mb-3 me-4 col-5 rounded" id="section-card">
                             <div>
                                 <img src="{{asset('images/card-icon.png')}}" alt="">
                             </div>
                             <div class="card-body text-dark p-0 pt-2 ps-1 " >
-                                <h2 class="">Información general</h2>
-                                <p class="text-muted">Apartado donde podrás recibir los avisos y noticias generales por parte del plantel, además de contar con funciones para ordenarlos y acceder a ellas mas fácilmente.</p>
+                                <h2 class="text-white">Información general</h2>
+                                <p class="text-muted text-white">Apartado donde podrás recibir los avisos y noticias generales por parte del plantel, además de contar con funciones para ordenarlos y acceder a ellas mas fácilmente.</p>
                             </div>
                         </div>
                         <div class="card mt-2 mb-3 col-5 rounded" id="section-card">
@@ -208,8 +206,8 @@
                                 <img src="{{asset('images/card-icon.png')}}" alt="">
                             </div>
                             <div class="card-body text-dark p-0 pt-2 ps-1">
-                                <h2 class="">Historial de calificaciones</h2>
-                                <p class="text-muted">Podrás ver tus calificaciones por parciales y de semestres anteriores.</p>
+                                <h2 class="text-white">Historial de calificaciones</h2>
+                                <p class="text-muted text-white">Podrás ver tus calificaciones por parciales y de semestres anteriores.</p>
                             </div>
                         </div>
                         <div class="card mt-2 mb-3 col-5 rounded" id="section-card">
@@ -217,18 +215,18 @@
                                 <img src="{{asset('images/card-icon.png')}}" alt="">
                             </div>
                             <div class="card-body text-dark p-0 pt-2 ps-1">
-                                <h2 class="">Tareas</h2>
+                                <h2 class="text-white">Tareas</h2>
                                 <p class="text-muted">Podrás ver y enviar los tareas que asigne el profesor.</p>
                             </div>
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <a class="btn btn-outline-dark col-2 mb-3 fs-3 p-2" id="" href="{{ route('user.index') }}">Registrarse como alumno</a>
+                        <a class="btn btn-outline-light col-2 mb-3 fs-3 p-2" id="" href="{{ route('user.index') }}">Registrarse como alumno</a>
                     </div>
                 </div>
         </section>
 
-        <section class="d-lg-none" id="section-info-2">
+        <section class="d-md-none" id="section-info-2">
             <!-- <div class="row"> -->
                 <div class="container">
                     <div class="row justify-content-center">
@@ -268,47 +266,47 @@
             </div>
         </section>
 
-        <section class="d-none d-lg-block mb-4" id="section-info-2">
+        <section class="d-none d-md-block mb-4" id="section-info-2">
             <!-- <div class="row"> -->
                 <div class="container">
                     <div class="row justify-content-center fs-3">
-                        <h4 class="mt-3 text-center fs-1">Funciones <br> para profesores</h4>
+                        <h4 class="mt-3 text-center fs-1 text-white">Funciones <br> para profesores</h4>
                         <div class="card mt-2 mb-3 me-5 col-5 rounded" id="section-card-2">
                             <div>
                                 <img src="{{asset('images/card-icon.png')}}" alt="">
                             </div>
                             <div class="card-body p-0 pt-2 ps-1">
-                                <h2 class="">Información general</h2>
+                                <h2 class="text-white">Información general</h2>
                                 <p class="text-muted">Podrá subir avisos de manera más organizada eligiendo cual grupo desea que lo vea.</p>
                             </div>
                         </div>
-                        <div class="card mt-2 mb-3 col-5 rounded" id="section-card">
+                        <div class="card mt-2 mb-3 col-5 rounded" id="section-card-2">
                             <div>
                                 <img src="{{asset('images/card-icon.png')}}" alt="">
                             </div>
                             <div class="card-body p-0 pt-2 ps-1">
-                                <h2 class="">Historial de calificaciones</h2>
+                                <h2 class="text-white">Historial de calificaciones</h2>
                                 <p class="text-muted">Apartado donde podrá calcular el promedio automáticamente al ingresar la calificación de cada actividad.</p>
                             </div>
                         </div>
-                        <div class="card mt-2 mb-3 col-5 rounded" id="section-card">
+                        <div class="card mt-2 mb-3 col-5 rounded" id="section-card-2">
                             <div>
                                 <img src="{{asset('images/card-icon.png')}}" alt="">
                             </div>
                             <div class="card-body p-0 pt-2 ps-1">
-                                <h2 class="">Tareas</h2>
+                                <h2 class="text-white">Tareas</h2>
                                 <p class="text-muted">Podrá subir y recibir las tareas de sus grupos.</p>
                             </div>
                         </div>
                     </div>
                     <div class="row justify-content-center ">
-                        <a class="btn btn-outline-dark mb-3 col-2 fs-3 p-2" id="" href="{{ route('register') }}">Registrarse como profesor</a>
+                        <a class="btn btn-outline-light mb-3 col-2 fs-3 p-2" id="" href="{{ route('register') }}">Registrarse como profesor</a>
                     </div>
                 </div>
         </section>
     </main>
     
-    <footer id="footer" class="pt-4 pb-4 col-12 d-lg-none">
+    <footer id="footer" class="pt-4 pb-4 col-12 d-md-none">
         <div class="container">
             <div class="row text-center">
                 <div class="col-12 pt-1 ps-1 p-0">
@@ -324,7 +322,7 @@
         </div> 
     </footer>
 
-    <footer id="footer" class="pt-4 pb-4 col-12 d-none d-lg-block ">
+    <footer id="footer" class="pt-4 pb-4 col-12 d-none d-md-block ">
         <div class="container">
             <div class="row text-center">
                 <div class="col-12 col-lg">

@@ -10,14 +10,15 @@
   </head>
   <body>
     <header>
-        @if(Auth::user()->role == 'admin')
+      @if(Auth::user()->role == 'admin')
         <nav class="navbar navbar-expand-lg navbar-dark">
           <div class="container-fluid">
             <a class="navbar-brand d-lg-none m-auto pb-3" href="#">
               <img
+              style="height: 50px; width:140px;"
                 id="main-logo"
                 class="ps-lg-5 ms-lg-5"
-                src="{{ asset('images/logo-remaster2.png') }}"
+                src="{{ asset('images/Logo-Cral.png') }}"
                 alt="Logo CRAL101"
               />
             </a>
@@ -25,7 +26,7 @@
               <img
                 id="main-logo"
                 class="ps-lg-5 ms-lg-5"
-                src="{{ asset('images/logo-remaster2.png') }}"
+                src="{{ asset('images/Logo-Cral.png') }}"
                 alt="Logo CRAL101"
               />
             </a>
@@ -38,7 +39,9 @@
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="navbar-toggler-icon"></span>
+              <span><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-justify" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+              </svg></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ms-auto">
@@ -54,14 +57,14 @@
                 <li class="nav-item">
                   <a class="nav-link ps-lg-5" href="{{ url('calificaciones/admin') }}">Historial de calificaciones</a>
                 </li>
-                <li class="nav-item d-lg-none">
-                  <a class="nav-link ps-lg-5 pe-lg-5" href="{{ url('profile-profesor/user') }}"
-                    >Cuenta</a
-                  >
-                </li>
                 <li class="nav-item">
                   <a class="nav-link ps-lg-5" href="{{ url('chat') }}"
                     >Mensajes</a
+                  >
+                </li>
+                <li class="nav-item d-lg-none">
+                  <a class="nav-link ps-lg-5 pe-lg-5" href="{{ url('profile-profesor/user') }}"
+                    >Cuenta</a
                   >
                 </li>
                 <li class="nav-item d-none d-lg-block">
@@ -92,14 +95,16 @@
           </div>
         </nav>
       </header>
-      @elseif(Auth::user()->role == 'dir')
+    @elseif(Auth::user()->role == 'dir')
+    <header>
       <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
           <a class="navbar-brand d-lg-none m-auto pb-3" href="#">
             <img
+            style="height: 50px; width:140px;"
               id="main-logo"
               class="ps-lg-5 ms-lg-5"
-              src="{{ asset('images/logo-remaster2.png') }}"
+              src="{{ asset('images/Logo-Cral.png') }}"
               alt="Logo CRAL101"
             />
           </a>
@@ -107,7 +112,7 @@
             <img
               id="main-logo"
               class="ps-lg-5 ms-lg-5"
-              src="{{ asset('images/logo-remaster2.png') }}"
+              src="{{ asset('images/Logo-Cral.png') }}"
               alt="Logo CRAL101"
             />
           </a>
@@ -120,7 +125,9 @@
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-justify" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+            </svg></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
@@ -128,14 +135,14 @@
                 <a class="nav-link active lg-ps-2" aria-current="page" href="{{ url('home-profesor/post') }}"
                   >Información general</a> 
               </li>
-              <li class="nav-item d-lg-none">
-                <a class="nav-link ps-lg-5 pe-lg-5" href="{{ url('profile-profesor/user') }}"
-                  >Cuenta</a
-                >
-              </li>
               <li class="nav-item">
                 <a class="nav-link ps-lg-5" href="{{ url('chat') }}"
                   >Mensajes</a
+                >
+              </li>
+              <li class="nav-item d-lg-none">
+                <a class="nav-link ps-lg-5 pe-lg-5" href="{{ url('profile-profesor/user') }}"
+                  >Cuenta</a
                 >
               </li>
               <li class="nav-item d-none d-lg-block">
@@ -166,10 +173,11 @@
         </div>
       </nav>
     </header>
-    @endif
+  @endif
+  
 
     <main id="main">
-        <section class="container mt-4 mb-4 d-md-none">
+        <section class="container mb-4 d-md-none">
             <div class="row ">
                 <div class="col d-flex justify-content-center " >
                     <img id="img-user" src="{{ asset('images/user-profile_xl.png') }}" class="rounded-circle" alt="Imagen del usuario">

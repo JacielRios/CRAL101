@@ -96,19 +96,19 @@ body{
     margin: auto;
     width: 80%;
     border-radius: 15px;
-    background-color: #dadada;
+    background-color: #111b21;
 }
 #section-info #section-card{
-    background-color: #fff;
+    background-color: #17232c;
 }
 #section-info-2{
     margin: auto;
     width: 80%;
     border-radius: 15px;
-    background-color: #dadada;
+    background-color: #111b21;
 }
 #section-info-2 #section-card-2{
-    background-color: #fff;
+    background-color: #17232c;
 }
  ::-webkit-scrollbar {
     display: none;

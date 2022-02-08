@@ -17,7 +17,7 @@
 <body>
     <header class="pt-0 pb-2">
         <section class="text-center">
-            <a class="btn" href="{{ url('/') }}"><span><img id="logo-remaster" src="{{ asset('images/logo-remaster2.png') }}" alt=""></span></a>
+            <a class="btn" href="{{ url('/') }}"><span><img id="logo-remaster" src="{{ asset('images/Logo-Cral.png') }}" alt=""></span></a>
         </section>
     </header>
     <main id="main-section">
@@ -27,11 +27,8 @@
                     <div class="card mt-1" id="main-card">
                         <div class="card-header text-center fw-bold fs-5">
                             <div class="row justify-content-center">
-                                <div class="col-10 ms-2">
+                                <div class="col-12 ms-2">
                                     {{ __('Regístrate') }}
-                                </div>
-                                <div class="col-1 text-end">
-                                    <a class="btn btn-close fs-5" href="javascript: history.go(-1)"></a>
                                 </div>
                             </div>
                         </div>

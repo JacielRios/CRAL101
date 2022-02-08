@@ -15,13 +15,14 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-dark p-1 p-lg-2">
+      <nav class="navbar navbar-expand-lg navbar-dark ps-3 p-lg-2">
         <div class="container-fluid">
           <a class="navbar-brand d-lg-none m-auto pb-3" href="#">
             <img
+            style="height: 50px; width:140px;"
               id="main-logo"
               class="ps-lg-5 ms-lg-5"
-              src="{{ asset('images/logo-remaster2.png') }}"
+              src="{{ asset('images/Logo-Cral.png') }}"
               alt="Logo CRAL101"
             />
           </a>
@@ -29,7 +30,7 @@
             <img
               id="main-logo"
               class="ps-lg-5 ms-lg-5"
-              src="{{ asset('images/logo-remaster2.png') }}"
+              src="{{ asset('images/Logo-Cral.png') }}"
               alt="Logo CRAL101"
             />
           </a>
@@ -52,12 +53,12 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link ps-lg-5" href="{{ route('homeworks.index')  }}"
+                <a class="nav-link ps-lg-5" href="{{ route('homeworks.index') }}"
                   >Tareas</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link ps-lg-5" href="{{ url('calificaciones/user') }}">Historial de calificaciones</a>
+                <a class="nav-link ps-lg-5" href="{{ route('grades-user') }}">Historial de calificaciones</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link ps-lg-5" href="{{ url('chat') }}"
@@ -99,9 +100,9 @@
     </header>
 
 <main>
-    <section class="container mt-3 mb-3 col-12 d-lg-none">
+    <section class="container col-12 d-lg-none">
+      <div id="color"></div>
         <div class="card border-dark">
-            <div class="card-header fw-bold">Crear tarea</div>
             <div class="card-body">
                 <form
                       action="{{ route('store.homework') }}"
@@ -110,39 +111,40 @@
                       <div class="form-group">
                         <input type="hidden" name="homework_id" class="form-control fs-3"  value={{ $homework->id }}>
                       </div>
-                    <div class="form-group">
-                        <label class="">Titulo</label>
+                      <div class="form-group">
+                        <label class="fw-bold m-0">Titulo *</label>
                         <input type="text" name="title" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label>Contenido</label>
-                        <textarea name="body" rows="6" class="form-control" required></textarea>
+                        <label class="fw-bold m-0">Contenido (opcional)</label>
+                        <textarea name="body" rows="4" class="form-control" required></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="">Archivo</label>
-                        <input type="file" name="file" class="form-control">
+                    <div class="container-input mt-2">
+                      <input type="file" name="file" id="file-3" class="inputfile inputfile-1" data-multiple-caption="{count} archivos seleccionados" multiple />
+                      <label for="file-3" class="p-0">
+                      <img src="{{asset('images/file.png')}}">
+                      <span class="iborrainputfile">Seleccionar archivo</span>
+                      </label>
                     </div>
+                        <div class="container-input ">
+                          <input type="file" name="image" id="file-4" accept="image/*" class="inputfile inputfile-1" data-multiple-caption="{count} archivos seleccionados" multiple />
+                          <label for="file-4" class="p-0">
+                          <img src="{{asset('images/image.png')}}">
+                          <span>Seleccionar imagen</span>
+                          </label>
+                        </div>
                     <div class="mt-2 text-end">
                       @csrf
-                        <input type="submit" value="Subir" class="btn" id="btn">
+                        <input type="submit" value="Subir" class="btn" id="btn-color">
                     </div>
                 </form>
             </div>
         </div>
 </section>
 
-<section class="container mt-3 mb-4 col-9 d-none d-lg-block">
-    <div class="card mb-3 border-dark">
-        <div class="card-header fw-bold fs-3">
-          <div class="row">
-            <div class="col-10 ms-2">
-                Crear tarea
-            </div>
-            <div class="col-1 text-end">
-                <a class="btn btn-close fs-4" href="javascript: history.go(-1)"></a>
-            </div>
-        </div>
-        </div>
+<section class="container col-9 d-none d-lg-block">
+  <div id="color"></div>
+    <div class="card border-dark border-2 rounded">
         <div class="card-body">
             <form
                 action="{{ route('store.homework') }}"
@@ -152,17 +154,27 @@
                     <input type="hidden" name="homework_id" class="form-control fs-3"  value={{ $homework->id }}>
                 </div>
                 <div class="form-group">
-                    <label class="fs-3">Titulo *</label>
+                    <label class="fs-3 fw-bold">Titulo *</label>
                     <input type="text" name="title" class="form-control fs-3" required>
                 </div>
                 <div class="form-group">
-                    <label class="fs-3">Contenido (opcional)</label>
-                    <textarea name="body" rows="6" class="form-control fs-3"></textarea>
+                    <label class="fs-3 fw-bold">Contenido (opcional)</label>
+                    <textarea name="body" rows="4" class="form-control fs-3"></textarea>
                 </div>
-                <div class="form-group">
-                    <label class="fs-3" for="">Archivo</label>
-                    <input type="file" name="file" class="form-control fs-3">
+                <div class="container-input mt-2">
+                  <input type="file" name="file" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} archivos seleccionados" multiple />
+                  <label for="file-1" class="p-0">
+                  <img src="{{asset('images/file.png')}}">
+                  <span class="iborrainputfile">Seleccionar archivo</span>
+                  </label>
                 </div>
+                    <div class="container-input ">
+                      <input type="file" name="image" id="file-2" accept="image/*" class="inputfile inputfile-1" data-multiple-caption="{count} archivos seleccionados" multiple />
+                      <label for="file-2" class="p-0">
+                      <img src="{{asset('images/image.png')}}">
+                      <span>Seleccionar imagen</span>
+                      </label>
+                    </div>
                   {{-- <input type="hidden" name="check" value="1"> --}}
                 <div class="mt-2 text-end">
                   @csrf
@@ -175,5 +187,36 @@
 
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+    <script>
+      'use strict';
+    
+    ;( function ( document, window, index )
+    {
+      var inputs = document.querySelectorAll( '.inputfile' );
+      Array.prototype.forEach.call( inputs, function( input )
+      {
+        var label	 = input.nextElementSibling,
+          labelVal = label.innerHTML;
+    
+        input.addEventListener( 'change', function( e )
+        {
+          var fileName = '';
+          if( this.files && this.files.length > 1 )
+            fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+          else
+            fileName = e.target.value.split( '\\' ).pop();
+    
+          if( fileName )
+            label.querySelector( 'span' ).innerHTML = fileName;
+          else
+            label.innerHTML = labelVal;
+        });
+      });
+    }( document, window, 0 ));
+    </script>
 </body>
 </html>

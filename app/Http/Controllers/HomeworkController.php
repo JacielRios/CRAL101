@@ -20,6 +20,10 @@ class HomeworkController extends Controller
     public function index(Homework $homework)
     {
         $homeworks = Homework::with('user')
+        ->where('grade', '=', auth()->user()->semester)
+        ->where('group', '=', auth()->user()->group)
+        ->where('turn', '=', auth()->user()->turn)
+        ->where('carrer', '=', auth()->user()->carrer)
         ->latest()
         ->paginate(10);
         return view('posts-user', compact('homeworks'));
@@ -112,17 +116,21 @@ class HomeworkController extends Controller
             $check = json_decode($homework);
             // dd($homeworks);
     
-            foreach($homeworks as $pending){
-                $exist = false;
-                if ($check->id == $pending->id) {
-                    $exist = true;
-                    return view('post-user', ['homework' => $homework], compact('exist'));
+            if (isset($homeworks)) {
+                foreach($homeworks as $pending){
+                    $exist = false;
+                    if ($check->id == $pending->id) {
+                        $exist = true;
+                        return view('post-user', ['homework' => $homework], compact('exist'));
+                    }
                 }
             }
+            
             
             foreach($completed as $complete){
                 if ($complete->homework_id == $check->id ) {
                     $complete;
+                    $exist = false;
                     return view('post-user', ['homework' => $homework], compact('exist', 'complete'));
                 }
             }  
@@ -161,16 +169,47 @@ class HomeworkController extends Controller
      */
     public function update(Homework_sendRequest $request,Homework_send $homework)
     {
-        // dd($homework);
-        $homework->update($request->all());
-
-        if ($request->file('file')) {
-            Storage::disk('public')->delete($homework->file);
-            $homework->file = $request->file('file')->store('homeworks_send', 'public');
-            $homework->save();
+        if($homework->file){
+            if($request->file('file')){
+                unlink(storage_path('../public/storage/homeworks_send/'.$homework->file));
+            }
         }
+        if($homework->image){
+            if($request->file('image')){
+                unlink(storage_path('../public/storage/homeworks_send/'.$homework->image));
+            }
+        }
+        $homework->update($request->all());
+        $file = $request->file('file');
+        $image = $request->file('image');
+        
+        if ($request->hasFile('file')) {
+            if ($request->hasFile('image')){
+                if (Storage::putFileAs('/public/homeworks_send' . '/', $file, $file->getClientOriginalName())){
+                    Storage::putFileAs('/public/homeworks_send' . '/', $image, $image->getClientOriginalName());
+                    $homework->file = $file->getClientOriginalName();
+                    $homework->image = $image->getClientOriginalName();
+                    $homework->save();
+            }
+        }else{
+            if(Storage::putFileAs('/public/homeworks_send' . '/', $file, $file->getClientOriginalName())) {
+                    $homework->file = $file->getClientOriginalName();
+                    $homework->save();
+            }
+        }
+        alert()->success('¡Éxito!','¡Has actualizado esta tarea!')->showConfirmButton('Bien', '#01276d');
+       return redirect()->route('homeworks.index');
 
-        return redirect()->route('homeworks.index');
+    }elseif($request->hasFile('image')){
+        if(Storage::putFileAs('/public/homeworks_send' . '/', $image, $image->getClientOriginalName())) {
+                $homework->image = $image->getClientOriginalName();
+                $homework->save();
+        }
+        alert()->success('¡Éxito!','¡Has actualizado esta tarea!')->showConfirmButton('Bien', '#01276d');
+       return redirect()->route('homeworks.index');
+    }        
+    alert()->success('¡Éxito!','¡Has actualizado esta tarea!')->showConfirmButton('Bien', '#01276d');
+    return redirect()->route('homeworks.index');
     }
 
     /**

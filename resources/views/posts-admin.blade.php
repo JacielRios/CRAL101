@@ -19,9 +19,10 @@
       <div class="container-fluid">
         <a class="navbar-brand d-lg-none m-auto pb-3" href="#">
           <img
+          style="height: 50px; width:140px;"
             id="main-logo"
             class="ps-lg-5 ms-lg-5"
-            src="{{ asset('images/logo-remaster2.png') }}"
+            src="{{ asset('images/Logo-Cral.png') }}"
             alt="Logo CRAL101"
           />
         </a>
@@ -29,7 +30,7 @@
           <img
             id="main-logo"
             class="ps-lg-5 ms-lg-5"
-            src="{{ asset('images/logo-remaster2.png') }}"
+            src="{{ asset('images/Logo-Cral.png') }}"
             alt="Logo CRAL101"
           />
         </a>
@@ -42,7 +43,9 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-justify" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+          </svg></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto">
@@ -58,14 +61,14 @@
             <li class="nav-item">
               <a class="nav-link ps-lg-5" href="{{ url('calificaciones/admin') }}">Historial de calificaciones</a>
             </li>
-            <li class="nav-item d-lg-none">
-              <a class="nav-link ps-lg-5 pe-lg-5" href="{{ url('profile-profesor/user') }}"
-                >Cuenta</a
-              >
-            </li>
             <li class="nav-item">
               <a class="nav-link ps-lg-5" href="{{ url('chat') }}"
                 >Mensajes</a
+              >
+            </li>
+            <li class="nav-item d-lg-none">
+              <a class="nav-link ps-lg-5 pe-lg-5" href="{{ url('profile-profesor/user') }}"
+                >Cuenta</a
               >
             </li>
             <li class="nav-item d-none d-lg-block">
@@ -98,7 +101,7 @@
   </header>
 
       <main>
-        <section class="container d-lg-none">
+        <section class="container d-md-none">
             <div class="row">
                 <div class="col-7 col-md-5 pt-2 ps-md-3 ms-md-5">
                     <span class="fs-3 fw-bold">Tareas subidas</span>
@@ -109,7 +112,7 @@
             </div>
         </section>
 
-        <section class="container d-none d-lg-block">
+        <section class="container d-none d-md-block">
             <div class="row">
                 <div class="col-7 pt-3 ps-5 ms-5 text-start">
                     <span class="fs-1 fw-bold">Tareas subidas</span>
@@ -120,19 +123,20 @@
             </div>
         </section>
 
-        <section class="container mt-2 d-lg-none">
+        <section class="container mt-2 d-md-none">
           @foreach ($homeworks as $homework)
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 ">
                     <div class="card mb-4 border-2 border-dark">
                         <div class="card-body">
-                            <h3 class="card-title ">{{ $homework->title }}</h3>
-                            <p class="card-text fs-5 mb-0">{{ $homework->body }}</p>
+                            <h5 class="card-title fw-bold">{{ $homework->title }}</h5>
+                            <p class="card-text mb-0">{{ $homework->body }}</p>
                             <a href="{{ route('homework.show', $homework) }}" class="btn btn-outline-primary">Leer más..</a>
                             <p class="text-muted mb-0">
                                 <strong>
-                                    Grupo: {{ $homework->grade }}-{{ $homework->group }}
-                                    Turno: {{ $homework->turn }}
+                                  Materia: {{ $homework->course }} <br>
+                                  Turno: {{ $homework->turn }} <br>
+                                  Grupo: {{ $homework->grade }}-{{ $homework->group }}
                                 </strong><br>
                                     Fecha de entrega: {{ date('j F, Y', strtotime($homework->date))}}
                             </p>
@@ -147,7 +151,7 @@
         </section>
   
 
-        <section class="container mt-2 d-none d-lg-block">
+        <section class="container mt-2 d-none d-md-block">
         @foreach ($homeworks as $homework)
             <div class="row justify-content-center">
                 <div class="col-10">
@@ -158,8 +162,9 @@
                             <a href="{{ route('homework.show', $homework)  }}" class="btn btn-outline-primary fs-4">Leer más..</a>
                             <p class="text-muted mb-0 fs-4">
                                 <strong>
+                                    Materia: {{ $homework->course }} <br>
+                                    Turno: {{ $homework->turn }} <br>
                                     Grupo:  {{ $homework->grade }}-{{ $homework->group }}
-                                    Turno: {{ $homework->turn }}
                                 </strong><br>
                                     Fecha de entrega: {{ date('j F, Y', strtotime($homework->date))}}
                             </p>

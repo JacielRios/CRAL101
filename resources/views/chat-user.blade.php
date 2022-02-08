@@ -21,13 +21,14 @@
 <body>
   @if (Auth::user()->role == 'user')
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark p-1 p-lg-2">
+    <nav class="navbar navbar-expand-lg navbar-dark ps-3 p-lg-2">
       <div class="container-fluid">
         <a class="navbar-brand d-lg-none m-auto pb-3" href="#">
           <img
+          style="height: 50px; width:140px;"
             id="main-logo"
             class="ps-lg-5 ms-lg-5"
-            src="{{ asset('images/logo-remaster2.png') }}"
+            src="{{ asset('images/Logo-Cral.png') }}"
             alt="Logo CRAL101"
           />
         </a>
@@ -35,7 +36,7 @@
           <img
             id="main-logo"
             class="ps-lg-5 ms-lg-5"
-            src="{{ asset('images/logo-remaster2.png') }}"
+            src="{{ asset('images/Logo-Cral.png') }}"
             alt="Logo CRAL101"
           />
         </a>
@@ -58,21 +59,21 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link ps-lg-5" href="{{ url('posts/user') }}"
+              <a class="nav-link ps-lg-5" href="{{ route('homeworks.index') }}"
                 >Tareas</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link ps-lg-5" href="{{ url('calificaciones/user') }}">Historial de calificaciones</a>
-            </li>
-            <li class="nav-item d-lg-none">
-              <a class="nav-link ps-lg-5 pe-lg-5" href="{{ url('profile-alumno/user') }}"
-                >Cuenta</a
-              >
+              <a class="nav-link ps-lg-5" href="{{ route('grades-user') }}">Historial de calificaciones</a>
             </li>
             <li class="nav-item">
               <a class="nav-link ps-lg-5" href="{{ url('chat') }}"
                 >Mensajes</a
+              >
+            </li>
+            <li class="nav-item d-lg-none">
+              <a class="nav-link ps-lg-5 pe-lg-5" href="{{ url('profile-alumno/user') }}"
+                >Cuenta</a
               >
             </li>
             <li class="nav-item d-none d-lg-block">
@@ -94,89 +95,6 @@
             <li class="nav-item d-lg-none">
               <a class="nav-link ps-lg-5 pe-lg-5" href="{{ route('logout') }}"
                   onclick="event.preventDefault();
-                  document.getElementById('logout-form').submit();">
-                  {{ __('Cerrar sesión') }}
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
-  @elseif(Auth::user()->role == 'admin')
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand d-lg-none m-auto pb-3" href="#">
-          <img
-            id="main-logo"
-            class="ps-lg-5 ms-lg-5"
-            src="{{ asset('images/logo-remaster2.png') }}"
-            alt="Logo CRAL101"
-          />
-        </a>
-        <a class="navbar-brand d-none d-lg-block" href="#">
-          <img
-            id="main-logo"
-            class="ps-lg-5 ms-lg-5"
-            src="{{ asset('images/logo-remaster2.png') }}"
-            alt="Logo CRAL101"
-          />
-        </a>
-        <button
-          class="navbar-toggler w-80"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active lg-ps-2" aria-current="page" href="{{ url('home-profesor/post') }}"
-                >Información general</a> 
-            </li>
-            <li class="nav-item">
-              <a class="nav-link ps-lg-5" href="{{ url('posts/admin') }}"
-                >Tareas</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link ps-lg-5" href="{{ url('calificaciones/admin') }}">Historial de calificaciones</a>
-            </li>
-            <li class="nav-item d-lg-none">
-              <a class="nav-link ps-lg-5 pe-lg-5" href="{{ url('profile-profesor/user') }}"
-                >Cuenta</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link ps-lg-5" href="{{ url('chat') }}"
-                >Mensajes</a
-              >
-            </li>
-            <li class="nav-item d-none d-lg-block">
-              <a class="nav-link dropdown ps-lg-5 pe-lg-5"id="navbarDropdown"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                <img
-                  class="rounded-circle"
-                  id="img-user"
-                  src="{{ asset('images/user-profile.png') }}"/>              
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item"href="{{ url('profile-profesor/user') }}">Cuenta</a>
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();">
-                    {{ __('Cerrar sesión') }}
-                </a>
-                </div>
-            </a>
-            </li>
-            <li class="nav-item d-lg-none">
-              <a class="nav-link ps-lg-5 pe-lg-5" href="{{ route('logout') }}"
-                  onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">
                           {{ __('Cerrar sesión') }}
               </a>
@@ -186,8 +104,169 @@
       </div>
     </nav>
   </header>
-  @endif
-
+  @elseif(Auth::user()->role == 'admin')
+  <header>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand d-lg-none m-auto pb-3" href="#">
+            <img
+            style="height: 50px; width:140px;"
+              id="main-logo"
+              class="ps-lg-5 ms-lg-5"
+              src="{{ asset('images/Logo-Cral.png') }}"
+              alt="Logo CRAL101"
+            />
+          </a>
+          <a class="navbar-brand d-none d-lg-block" href="#">
+            <img
+              id="main-logo"
+              class="ps-lg-5 ms-lg-5"
+              src="{{ asset('images/Logo-Cral.png') }}"
+              alt="Logo CRAL101"
+            />
+          </a>
+          <button
+            class="navbar-toggler w-80"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-justify" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+            </svg></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active lg-ps-2" aria-current="page" href="{{ url('home-profesor/post') }}"
+                  >Información general</a> 
+              </li>
+              <li class="nav-item">
+                <a class="nav-link ps-lg-5" href="{{ route('homework.index') }}"
+                  >Tareas</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link ps-lg-5" href="{{ url('calificaciones/admin') }}">Historial de calificaciones</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link ps-lg-5" href="{{ url('chat') }}"
+                  >Mensajes</a
+                >
+              </li>
+              <li class="nav-item d-lg-none">
+                <a class="nav-link ps-lg-5 pe-lg-5" href="{{ url('profile-profesor/user') }}"
+                  >Cuenta</a
+                >
+              </li>
+              <li class="nav-item d-none d-lg-block">
+                <a class="nav-link dropdown ps-lg-5 pe-lg-5"id="navbarDropdown"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                  <img
+                    class="rounded-circle"
+                    id="img-user"
+                    src="{{ asset('images/user-profile.png') }}"/>              
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item"href="{{ url('profile-profesor/user') }}">Cuenta</a>
+                  <a class="dropdown-item" href="{{ route('logout') }}"
+                     onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                      {{ __('Cerrar sesión') }}
+                  </a>
+                  </div>
+              </a>
+              </li>
+              <li class="nav-item d-lg-none">
+                <a class="nav-link ps-lg-5 pe-lg-5" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                            {{ __('Cerrar sesión') }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+  @elseif(Auth::user()->role == 'dir')
+  <header>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand d-lg-none m-auto pb-3" href="#">
+        <img
+          id="main-logo"
+          class="ps-lg-5 ms-lg-5"
+          src="{{ asset('images/Logo-Cral.png') }}"
+          alt="Logo CRAL101"
+        />
+      </a>
+      <a class="navbar-brand d-none d-lg-block" href="#">
+        <img
+          id="main-logo"
+          class="ps-lg-5 ms-lg-5"
+          src="{{ asset('images/Logo-Cral.png') }}"
+          alt="Logo CRAL101"
+        />
+      </a>
+      <button
+        class="navbar-toggler w-80"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active lg-ps-2" aria-current="page" href="{{ url('home-profesor/post') }}"
+              >Información general</a> 
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ps-lg-5" href="{{ url('chat') }}"
+              >Mensajes</a
+            >
+          </li>
+          <li class="nav-item d-lg-none">
+            <a class="nav-link ps-lg-5 pe-lg-5" href="{{ url('profile-profesor/user') }}"
+              >Cuenta</a
+            >
+          </li>
+          <li class="nav-item d-none d-lg-block">
+            <a class="nav-link dropdown ps-lg-5 pe-lg-5"id="navbarDropdown"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+              <img
+                class="rounded-circle"
+                id="img-user"
+                src="{{ asset('images/user-profile.png') }}"/>              
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item"href="{{ url('profile-profesor/user') }}">Cuenta</a>
+              <a class="dropdown-item" href="{{ route('logout') }}"
+                 onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                  {{ __('Cerrar sesión') }}
+              </a>
+              </div>
+          </a>
+          </li>
+          <li class="nav-item d-lg-none">
+            <a class="nav-link ps-lg-5 pe-lg-5" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                        {{ __('Cerrar sesión') }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+@endif
     <main>
       {{-- @livewire("chat-list") --}}
       @livewire("chat-form")

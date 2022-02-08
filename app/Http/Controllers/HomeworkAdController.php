@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Homework;
 use App\Http\Requests\HomeworkRequest;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 
@@ -19,6 +20,7 @@ class HomeworkAdController extends Controller
     public function index()
     {
         $homeworks = Homework::with('user')
+                    ->where('user_id', '=', auth()->user()->id)
                     ->latest()
                     ->paginate(10);
         return view('posts-admin', compact('homeworks'));
@@ -43,25 +45,48 @@ class HomeworkAdController extends Controller
      */
     public function store(HomeworkRequest $request)
     {
-        // dd($request->all());
-        $homework = Homework::create(
-            ['user_id' => auth()->user()->id,
-            'title' => $request->title,
-            'body' => $request->body,
-            'grade' => $request->grade,
-            'group' => $request->group,
-            'date' => $request->date,
-            'turn' => $request->turn,
-            'file' => $request->file]
-            );
-            
 
-         if ($request->file('file')) {
-             $homework->file = $request->file('file')->store('homeworks', 'public');
-             $homework->save();
-         }
-         return redirect()->route('homework.index');
+        $max_size = (int)ini_get('upload_max_filesize') * 1024;
+        $file = $request->file('file');
+        $image = $request->file('image');
+        
+        if ($request->hasFile('file')) {
+            if ($request->hasFile('image')){
+                if (Storage::putFileAs('/public/homeworks' . '/', $file, $file->getClientOriginalName())){
+                    Storage::putFileAs('/public/homeworks' . '/', $image, $image->getClientOriginalName());
+                    Homework::create([
+                    'user_id' => auth()->user()->id,
+                    'file' => $file->getClientOriginalName(),
+                    'image' => $image->getClientOriginalName(),]
+                    + $request->all());
+            }
+        }else{
+            if(Storage::putFileAs('/public/homeworks' . '/', $file, $file->getClientOriginalName())) {
+                Homework::create([
+                'user_id' => auth()->user()->id,
+                'file' => $file->getClientOriginalName()]
+                + $request->all());
+            }
+        }
+        alert()->success('¡Éxito!','¡Has publicado un nueva tarea!')->showConfirmButton('Bien', '#01276d');
+        return redirect()->route('homework.index');
+
+    }elseif($request->hasFile('image')){
+        if(Storage::putFileAs('/public/homeworks' . '/', $image, $image->getClientOriginalName())) {
+            Homework::create([
+            'user_id' => auth()->user()->id,
+            'image' => $image->getClientOriginalName()]
+            + $request->all());
+        }
+        alert()->success('¡Éxito!','¡Has publicado un nueva tarea!')->showConfirmButton('Bien', '#01276d');
+        return redirect()->route('homework.index');
     }
+        Homework::create([
+            'user_id' => auth()->user()->id]
+            + $request->all());
+        alert()->success('¡Éxito!','¡Has publicado un nueva tarea!')->showConfirmButton('Bien', '#01276d');
+        return redirect()->route('homework.index');
+}
 
     /**
      * Display the specified resource.
@@ -97,14 +122,47 @@ class HomeworkAdController extends Controller
      */
     public function update(HomeworkRequest $request, Homework $homework)
     {
-        $homework->update($request->all());
-
-        if ($request->file('file')) {
-            Storage::disk('public')->delete($homework->file);
-            $homework->file = $request->file('file')->store('homeworks', 'public');
-            $homework->save();
+        if($homework->file){
+            if($request->file('file')){
+                unlink(storage_path('../public/storage/homeworks/'.$homework->file));
+            }
         }
+        if($homework->image){
+            if($request->file('image')){
+                unlink(storage_path('../public/storage/homeworks/'.$homework->image));
+            }
+        }
+        $homework->update($request->all());
+        $file = $request->file('file');
+        $image = $request->file('image');
         
+        if ($request->hasFile('file')) {
+            if ($request->hasFile('image')){
+                if (Storage::putFileAs('/public/homeworks' . '/', $file, $file->getClientOriginalName())){
+                    Storage::putFileAs('/public/homeworks' . '/', $image, $image->getClientOriginalName());
+                    $homework->file = $file->getClientOriginalName();
+                    $homework->image = $image->getClientOriginalName();
+                    $homework->save();
+            }
+        }else{
+            if(Storage::putFileAs('/public/homeworks' . '/', $file, $file->getClientOriginalName())) {
+                Storage::disk('public')->delete($homework->file);
+                    $homework->file = $file->getClientOriginalName();
+                    $homework->save();
+            }
+        }
+        alert()->success('¡Éxito!','¡Has actualizado esta tarea!')->showConfirmButton('Bien', '#01276d');
+        return redirect()->route('homework.index');
+
+    }elseif($request->hasFile('image')){
+        if(Storage::putFileAs('/public/homeworks' . '/', $image, $image->getClientOriginalName())) {
+                $homework->image = $image->getClientOriginalName();
+                $homework->save();
+        }        
+        alert()->success('¡Éxito!','¡Has actualizado esta tarea!')->showConfirmButton('Bien', '#01276d');
+        return redirect()->route('homework.index');
+    }        
+    alert()->success('¡Éxito!','¡Has actualizado esta tarea!')->showConfirmButton('Bien', '#01276d');
         return redirect()->route('homework.index');
     }
 
@@ -118,7 +176,7 @@ class HomeworkAdController extends Controller
     {
         Storage::disk('public')->delete($homework->file);
         $homework->delete();
-
+        
         return redirect()->route('homework.index');
     }
 }

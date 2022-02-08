@@ -24,6 +24,7 @@ class CreateHomeworkSendsTable extends Migration
             $table->string('group')->nullable();
             $table->string('turn')->nullable();
             $table->string('file')->nullable();
+            $table->string('image')->nullable();
             $table->integer('quali')->nullable();
             $table->foreign('homework_id')->references('id')->on('homework')->nullable();
             $table->foreign('user_id')->references('id')->on('users');

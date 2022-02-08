@@ -17,6 +17,7 @@ use App\Http\Controllers\CompletedHomController;
 use App\Http\Controllers\PendingHomController; 
 use App\Http\Controllers\HomeworksCalifController;
 use App\Http\Controllers\HomeworksEvaController;
+use App\Http\Controllers\GradesUserController;
 
 Route::get('/', function () {
     return view('landing');
@@ -177,9 +178,10 @@ Route::get('pending/user', [PendingHomController::class, 'pending'])
 ->middleware('user');
 
     # VISTA CALIFICACIONES ALUMNOS #
-Route::get('calificaciones/user', function () {
-    return view('calificaciones-user');
-});
+Route::get('grades-user', [GradesUserController::class, 'index'])
+->name('grades-user')
+->middleware('auth')
+->middleware('user');
 
 Route::get('historial/user', function () {
     return view('historial-user');

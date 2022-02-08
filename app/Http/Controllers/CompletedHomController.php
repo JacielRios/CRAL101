@@ -30,16 +30,21 @@ class CompletedHomController extends Controller
 
         // dd($id_homework);
 
-        foreach($id_homework as $id){
-        $homework = DB::table('Homework')
-        ->where('id', '=', $id['homework_id'])
-        ->get();
-        $homeworks[] = $homework[0];
+        if(isset($id_homework)) {
+            foreach($id_homework as $id){
+                $homework = DB::table('Homework')
+                ->where('id', '=', $id['homework_id'])
+                ->get();
+                $homeworks[] = $homework[0];
+                }
+        
+                // dd($homeworks);
+        
+                return view('completed-user', compact('homeworks'));
+        }else{
+            return view('completed-user');
         }
-
-        // dd($homeworks);
-
-        return view('completed-user', compact('homeworks'));
+        
     }
 
     /**

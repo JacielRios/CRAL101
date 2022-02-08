@@ -15,9 +15,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Yatra+One&display=swap" rel="stylesheet">
 </head>
 <body class="">
-    <header class="pt-3 pb-2">
+    <header class="pt-0 pb-2">
         <section class="text-center">
-            <a class="btn" href="{{ url('/') }}"><h1>CRAL101</h1></a>
+            <a class="btn" href="{{ url('/') }}"><span><img id="logo-remaster" src="{{ asset('images/Logo-Cral.png') }}" alt=""></span></a>
         </section>
     </header>
 
@@ -27,11 +27,8 @@
                 <div class="card" id="main-card">
                     <div class="card-header text-center fw-bold fs-5">
                         <div class="row justify-content-center">
-                            <div class="col-10 ms-2">
+                            <div class="col-12 ms-2">
                                 {{ __('Iniciar sesión') }}
-                            </div>
-                            <div class="col-1 text-end">
-                                <a class="btn btn-close fs-5" href="javascript: history.go(-1)"></a>
                             </div>
                         </div>
                     </div>
@@ -104,7 +101,7 @@
         </div>
     </section>
     
-    <footer id="footer" class="pt-4 pb-4 col-12 d-lg-none mt-4">
+    <footer id="footer" class="pt-4 pb-4 col-12 d-md-none mt-4">
         <div class="container">
             <div class="row text-center">
                 <div class="col-12 pt-1 ps-1 p-0">
@@ -120,7 +117,7 @@
         </div> 
     </footer>
 
-    <footer id="footer" class="pt-4 pb-4 col-12 d-none d-lg-block mt-3  position-absolute bottom-0">
+    <footer id="footer" class="pt-4 pb-4 col-12 d-none d-md-block mt-3  position-absolute bottom-0">
         <div class="container">
             <div class="row text-center">
                 <div class="col-12">

@@ -12,6 +12,9 @@ html,body{
 html,body{
     height: 721px;
 }
+main,html,body{
+    background-color: #f5f5f5;
+}
 header{
     background-color: #274aa2; 
     /* background-color: #111; */

@@ -46,6 +46,8 @@
             <p class="m-0 fs-1 fw-bold">Jaciel alumno</p>
             @elseif(Auth::user()->role == 'user')
             <p class="m-0 fs-1 fw-bold">Jaciel Rios</p>
+            @elseif(Auth::user()->role == 'dir')
+            <p class="m-0 fs-1 fw-bold">Jaciel alumno</p>
             @endif
           </div>
 

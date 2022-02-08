@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @livewireStyles
 </head>
 {{-- <body>
     <div id="app">
@@ -67,17 +68,21 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                      </form>
+                                    </div>
+                                    <div>
+                                        @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+                                        @livewireScripts
+                                        @stack('scripts')
+                                    </div>
                                 {{--</div>
                             </li>
                         @endguest
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
 
-        <main class="py-4">
             @yield('content')
-        </main>
     </div>
 </body>
-</html> --}} --}}
+</html>

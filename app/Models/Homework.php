@@ -19,6 +19,9 @@ class Homework extends Model
         'theme',
         'grade',
         'group',
+        'course',
+        'carrer',
+        'image',
     ];  
 
     protected $dates = [

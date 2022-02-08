@@ -18,6 +18,7 @@ class Post extends Model
         'theme',
         'grade',
         'group',
+        'image',
     ];  
 
     public function scopeTheme($query, $theme)

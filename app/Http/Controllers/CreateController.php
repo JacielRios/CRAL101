@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Homework;
 use App\Http\Requests\Homework_sendRequest;
 use App\Models\Homework_send;
+use Illuminate\Support\Facades\Storage;
+
 
 class CreateController extends Controller
 {
@@ -17,28 +19,45 @@ class CreateController extends Controller
     }
     public function store(Homework_sendRequest $request)
     {
-        // $id = $homework->id;
-        // dd($request->all());
-        // dd($homework);
-        $homework_send = Homework_send::create(
-            ['user_id' => auth()->user()->id,
-            'title' => $request->title,
-            'body' => $request->body,
-            'name'=> auth()->user()->name,
-            'grade' => auth()->user()->semester,
-            'group' => auth()->user()->group,
-            'date' => $request->date,
-            'turn' => auth()->user()->turn,
-            'file' => $request->file,
-            'homework_id' => $request->homework_id,
-            ]
-            );
-            
-
-         if ($request->file('file')) {
-             $homework_send->file = $request->file('file')->store('homeworks_send', 'public');
-             $homework_send->save();
-         }
+        $max_size = (int)ini_get('upload_max_filesize') * 1024;
+        $file = $request->file('file');
+        $image = $request->file('image');
+        
+        if ($request->hasFile('file')) {
+            if ($request->hasFile('image')){
+                if (Storage::putFileAs('/public/homeworks_send' . '/', $file, $file->getClientOriginalName())){
+                    Storage::putFileAs('/public/homeworks_send' . '/', $image, $image->getClientOriginalName());
+                    Homework_send::create([
+                    'user_id' => auth()->user()->id,
+                    'file' => $file->getClientOriginalName(),
+                    'image' => $image->getClientOriginalName(),]
+                    + $request->all());
+            }
+        }else{
+            if(Storage::putFileAs('/public/homeworks_send' . '/', $file, $file->getClientOriginalName())) {
+                Homework_send::create([
+                'user_id' => auth()->user()->id,
+                'file' => $file->getClientOriginalName()]
+                + $request->all());
+            }
+        }
+        alert()->success('¡Éxito!','¡Has enviado esta tarea!')->showConfirmButton('Bien', '#01276d');
          return redirect()->route('homeworks.index');
+
+    }elseif($request->hasFile('image')){
+        if(Storage::putFileAs('/public/homeworks_send' . '/', $image, $image->getClientOriginalName())) {
+            Homework_send::create([
+            'user_id' => auth()->user()->id,
+            'image' => $image->getClientOriginalName()]
+            + $request->all());
+        }
+        alert()->success('¡Éxito!','¡Has enviado esta tarea!')->showConfirmButton('Bien', '#01276d');
+         return redirect()->route('homeworks.index');
+    }
+        Homework_send::create([
+            'user_id' => auth()->user()->id]
+            + $request->all());
+        alert()->success('¡Éxito!','¡Has enviado esta tarea!')->showConfirmButton('Bien', '#01276d');
+        return redirect()->route('homeworks.index');
     }
 }

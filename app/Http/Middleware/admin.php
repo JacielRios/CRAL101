@@ -17,6 +17,9 @@ class admin
      */
     public function handle(Request $request, Closure $next)
     {
+        if (auth::guest()) {
+            return redirect('login');
+        }
         if (auth::user()->role == 'dir' or auth::user()->role == 'admin') {
             return $next($request);
         } else{

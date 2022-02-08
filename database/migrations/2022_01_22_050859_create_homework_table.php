@@ -22,7 +22,10 @@ class CreateHomeworkTable extends Migration
             $table->date('date')->nullable();
             $table->string('group')->nullable();
             $table->string('turn')->nullable();
+            $table->string('course')->nullable();
+            $table->string('carrer')->nullable();
             $table->string('file')->nullable();
+            $table->string('image')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

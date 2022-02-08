@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\support\Facades\auth;
 
+use function PHPUnit\Framework\isNull;
 
 class user
 {
@@ -18,6 +19,9 @@ class user
      */
     public function handle(Request $request, Closure $next)
     {
+        if (auth::guest()) {
+            return redirect('login');
+        }
         if (auth::user()->role == 'user') {
             return $next($request);
         }

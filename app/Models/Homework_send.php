@@ -19,7 +19,8 @@ class Homework_send extends Model
         'grade',
         'group',
         'homework_id',
-        'quali'
+        'quali',
+        'image',
     ];  
 
     public function user()

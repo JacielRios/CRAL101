@@ -1,7 +1,11 @@
-header section #logo {
-    width: 50px;
+main,html,body{
+    background-color: #f5f5f5;
 }
-
+#color{
+    height: 10px;
+    width: 100%;
+    background-color: #f5f5f5;
+}
 #main-section  #btn-color{
     background-color: #01276d;
 }
@@ -37,9 +41,14 @@ input:focus, select:focus, select, input.form-control:focus {
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
 }
- @media (min-width: 800px) {
+@media (min-width: 800px) {
     header .navbar-brand #main-logo{
         width: 145px;
         height: 45px;
+    }
+} 
+@media (min-width: 990px) {
+    header{
+        font-size: 20px;
     }
 } 

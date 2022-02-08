@@ -15,13 +15,14 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-dark p-1 p-lg-2">
+      <nav class="navbar navbar-expand-lg navbar-dark ps-3 p-lg-2">
         <div class="container-fluid">
           <a class="navbar-brand d-lg-none m-auto pb-3" href="#">
             <img
+            style="height: 50px; width:140px;"
               id="main-logo"
               class="ps-lg-5 ms-lg-5"
-              src="{{ asset('images/logo-remaster2.png') }}"
+              src="{{ asset('images/Logo-Cral.png') }}"
               alt="Logo CRAL101"
             />
           </a>
@@ -29,7 +30,7 @@
             <img
               id="main-logo"
               class="ps-lg-5 ms-lg-5"
-              src="{{ asset('images/logo-remaster2.png') }}"
+              src="{{ asset('images/Logo-Cral.png') }}"
               alt="Logo CRAL101"
             />
           </a>
@@ -52,12 +53,12 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link ps-lg-5" href="{{ route('homeworks.index')  }}"
+                <a class="nav-link ps-lg-5" href="{{ route('homeworks.index') }}"
                   >Tareas</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link ps-lg-5" href="{{ url('calificaciones/user') }}">Historial de calificaciones</a>
+                <a class="nav-link ps-lg-5" href="{{ route('grades-user') }}">Historial de calificaciones</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link ps-lg-5" href="{{ url('chat') }}"
@@ -320,6 +321,16 @@
                            {{ $post->body }}
                           </p>
                         </div>
+                        @if ($post->image)
+                          <div class="mb-2 mt-1 ms-2" id="image_container-m">
+                            <a href="storage/post/{{ $post->image }}" target="_blank"><img src="storage/post/{{ $post->image }}" class="" id="image"></a><br>
+                          </div>
+                          @endif
+                          @if($post->file)
+                            <div class="mb-2">
+                              <a href="storage/post/{{ $post->file }}" target="_blank" class="ps-2">{{ $post->file }}</a>
+                            </div>
+                          @endif
                         <div class="col-12">
                           <div class="row">
                               <div class="col-2" id="img-card_bottom">
@@ -461,6 +472,14 @@
                         {{ $post->body }}
                     </p>
                   </div>
+                  @if ($post->image)
+                    <div class="mb-3 mt-2 d-flex justify-content-center card-img-top" id="image_container">
+                      <a href="storage/post/{{ $post->image }}" target="_blank"><img src="storage/post/{{ $post->image }}" class="d-flex justify-content-center" id="image"><br></a>
+                    </div>
+                    @endif
+                    @if($post->file)
+                      <a href="storage/post/{{ $post->file }}" target="_blank" class="fs-4 mb-3 mt-3">{{ $post->file }}</a>
+                    @endif
                   <div class="col-12">
                     <div class="row">
                         <div class="col-1" id="img-card_bottom">

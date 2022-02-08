@@ -15,15 +15,16 @@
   </head>
   <body>
     {{-- <h1>admin</h1> --}}
+    @if(auth()->user()->role == 'admin')
     <header>
-      @if(Auth::user()->role == 'admin')
       <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
           <a class="navbar-brand d-lg-none m-auto pb-3" href="#">
             <img
+            style="height: 50px; width:140px;"
               id="main-logo"
               class="ps-lg-5 ms-lg-5"
-              src="{{ asset('images/logo-remaster2.png') }}"
+              src="{{ asset('images/Logo-Cral.png') }}"
               alt="Logo CRAL101"
             />
           </a>
@@ -31,7 +32,7 @@
             <img
               id="main-logo"
               class="ps-lg-5 ms-lg-5"
-              src="{{ asset('images/logo-remaster2.png') }}"
+              src="{{ asset('images/Logo-Cral.png') }}"
               alt="Logo CRAL101"
             />
           </a>
@@ -44,7 +45,9 @@
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-justify" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+            </svg></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
@@ -60,14 +63,14 @@
               <li class="nav-item">
                 <a class="nav-link ps-lg-5" href="{{ url('calificaciones/admin') }}">Historial de calificaciones</a>
               </li>
-              <li class="nav-item d-lg-none">
-                <a class="nav-link ps-lg-5 pe-lg-5" href="{{ url('profile-profesor/user') }}"
-                  >Cuenta</a
-                >
-              </li>
               <li class="nav-item">
                 <a class="nav-link ps-lg-5" href="{{ url('chat') }}"
                   >Mensajes</a
+                >
+              </li>
+              <li class="nav-item d-lg-none">
+                <a class="nav-link ps-lg-5 pe-lg-5" href="{{ url('profile-profesor/user') }}"
+                  >Cuenta</a
                 >
               </li>
               <li class="nav-item d-none d-lg-block">
@@ -99,13 +102,14 @@
       </nav>
     </header>
     @elseif(Auth::user()->role == 'dir')
+    <header>
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container-fluid">
         <a class="navbar-brand d-lg-none m-auto pb-3" href="#">
           <img
             id="main-logo"
             class="ps-lg-5 ms-lg-5"
-            src="{{ asset('images/logo-remaster2.png') }}"
+            src="{{ asset('images/Logo-Cral.png') }}"
             alt="Logo CRAL101"
           />
         </a>
@@ -113,7 +117,7 @@
           <img
             id="main-logo"
             class="ps-lg-5 ms-lg-5"
-            src="{{ asset('images/logo-remaster2.png') }}"
+            src="{{ asset('images/Logo-Cral.png') }}"
             alt="Logo CRAL101"
           />
         </a>
@@ -134,14 +138,14 @@
               <a class="nav-link active lg-ps-2" aria-current="page" href="{{ url('home-profesor/post') }}"
                 >Información general</a> 
             </li>
-            <li class="nav-item d-lg-none">
-              <a class="nav-link ps-lg-5 pe-lg-5" href="{{ url('profile-profesor/user') }}"
-                >Cuenta</a
-              >
-            </li>
             <li class="nav-item">
               <a class="nav-link ps-lg-5" href="{{ url('chat') }}"
                 >Mensajes</a
+              >
+            </li>
+            <li class="nav-item d-lg-none">
+              <a class="nav-link ps-lg-5 pe-lg-5" href="{{ url('profile-profesor/user') }}"
+                >Cuenta</a
               >
             </li>
             <li class="nav-item d-none d-lg-block">
@@ -173,9 +177,9 @@
     </nav>
   </header>
   @endif
-
+  
     <main>
-      <section class="container mt-1 d-lg-none">
+      <section class="container mt-1 d-md-none">
         <div class="row">
           <div class="col-6 col-md-4 text-start ms-md-5 ps-md-5">
             <a class="btn " id="btn-color" href="{{ route('home.create') }}">Nuevo</a>
@@ -349,13 +353,13 @@
         @endphp
 
       @foreach ($posts as $post)
-      <section class="container mt-2 mb-2 d-lg-none">
+      <section class="container mt-2 d-md-none">
         <div class="row justify-content-center">
           <div class="col-12 col-md-9">
             <div class="card border-dark">
               <div class="card-body pt-0 pt-md-1">
                 <div class="row">
-                  <div class="col-10 pe-0">
+                  <div class="col-10 p-0">
                     <a class="btn text-end fw-bold p-0" data-bs-toggle="collapse" href="#collapseCard{{$i}}" role="button" aria-expanded="false" aria-controls="collapseExample">
                       <p class="m-0 text-start">{{ $post->title }}</p>
                     </a>
@@ -378,20 +382,26 @@
                             <a class="dropdown p-0"id="navbarDropdown"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                               <img
                               src="{{ asset('images/options-icon.png') }}"
-                              alt="Opciones"/>           
-                              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                              <form class="dropdown-item text-center" action="{{ route('home.destroy', $post) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <input type="submit" value="Eliminar" class="btn">
-                              </form>
+                              alt="Opciones"/>            
                           </a>
+                          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                              @livewire('confirm-alert-post', ['postId' => $post->id])
                           </div>
                         </div>
                         <div class="col-11">
                           <p class="text-muted ps-2">
                             {{ $post->body }}
                           </p>
+                          @if ($post->image)
+                          <div class="mb-2 mt-1 ms-2" id="image_container-m">
+                            <a href="../storage/post/{{ $post->image }}" target="_blank"><img src="../storage/post/{{ $post->image }}" class="" id="image"></a><br>
+                          </div>
+                          @endif
+                          @if($post->file)
+                            <div class="mb-2">
+                              <a href="../storage/post/{{ $post->file }}" target="_blank" class="ps-2">{{ $post->file }}</a>
+                            </div>
+                          @endif
                         </div>
                         <div class="col-12">
                           <div class="row">
@@ -425,9 +435,9 @@
       </div>
      
 
-      <section class="container d-none d-lg-block mt-2">
+      <section class="container-lg d-none d-md-block">
         <div class="row">
-          <div class="col-2">
+          <div class="col-md-2 col-lg-2">
             <div class="card mt-3">
               <div class="card-body fs-5">
                 <form action="{{ route('home.index') }}" method="get">
@@ -508,7 +518,7 @@
         <!-- </div>
         <div class="row"> -->
 
-          <div class="col-7 mt-3">
+          <div class="col-md-7 col-lg-7 mt-3">
             @foreach ($posts as $post)
             <div class="card" id="main-card">
               <div class="card-body">
@@ -530,17 +540,21 @@
                       alt="Opciones"/>           
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                      <form class="dropdown-item text-center" action="{{ route('home.destroy', $post) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <input type="submit" value="Eliminar" class="btn fs-4">
-                      </form>
+                      @livewire('confirm-alert-post', ['postId' => $post->id])
                     </div>
                   </div>
                   <div class="col-11">
-                    <p class="text-muted fs-4">
+                    <p class="text-muted fs-4 m-0">
                       {{ $post->body }}
                     </p>
+                    @if ($post->image)
+                    <div class="mb-3 mt-2 d-flex justify-content-center card-img-top" id="image_container">
+                      <a href="../storage/post/{{ $post->image }}" target="_blank"><img src="../storage/post/{{ $post->image }}" class="d-flex justify-content-center" id="image"><br></a>
+                    </div>
+                    @endif
+                    @if($post->file)
+                      <a href="../storage/post/{{ $post->file }}" target="_blank" class="fs-4 mb-3 mt-3">{{ $post->file }}</a>
+                    @endif
                   </div>
                   <div class="col-12">
                     <div class="row">
@@ -567,7 +581,7 @@
               {{ $posts->links() }}
             </div>
           </div>
-          <div class="col-3 mt-3">
+          <div class="col-md-2 col-lg-3 mt-3">
             <a href="{{ route('home.create') }}" class="btn btn-lg col-12 fs-4" id="btn-color" type="button">Nuevo</a>
           </div>
           
