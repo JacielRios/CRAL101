@@ -73,7 +73,12 @@ Route::resource('/profile-profesor/user', ProfileAdController::class)
 
 Route::resource('home', PageController::class)
 ->names([
-    'index' => 'homeuser.index'
+    'index' => 'homeuser.index',
+    'create' => 'homeuser.create',
+    'edit' => 'homeuser.edit',
+    'destroy' => 'homeuser.destroy',
+    'store' => 'homeuser.store',
+    'update' => 'homeuser.update',
     ])
 ->middleware('auth')
 ->middleware('user');
@@ -90,49 +95,7 @@ Route::resource('/home-profesor/post', PageAdController::class)
 ->middleware('auth')
 ->middleware('admin');
 
-// PRUEBA ADMINISTRACION
-
-// Route::get('home-administration', function(){
-//     return view('home-admin');
-// })
-// ->middleware('auth')
-// ->middleware('dire');
-
-// Route::resource('/home-administration/post', PageDirController::class)
-// ->names([
-//     'index' => 'homedir.index',
-// ])
-// ->middleware('auth')
-// ->middleware('administration');
-
-//
-
 Route::resource('/chat', ChatController::class);
-// ->middleware('auth')
-// ->middleware('user');
-
-
-
-// Route::get('chat/user', function () {
-//     return view('chat-user');
-// });
-
-// Route::get('/home/profesor', function () {
-//     return view('home-admin');
-// });
-
-// Route::resource('/posts', PostController::class)
-// ->middleware('auth')
-// ->except('show');
-
-// Route::get('blog/{post}', [PageController::class, 'post'])->name('post');
-
-// Route::view('user', 'user')->name('user');
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-    
-    # VISTAS DE PRUEBA #
 
     # VISTA TAREAS ALUMNOS #
 Route::resource('/homeworks', HomeworkController::class)
