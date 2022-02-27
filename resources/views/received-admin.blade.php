@@ -128,8 +128,8 @@
                         <a href="{{ route('received', $received) }}" class="card-body text-start btn btn-outline-primary pb-0" id="scale">
                             <h2>{{ $received->title }}</h2>
                             <p class="text-muted mb-0">
-                                <p class="fs-3">{{ $received->name }}<br>
-                                {{ $received->grade }}-{{ $received->group }}</p>
+                                <p class="fs-3">{{ $received->name }}Jaciel Benito Rios Martinez<br>
+                                {{ $received->grade }}6-C{{ $received->group }}</p>
                             </p>
                         </a>
                     </div>

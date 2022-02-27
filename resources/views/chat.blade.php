@@ -370,8 +370,7 @@
               Mensajes
             </p>
           </div>
-         
-          @foreach ($users as $user)
+        
           <div class="d-flex justify-content-center">
             <a class="btn btn-outline-secondary ps-0 pb-0 col-5 " href="{{ url('chat/user') }}">
               <div class="row">
@@ -379,15 +378,59 @@
                     <img src="{{ asset('images/user-profile.png') }}" class="rounded-circle ms-2" id="img-user">
                 </div>
                 <div class="col-6 lh-1 p-0">
-                    <p class="fw-bold m-0 ps-4 fs-2 text-start text-dark">{{ $user->name }}</p>
+                    <p class="fw-bold m-0 ps-4 fs-2 text-start text-dark">Carlos Jaramillo</p>
                     <p class="text-muted text-start mt-3 mb-0 ps-4 fs-3">
-                        {{ $user->role }}
+                      Hola
                     </p>
                 </div>
               </div>
             </a>
           </div>
-          @endforeach
+          <div class="d-flex justify-content-center">
+            <a class="btn btn-outline-secondary ps-0 pb-0 col-5 " href="{{ url('chat/user') }}">
+              <div class="row">
+                <div class="col-2" id="img-card_bottom">
+                    <img src="{{ asset('images/user-profile.png') }}" class="rounded-circle ms-2" id="img-user">
+                </div>
+                <div class="col-6 lh-1 p-0">
+                    <p class="fw-bold m-0 ps-4 fs-2 text-start text-dark">Jaciel Benito </p>
+                    <p class="text-muted text-start mt-3 mb-0 ps-4 fs-3">
+                      Si
+                    </p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="d-flex justify-content-center">
+            <a class="btn btn-outline-secondary ps-0 pb-0 col-5 " href="{{ url('chat/user') }}">
+              <div class="row">
+                <div class="col-2" id="img-card_bottom">
+                    <img src="{{ asset('images/user-profile.png') }}" class="rounded-circle ms-2" id="img-user">
+                </div>
+                <div class="col-6 lh-1 p-0">
+                    <p class="fw-bold m-0 ps-4 fs-2 text-start text-dark">Keila Mendez</p>
+                    <p class="text-muted text-start mt-3 mb-0 ps-4 fs-3">
+                      Mañana
+                    </p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="d-flex justify-content-center">
+            <a class="btn btn-outline-secondary ps-0 pb-0 col-5 " href="{{ url('chat/user') }}">
+              <div class="row">
+                <div class="col-2" id="img-card_bottom">
+                    <img src="{{ asset('images/user-profile.png') }}" class="rounded-circle ms-2" id="img-user">
+                </div>
+                <div class="col-6 lh-1 p-0">
+                    <p class="fw-bold m-0 ps-4 fs-2 text-start text-dark">Fatima Maldonado</p>
+                    <p class="text-muted text-start mt-3 mb-0 ps-4 fs-3">
+                      CRAL101
+                    </p>
+                </div>
+              </div>
+            </a>
+          </div>
           {{-- <div class="card border-0 mt-2">
             <a class="btn btn-outline-secondary ps-0 pb-0 col-5 mx-auto">
               <div class="row">

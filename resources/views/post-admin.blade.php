@@ -149,7 +149,7 @@
           </div>
         </section>
   
-        <section class="container d-none d-md-block mt-md-4">
+        <section class="container d-none d-md-block">
           <div id="color"></div>
           <div class="row justify-content-center">
             <div class="col-md-12 col-lg-8">

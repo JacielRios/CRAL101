@@ -20,6 +20,7 @@ class CreateController extends Controller
     public function store(Homework_sendRequest $request)
     {
         $max_size = (int)ini_get('upload_max_filesize') * 1024;
+    
         $file = $request->file('file');
         $image = $request->file('image');
         

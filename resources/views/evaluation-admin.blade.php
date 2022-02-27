@@ -144,8 +144,8 @@
                               <a href="../../../storage/homeworks_send/{{ $received->image }}" target="_blank">{{ $received->image }}</a>
                             @endif
                             <p class="text-muted mt-3">
-                                <strong>{{ $received->name }}</strong><br>
-                                {{ $received->grade}}-{{ $received->group }}
+                                <strong>{{ $received->name }}Jaciel Benito Rios Martinez</strong><br>
+                                {{ $received->grade}}6-C{{ $received->group }}
                             </p>
                             @if ($errors->any())
                               <div class="alert alert-danger">

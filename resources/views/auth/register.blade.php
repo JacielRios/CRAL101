@@ -138,7 +138,7 @@
             </div> 
         </footer>
     
-        <footer id="footer" class="pt-4 pb-4 col-12 d-none d-lg-block mt-3 ">
+        <footer id="footer" class="pt-4 pb-4 col-12 d-none d-lg-block mt-3 position-absolute bottom-0">
             <div class="container">
                 <div class="row text-center">
                     <div class="col-12">
