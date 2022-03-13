@@ -19,10 +19,12 @@ use App\Http\Controllers\HomeworksCalifController;
 use App\Http\Controllers\HomeworksEvaController;
 use App\Http\Controllers\GradesUserController;
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('landing');
 });
-Route::view('/role', 'role')->name('role');
+Route::view('role', 'role')->name('role');
 
 Route::resource('user', UserController::class)
 // ->except([
@@ -38,8 +40,6 @@ Route::resource('dir', DirController::class)
     'store' => 'dir.store',
     'create' => 'dir.create',
 ]);
-
-Auth::routes();
 
 //  Route::get('/profile', function() {
 //      return view('profile');

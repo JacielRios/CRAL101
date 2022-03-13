@@ -116,7 +116,7 @@
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
 
-    var pusher = new Pusher('03a6720afd7d1475ab71', {
+    var pusher = new Pusher('e86dfe3daf3beb35a99b', {
       cluster: 'us2'
     });
 

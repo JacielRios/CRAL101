@@ -13,9 +13,8 @@ class HomeworksCalifController extends Controller
     public function index(Homework $homework)
     {
         $homework;
-        // dd($homework->id); 
+        // dd($homework); 
         $homeworks_received = Homework_send::where('homework_id', '=', $homework->id)->get(); 
-        // dd($homeworks_received); 
 
         return view('received-admin', compact('homeworks_received'));
     }

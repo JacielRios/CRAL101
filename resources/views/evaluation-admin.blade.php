@@ -107,7 +107,12 @@
                     <div class="card mt-2 border-dark">
                         <div class="card-body">
                             <h2>{{ $received->title }}</h2>
-                            <a href="https://docs.google.com/document/d/19HUWw5_I66zs02wf3Fo8USobiirlFKTV/edit?usp=sharing&ouid=112756981818013118610&rtpof=true&sd=true"><img src="./assets/icons/archivo-de-word.png" alt=""></a>
+                            @if($received->file)
+                              <a href="../../../storage/homeworks_send/{{ $received->file }}" target="_blank">{{ $received->file }}</a><br>
+                            @endif
+                            @if($received->image)
+                              <a href="../../../storage/homeworks_send/{{ $received->image }}" target="_blank">{{ $received->image }}</a>
+                            @endif
                             <p class="text-muted mt-3">
                                 <strong>{{ $received->name }}</strong><br>
                                 {{ $received->grade }}-{{ $received->group }}
@@ -144,8 +149,8 @@
                               <a href="../../../storage/homeworks_send/{{ $received->image }}" target="_blank">{{ $received->image }}</a>
                             @endif
                             <p class="text-muted mt-3">
-                                <strong>{{ $received->name }}Jaciel Benito Rios Martinez</strong><br>
-                                {{ $received->grade}}6-C{{ $received->group }}
+                                <strong>{{ $received->name }}</strong><br>
+                                {{ $received->grade}}-{{ $received->group }}
                             </p>
                             @if ($errors->any())
                               <div class="alert alert-danger">

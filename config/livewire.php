@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'asset_url' => 'http://localhost/cral101/public',
+        'asset_url' => env('APP_URL'),
 
     /*
     |--------------------------------------------------------------------------

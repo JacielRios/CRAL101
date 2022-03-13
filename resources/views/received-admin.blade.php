@@ -107,7 +107,7 @@
             <div class="row">
                 <div class="col-12 mt-2 ">
                     <div class="card border-0 ">
-                        <a href="#" class="card-body text-start btn btn-outline-primary pb-0 pt-2 ps-2 pe-2">
+                        <a href="{{ route('received', $received) }}" class="card-body text-start btn btn-outline-primary pb-0 pt-2 ps-2 pe-2">
                             <p class="fs-5 m-0">{{ $received->title }}</p>
                             <p class="text-muted mb-0">
                                 <p class="m-0">{{ $received->name }}<br>
@@ -128,8 +128,8 @@
                         <a href="{{ route('received', $received) }}" class="card-body text-start btn btn-outline-primary pb-0" id="scale">
                             <h2>{{ $received->title }}</h2>
                             <p class="text-muted mb-0">
-                                <p class="fs-3">{{ $received->name }}Jaciel Benito Rios Martinez<br>
-                                {{ $received->grade }}6-C{{ $received->group }}</p>
+                                <p class="fs-3">{{ $received->name }}<br>
+                                {{ $received->grade }}-{{ $received->group }}</p>
                             </p>
                         </a>
                     </div>
