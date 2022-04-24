@@ -75,10 +75,11 @@
             </li>
             <li class="nav-item d-none d-lg-block">
               <a class="nav-link dropdown ps-lg-5 pe-lg-5"id="navbarDropdown"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                <img
-                  class="rounded-circle"
-                  id="img-user"
-                  src="{{ asset('images/user-profile.png') }}"/>              
+                @if (Auth::user()->image)
+                                  <img src="../storage/images_users/{{ Auth::user()->image }}" class="rounded-circle" id="img-user">
+                                @else
+                                  <img class="rounded-circle" id="img-user" src="{{ asset('images/user-profile.png') }}" />
+                                @endif
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item"href="{{ url('profile-profesor/user') }}">Cuenta</a>
                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -150,10 +151,11 @@
           </li>
           <li class="nav-item d-none d-lg-block">
             <a class="nav-link dropdown ps-lg-5 pe-lg-5"id="navbarDropdown"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-              <img
-                class="rounded-circle"
-                id="img-user"
-                src="{{ asset('images/user-profile.png') }}"/>              
+              @if (Auth::user()->image)
+              <img src="../storage/images_users/{{ Auth::user()->image }}" class="rounded-circle" id="img-user">
+            @else
+              <img class="rounded-circle" id="img-user" src="{{ asset('images/user-profile.png') }}" />
+            @endif           
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item"href="{{ url('profile-profesor/user') }}">Cuenta</a>
               <a class="dropdown-item" href="{{ route('logout') }}"
@@ -235,10 +237,11 @@
           </li>
           <li class="nav-item d-none d-lg-block">
             <a class="nav-link dropdown ps-lg-5 pe-lg-5"id="navbarDropdown"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-              <img
-                class="rounded-circle"
-                id="img-user"
-                src="{{ asset('images/user-profile.png') }}"/>              
+              @if (Auth::user()->image)
+              <img src="../storage/images_users/{{ Auth::user()->image }}" class="rounded-circle" id="img-user">
+            @else
+              <img class="rounded-circle" id="img-user" src="{{ asset('images/user-profile.png') }}" />
+            @endif             
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item"href="{{ url('profile-alumno/user') }}">Cuenta</a>
               <a class="dropdown-item" href="{{ route('logout') }}"

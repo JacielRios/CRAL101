@@ -72,10 +72,11 @@
               </li>
               <li class="nav-item d-none d-lg-block">
                 <a class="nav-link dropdown ps-lg-5 pe-lg-5"id="navbarDropdown"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                  <img
-                    class="rounded-circle"
-                    id="img-user"
-                    src="{{ asset('images/user-profile.png') }}"/>              
+                  @if (Auth::user()->image)
+                  <img src="../storage/images_users/{{ Auth::user()->image }}" class="rounded-circle" id="img-user">
+                @else
+                  <img class="rounded-circle" id="img-user" src="{{ asset('images/user-profile.png') }}" />
+                @endif           
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item"href="{{ url('profile-alumno/user') }}">Cuenta</a>
                   <a class="dropdown-item" href="{{ route('logout') }}"
@@ -277,6 +278,9 @@
         </div>
       </section>
 
+      @php
+          $c_m = 0;
+      @endphp
         @php
           $i = 1;
         @endphp
@@ -342,6 +346,13 @@
                                       {{ $post->created_at->format(' d M Y') }}
                                   </p>
                               </div>
+                              <div class="col-12 text-start">
+                                <a class="btn pt-0" href="{{ route('homeuser.show', $post) }}" id="comments" >
+                                  <span class=""><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
+                                  <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                </svg></span> 
+                                <span class="text-muted">{{ $count[$c_m] }}</span> Comentarios</a>
+                              </div>
                           </div>
                         </div>
                       </div>
@@ -351,6 +362,9 @@
           </div>
         </div>
       </section>
+      @php
+          $c_m++;
+      @endphp
         @php
           $i++;
         @endphp
@@ -443,7 +457,9 @@
 
             </div>
           </div>
-          
+          @php
+              $c = 0;
+          @endphp
           <div class="col-7 mt-3">
           @foreach ($posts as $post)
             
@@ -483,7 +499,12 @@
                   <div class="col-12">
                     <div class="row">
                         <div class="col-1" id="img-card_bottom">
-                            <a href="{{ url('chat/user') }}"><img src="{{ asset('images/user-profile.png') }}" class="rounded-circle" id="img-user"></a>
+                            {{-- <a href="{{ url('chat/user') }}"><img src="{{ asset('images/user-profile.png') }}" class="rounded-circle" id="img-user"></a> --}}
+                            @if ($post->user->image)
+                            <img src="../storage/images_users/{{ $post->user->image }}" class="rounded-circle" id="img-user">  
+                          @else
+                            <img src="{{ asset('images/user-profile.png') }}" class="rounded-circle" id="img-user">
+                          @endif
                         </div> 
                         <div class="col-6 ms-2 lh-1 pe-0">
                             <p class="fw-bold m-0 mt-2 fs-4"><a class="text-dark" href="{{ url('chat/user') }}">{{ $post->user->name }}</a></p>
@@ -491,11 +512,19 @@
                                 {{ $post->created_at->format(' d M Y') }}
                             </p>
                         </div>
+                        <div class="mt-3" >
+                          <a class="btn fs-4" href="{{ route('homeuser.show', $post) }}" id="comments" ><span class="pe-2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                          </svg></span> <span class="text-muted">{{ $count[$c] }}</span> Comentarios</a>
+                        </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            @php
+                $c++;
+            @endphp
             @endforeach
             <div class="fs-3">
               {{ $posts->links() }}

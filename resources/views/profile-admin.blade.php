@@ -69,10 +69,11 @@
                 </li>
                 <li class="nav-item d-none d-lg-block">
                   <a class="nav-link dropdown ps-lg-5 pe-lg-5"id="navbarDropdown"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    <img
-                      class="rounded-circle"
-                      id="img-user"
-                      src="{{ asset('images/user-profile.png') }}"/>              
+                    @if (Auth::user()->image)
+                    <img src="../storage/images_users/{{ Auth::user()->image }}" class="rounded-circle" id="img-user">
+                  @else
+                    <img class="rounded-circle" id="img-user" src="{{ asset('images/user-profile.png') }}" />
+                  @endif          
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item"href="{{ url('profile-profesor/user') }}">Cuenta</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -147,10 +148,11 @@
               </li>
               <li class="nav-item d-none d-lg-block">
                 <a class="nav-link dropdown ps-lg-5 pe-lg-5"id="navbarDropdown"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                  <img
-                    class="rounded-circle"
-                    id="img-user"
-                    src="{{ asset('images/user-profile.png') }}"/>              
+                  @if (Auth::user()->image)
+                  <img src="../storage/images_users/{{ Auth::user()->image }}" class="rounded-circle" id="img-user">
+                @else
+                  <img class="rounded-circle" id="img-user" src="{{ asset('images/user-profile.png') }}" />
+                @endif          
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item"href="{{ url('profile-profesor/user') }}">Cuenta</a>
                   <a class="dropdown-item" href="{{ route('logout') }}"
@@ -180,8 +182,27 @@
         <section class="container mb-4 d-md-none">
             <div class="row ">
                 <div class="col d-flex justify-content-center " >
-                    <img id="img-user" src="{{ asset('images/user-profile_xl.png') }}" class="rounded-circle" alt="Imagen del usuario">
+                  @if (Auth::user()->image)
+                  <a href="../storage/images_users/{{ Auth::user()->image }}" target="_blank"><img src="../storage/images_users/{{ Auth::user()->image }}" class="rounded-circle mt-2" id="img-user"></a>
+                @else
+                <img id="img-user" src="{{ asset('images/user-profile_xl.png') }}" class="rounded-circle" alt="Imagen del usuario">
+                @endif  
                 </div>
+                <form action="{{ route('profilead.update', $user = Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
+                  @csrf
+                  @method('PUT')
+                  <div class="container-input text-center">
+                      <input type="file" name="image" id="file-4" accept="image/*" class="inputfile inputfile-1"
+                          data-multiple-caption="{count} archivos seleccionados" multiple />
+                      <label for="file-4" class="p-0">
+                          <img src="{{ asset('images/image.png') }}">
+                          <span>Seleccionar imagen</span>
+                      </label>
+                  </div>
+                  <div class="text-center">
+                      <input type="submit" value="Subir" class="btn" id="btn-color">
+                  </div>
+              </form>
             </div>
             <div class="row">
                 <div class="col">
@@ -202,8 +223,27 @@
 
         <section class="container d-none d-md-block lh-1"> 
             <div class="row">
-                <div class="col-3" >
-                    <img id="img-user-md" src="{{ asset('images/user-profile_xl.png') }}" class="rounded-circle mt-4 ms-5 pe-0" alt="Imagen del usuario">
+                <div class="col-3 text-center" >
+                  <form action="{{ route('profilead.update', $user = Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    @if (Auth::user()->image)
+                      <a href="../storage/images_users/{{ Auth::user()->image }}" target="_blank"><img src="../storage/images_users/{{ Auth::user()->image }}" class="rounded-circle mt-2" id="img-user-md"></a>
+                    @else
+                        <img id="img-user-md" src="{{ asset('images/user-profile_xl.png') }}" class="rounded-circle mt-2" alt="Imagen del usuario">
+                    @endif
+                    <div class="container-input text-center">
+                        <input type="file" name="image" id="file-2" accept="image/*" class="inputfile inputfile-1"
+                            data-multiple-caption="{count} archivos seleccionados" multiple />
+                        <label for="file-2" class="p-0 pt-3 fs-4">
+                            <img src="{{ asset('images/image.png') }}">
+                            <span>Seleccionar imagen</span>
+                        </label>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" value="Subir" class="btn fs-4 " id="btn-color">
+                    </div>
+                </form>
                 </div>
                 <div class="col-8 ps-0">
                     <div class="card border-dark mb-3 mt-4" >
@@ -221,5 +261,31 @@
         </section>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-  </body>
+<script>
+  'use strict';
+
+  ;
+  (function(document, window, index) {
+      var inputs = document.querySelectorAll('.inputfile');
+      Array.prototype.forEach.call(inputs, function(input) {
+          var label = input.nextElementSibling,
+              labelVal = label.innerHTML;
+
+          input.addEventListener('change', function(e) {
+              var fileName = '';
+              if (this.files && this.files.length > 1)
+                  fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}',
+                      this.files.length);
+              else
+                  fileName = e.target.value.split('\\').pop();
+
+              if (fileName)
+                  label.querySelector('span').innerHTML = fileName;
+              else
+                  label.innerHTML = labelVal;
+          });
+      });
+  }(document, window, 0));
+</script>
+</body>
 </html>

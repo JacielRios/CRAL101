@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 
 class ProfileController extends Controller
 {
@@ -75,19 +77,25 @@ class ProfileController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        
+        // dd($request->all());
+        if($user->image){
+            if($request->file('image')){
+                unlink(storage_path('../public/storage/images_users/'.$user->image));
+            }
+        }
+        $image = $request->file('image');
+
+        if($request->hasFile('image')){
+            if(Storage::putFileAs('/public/images_users' . '/', $image, $image->getClientOriginalName())) {
+                $user->image = $image->getClientOriginalName();
+                $user->save();
+            }
+        }
         $data = $request->only('name', 'no_control', 'semester', 'group', 'email', 'carrer', 'turn');
-        // $semester = $request->input('semester');
-        // dd($semester);
-        // if ($semester) {
-        //     $data['semester'];
-        // }
-        // $user->update($request->all());
         
         $user->update($data);
         return redirect()->route('profile.index');
     }
-
     /**
      * Remove the specified resource from storage.
      *

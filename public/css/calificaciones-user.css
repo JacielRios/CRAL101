@@ -6,6 +6,9 @@
 header{
     background-color: #274aa2;
 }
+main,html,body{
+    background-color: #f5f5f5;
+}
 header .navbar-brand #main-logo{
     width: 50px;
     height: auto;
@@ -15,24 +18,14 @@ header nav .nav-item #img-user{
     height: 40px;
 }
 
-/* main,html,body{
-    background-color: #f5f5f5;
-}
-#color{
-    height: 10px;
-    width: 100%;
-    background-color: #f5f5f5;
-} */
-
-#footer{
-    background-color: #000;
+section #btn-color{
     color: #fff;
+    background-color: #01276d;
 }
-#footer a{
-    text-decoration: none;
-    color: #fff;
+#img-table{
+    width: 50px;
+    height: 50px;
 }
-
 
 @media (min-width: 800px) {
     header .navbar-brand #main-logo{
@@ -48,57 +41,4 @@ header nav .nav-item #img-user{
     footer{
         font-size: 2rem;
     }
-}
-
-#Rec{
-    padding-top: 500px;
-}
-
-
-
-
-#Tabla{
-    font-size: 17px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-#Kardex{
-    font-size: 20px;
-    margin-top: 30px;
-}
-
-#formPC{
-    font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-#turno{
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-#grado{
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-#grupo{
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-#materia{
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-#especialidad{
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-#masC{
-    font-size: 20px;
-    margin-top: 30px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-#calificar{
-    font-size: 20px;
-    margin-top: 30px;
-    font-family: Arial, Helvetica, sans-serif;
 }

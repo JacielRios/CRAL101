@@ -14,6 +14,10 @@ header nav .nav-item #img-user{
     width: 40px;
     height: 40px;
 }
+section #btn-color{
+    color: #fff;
+    background-color: #01276d;
+}
 #btn-user{
     background-color: #01276d;
 }
@@ -24,6 +28,34 @@ main,html,body{
     width: 100px;
     height: 100px;
 }
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    max-width: 80%;
+    font-size: 1rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+}
+
+
+.inputfile-1:focus + label,
+.inputfile-1.has-focus + label,
+.inputfile-1 + label:hover {
+    background-color: #c9c9c9;
+}
+
 /* #main #img-user-md{
     width: 140px;
     height: 140px;

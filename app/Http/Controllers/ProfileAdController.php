@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 
 class ProfileAdController extends Controller
 {
@@ -71,7 +73,19 @@ class ProfileAdController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
-    {
+    {if($user->image){
+        if($request->file('image')){
+            unlink(storage_path('../public/storage/images_users/'.$user->image));
+        }
+    }
+    $image = $request->file('image');
+
+    if($request->hasFile('image')){
+        if(Storage::putFileAs('/public/images_users' . '/', $image, $image->getClientOriginalName())) {
+            $user->image = $image->getClientOriginalName();
+            $user->save();
+        }
+    }
         $data = $request->only('name', 'email');
         $user->update($data);
         return redirect()->route('profilead.index');

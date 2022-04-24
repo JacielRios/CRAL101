@@ -75,10 +75,11 @@
               </li>
               <li class="nav-item d-none d-lg-block">
                 <a class="nav-link dropdown ps-lg-5 pe-lg-5"id="navbarDropdown"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                  <img
-                    class="rounded-circle"
-                    id="img-user"
-                    src="{{ asset('images/user-profile.png') }}"/>              
+                  @if (Auth::user()->image)
+                  <img src="../storage/images_users/{{ Auth::user()->image }}" class="rounded-circle" id="img-user">
+                @else
+                  <img class="rounded-circle" id="img-user" src="{{ asset('images/user-profile.png') }}" />
+                @endif        
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item"href="{{ url('profile-profesor/user') }}">Cuenta</a>
                   <a class="dropdown-item" href="{{ route('logout') }}"
@@ -150,10 +151,11 @@
             </li>
             <li class="nav-item d-none d-lg-block">
               <a class="nav-link dropdown ps-lg-5 pe-lg-5"id="navbarDropdown"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                <img
-                  class="rounded-circle"
-                  id="img-user"
-                  src="{{ asset('images/user-profile.png') }}"/>              
+                @if (Auth::user()->image)
+                <img src="../storage/images_users/{{ Auth::user()->image }}" class="rounded-circle" id="img-user">
+              @else
+                <img class="rounded-circle" id="img-user" src="{{ asset('images/user-profile.png') }}" />
+              @endif             
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item"href="{{ url('profile-profesor/user') }}">Cuenta</a>
                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -351,7 +353,9 @@
         @php
           $i = 1;
         @endphp
-
+@php
+  $c_m = 0;
+@endphp
       @foreach ($posts as $post)
       <section class="container mt-2 d-md-none">
         <div class="row justify-content-center">
@@ -417,6 +421,13 @@
                               <div class="col-3 mt-1">
                                   <a href="{{ route('home.edit', $post) }}" class="btn" id="btn-color">Editar</a>
                               </div>
+                              <div class="col-12 text-start">
+                                <a class="btn pt-0" href="{{ route('home.show', $post) }}" id="comments" >
+                                  <span class=""><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
+                                  <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                </svg></span> 
+                                <span class="text-muted">{{ $count[$c_m] }}</span> Comentarios</a>
+                              </div>
                           </div>
                         </div>
                       </div>
@@ -429,6 +440,9 @@
       @php
       $i++;
       @endphp
+      @php
+      $c_m++;
+    @endphp
       @endforeach
       <div class="d-lg-none ms-3 ms-md-5 ps-md-5">
         {{ $posts->links() }}
@@ -517,7 +531,9 @@
           </div>
         <!-- </div>
         <div class="row"> -->
-
+@php
+    $c = 0;
+@endphp
           <div class="col-md-7 col-lg-7 mt-3">
             @foreach ($posts as $post)
             <div class="card" id="main-card">
@@ -544,8 +560,8 @@
                     </div>
                   </div>
                   <div class="col-11">
-                    <p class="text-muted fs-4 m-0">
-                      {{ $post->body }}
+                    <p class="text-muted m-0">
+                      {!! html_entity_decode($post->body) !!}
                     </p>
                     @if ($post->image)
                     <div class="mb-3 mt-2 d-flex justify-content-center card-img-top" id="image_container">
@@ -559,9 +575,13 @@
                   <div class="col-12">
                     <div class="row">
                         <div class="col-1" id="img-card_bottom">
+                          @if ($post->user->image)
+                            <img src="../storage/images_users/{{ $post->user->image }}" class="rounded-circle" id="img-user">  
+                          @else
                             <img src="{{ asset('images/user-profile.png') }}" class="rounded-circle" id="img-user">
+                          @endif
                         </div>
-                        <div class="col-6 ms-2 lh-1 pe-0">
+                        <div class="col-6 ps-3 lh-1 pe-0">
                             <p class="fw-bold m-0 mt-2 fs-4">{{ $post->user->name }}</p>
                             <p class="text-muted fs-5">
                                 {{ $post->created_at->format('d M Y') }}
@@ -571,10 +591,18 @@
                             <a href="{{ route('home.edit', $post) }}" class="btn fs-3" id="btn-color">Editar</a>
                         </div>
                     </div>
+                    <div class="mt-3" >
+                      <a class="btn fs-4" href="{{ route('home.show', $post) }}" id="comments" ><span class="pe-2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
+                        <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                      </svg></span> <span class="text-muted">{{ $count[$c] }}</span> Comentarios</a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            @php
+              $c++;    
+            @endphp
             @endforeach
 
             <div class="fs-3">

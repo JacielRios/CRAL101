@@ -35,6 +35,16 @@ main #btn_color{
     height: 100%;
     object-fit: cover;
 }
+#comments:hover{
+    background-color: #c9c9c9;
+}
+#comments:active{
+    background-color: #818181;
+}
+section #img-card_bottom #img-user{
+    width: 45px;
+    height: 45px;
+}
 
 #footer{
     background-color: #000;

@@ -73,10 +73,11 @@
             </li>
             <li class="nav-item d-none d-lg-block">
               <a class="nav-link dropdown ps-lg-5 pe-lg-5"id="navbarDropdown"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                <img
-                  class="rounded-circle"
-                  id="img-user"
-                  src="{{ asset('images/user-profile.png') }}"/>              
+                @if (Auth::user()->image)
+                                  <img src="../storage/images_users/{{ Auth::user()->image }}" class="rounded-circle" id="img-user">
+                                @else
+                                  <img class="rounded-circle" id="img-user" src="{{ asset('images/user-profile.png') }}" />
+                                @endif             
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item"href="{{ url('profile-alumno/user') }}">Cuenta</a>
                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -116,7 +117,9 @@
                 </div>
             </div>
         </section>
-
+@php
+    $c_m = 0;
+@endphp
         @if(isset($homeworks))
         <section class="container mt-2 d-lg-none">
           @foreach($homeworks as $homework)
@@ -136,21 +139,33 @@
                                     Fecha de entrega: {{ date('j F, Y', strtotime($homework->date))}}
                             </p>
                         </div>
+                        <div class="col-12 text-start p-0">
+                          <a class="btn pt-0 " href="{{ route('homeworks.show', $homework) }}" id="comments" >
+                            <span class=""><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                          </svg></span> 
+                          <span class="text-muted">{{ $count[$c_m] }}</span> Comentarios</a>
+                        </div>
                     </div>
                 </div>
             </div>
+            @php
+                $c_m++;
+            @endphp
             @endforeach
             {{-- <div class="d-lg-none ms-3 ms-md-5 ps-md-5">
               {{ $homeworks->links() }}
             </div> --}}
         </section> 
-
+        @php
+            $c = 0;
+        @endphp
         <section class="container mt-2 fs-3 d-none d-lg-block">
         @foreach ($homeworks as $homework)
             <div class="row justify-content-center">
-                <div class="col-8">
+                <div class="col-10">
                     <div class="card mb-4 border-2 border-dark">
-                        <div class="card-body">
+                        <div class="card-body pb-0">
                             <h2 class="card-title fw-bold">{{ $homework->title }}</h2>
                             <p class="card-text mb-0">{{ $homework->body }}</p>
                             <a href="{{ route('homeworks.show',$homework->id) }}" class="btn btn-outline-primary fs-3">Leer más..</a>
@@ -163,14 +178,21 @@
                                     Fecha de entrega: {{ date('j F, Y', strtotime($homework->date))}}
                             </p>
                         </div>
+                        <div class="mt-2">
+                          <a class="btn fs-4" href="{{ route('homeworks.show', $homework) }}" id="comments" ><span class="pe-2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                          </svg></span> <span class="text-muted">{{ $count[$c] }}</span> Comentarios</a>
+                        </div>
                     </div>
                 </div>
             </div>
+            @php
+                $c++;
+            @endphp
             @endforeach
             <div class="d-lg-none ms-3 ms-md-5 ps-md-5">
               {{-- {{ $homeworks->links() }} --}}
             </div>
-        </section>
         @endif
     </main>
 

@@ -74,10 +74,11 @@
             </li>
             <li class="nav-item d-none d-lg-block">
               <a class="nav-link dropdown ps-lg-5 pe-lg-5"id="navbarDropdown"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                <img
-                  class="rounded-circle"
-                  id="img-user"
-                  src="{{ asset('images/user-profile.png') }}"/>              
+                @if (Auth::user()->image)
+                <img src="../../storage/images_users/{{ Auth::user()->image }}" class="rounded-circle" id="img-user">
+              @else
+                <img class="rounded-circle" id="img-user" src="{{ asset('images/user-profile.png') }}" />
+              @endif        
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item"href="{{ url('profile-profesor/user') }}">Cuenta</a>
                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -104,7 +105,7 @@
         <section class="container d-md-none">
           <div id="color"></div>
           <div class="row justify-content-center">
-            <div class="col-11">
+            <div class="col-12">
               <div class="card border-dark">
                 <div class="card-body">
                   <div class="row">
@@ -148,11 +149,117 @@
             </div>
           </div>
         </section>
+        <section class="container d-md-none">
+          <div class="mt-2 mb-3">
+              <div class="card border-dark">
+                  <div class="text-muted mt-2 ms-3">
+                      <p class="m-0">Comentar como <b>{{ Auth::user()->name }}</b></p>
+                  </div>
+                  <div class="card-body pt-0">
+                      <form action="{{ route('commentsHomework.store', $homework) }}" method="POST">
+                          @csrf
+
+                          @if (isset($comment->id))
+                              <input type="hidden" name="parent_id" value="{{ $comment->id }}">
+                          @endif
+
+                          <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+
+                          <textarea class="form-control mb-2 " name="body" id="body" rows="4" required></textarea>
+                          <div class="row">
+                              <div class="col-7">
+                                  <p class="mt-2 ">
+                                      <a class="link" data-bs-toggle="collapse" href="#collapseExample"
+                                          role="button" aria-expanded="false" aria-controls="collapseExample">
+                                          Comentarios <span>{{ $count }}</span> <span><svg xmlns="http://www.w3.org/2000/svg" width="13"
+                                                  height="13" fill="currentColor" class="bi bi-box-arrow-down-right"
+                                                  viewBox="0 0 16 16">
+                                                  <path fill-rule="evenodd"
+                                                      d="M8.636 12.5a.5.5 0 0 1-.5.5H1.5A1.5 1.5 0 0 1 0 11.5v-10A1.5 1.5 0 0 1 1.5 0h10A1.5 1.5 0 0 1 13 1.5v6.636a.5.5 0 0 1-1 0V1.5a.5.5 0 0 0-.5-.5h-10a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h6.636a.5.5 0 0 1 .5.5z" />
+                                                  <path fill-rule="evenodd"
+                                                      d="M16 15.5a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1 0-1h3.793L6.146 6.854a.5.5 0 1 1 .708-.708L15 14.293V10.5a.5.5 0 0 1 1 0v5z" />
+                                              </svg></span>
+                                      </a>
+                                  </p>
+                              </div>
+                              <div class="text-end col-5">
+                                  <input class="btn " type="submit" value="Comentar" id="btn_color">
+                              </div>
+                      </form>
+                  </div>
+                  <div class="collapse" id="collapseExample">
+                      @include('comments.list_2', ['comments' => $homework->comments])
+                      
+                      {{-- @foreach ($comments as $comment)
+                          <div class="card card-body mb-3">
+                              <div class="col-12">
+                                  <div class="row">
+                                      <div class="col-1" id="img-card_bottom">
+                                          @if (Auth::user()->image)
+                                              <img src="../../storage/images_users/{{ Auth::user()->image }}"
+                                                  class="rounded-circle" id="img-user">
+                                          @else
+                                              <img src="{{ asset('images/user-profile.png') }}"
+                                                  class="rounded-circle" id="img-user">
+                                          @endif
+                                      </div>
+                                      <div class="col-6 ms-2 lh-1 pe-0">
+                                          <p class="fw-bold m-0 mt-2 fs-4">{{ $comment->user->name }}</p>
+                                          <p class="text-muted fs-5">
+                                              {{ $comment->created_at->format('d M Y') }}
+                                          </p>
+                                      </div>
+                                  </div>
+                                  <p class="m-0">{{ $comment->body }}</p>
+                                  <div class="mb-3 mt-1">
+                                      <p class="mb-2">
+                                          <a class="btn btn-outline-secondary fs-4 " data-bs-toggle="collapse"
+                                              href="#collapseExample{{ $i }}" role="button"
+                                              aria-expanded="false" aria-controls="collapseExample">
+                                              Responder
+                                          </a>
+                                      </p>
+                                      <div class="collapse" id="collapseExample{{ $i }}">
+                                          <div>
+                                              <form action="{{ route('commentsHomework.store', $post) }}" method="POST">
+                                                  @csrf
+
+                                                  @if (isset($comment->id))
+                                                      <input type="hidden" name="parent_id"
+                                                          value="{{ $comment->id }}">
+                                                  @endif
+
+                                                  <input type="hidden" name="user_id"
+                                                      value="{{ Auth::user()->id }}">
+
+                                                  <textarea class="form-control fs-4 mt-2" name="body" id="body" rows="3"></textarea>
+                                                  <div class="text-end mt-2">
+                                                      <input class="btn fs-4" type="submit" value="Comentar"
+                                                          id="btn-color">
+                                                  </div>
+                                              </form>
+                                          </div>
+                                      </div>
+                                      @if ($comment->replies)
+                                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A eveniet eum tempora, unde laboriosam, quidem error quisquam quo mollitia veritatis ea deserunt. Architecto, praesentium! Magnam harum tempora corporis officiis doloribus!</p>
+                                      @endif
+                                  </div>
+                              </div>
+                          </div>
+                          @php
+                              $i++;
+                          @endphp
+                      @endforeach --}}
+                  </div>
+              </div>
+          </div>
+      </div>            
+  </section>
   
         <section class="container d-none d-md-block">
           <div id="color"></div>
           <div class="row justify-content-center">
-            <div class="col-md-12 col-lg-8">
+            <div class="col-md-12 col-lg-9">
               <div class="card border-dark">
                 <div class="card-body fs-4">
                   <div class="row">
@@ -198,6 +305,114 @@
             </div>
           </div>
         </section>
+        <section class="container d-none d-md-block">
+          <div class="d-flex justify-content-center">
+              <div class="col-md-12 col-lg-9 mt-2 mb-3 p-0">
+                  <div class="card">
+                      <div class="text-muted mt-2 ms-3 fs-5">
+                          <p class="m-0">Comentar como <b>{{ Auth::user()->name }}</b></p>
+                      </div>
+                      <div class="card-body pt-0 fs-4">
+                          <form action="{{ route('commentsHomework.store', $homework) }}" method="POST">
+                              @csrf
+  
+                              @if (isset($comment->id))
+                                  <input type="hidden" name="parent_id" value="{{ $comment->id }}">
+                              @endif
+  
+                              <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+  
+                              <textarea class="form-control mb-2 fs-4" name="body" id="body" rows="4" required></textarea>
+                              <div class="row">
+                                  <div class="col-6">
+                                      <p class="mt-2 fs-4">
+                                          <a class="link" data-bs-toggle="collapse" href="#collapseExample"
+                                              role="button" aria-expanded="false" aria-controls="collapseExample">
+                                              Comentarios <span>{{ $count }}</span> <span><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                      height="16" fill="currentColor" class="bi bi-box-arrow-down-right"
+                                                      viewBox="0 0 16 16">
+                                                      <path fill-rule="evenodd"
+                                                          d="M8.636 12.5a.5.5 0 0 1-.5.5H1.5A1.5 1.5 0 0 1 0 11.5v-10A1.5 1.5 0 0 1 1.5 0h10A1.5 1.5 0 0 1 13 1.5v6.636a.5.5 0 0 1-1 0V1.5a.5.5 0 0 0-.5-.5h-10a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h6.636a.5.5 0 0 1 .5.5z" />
+                                                      <path fill-rule="evenodd"
+                                                          d="M16 15.5a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1 0-1h3.793L6.146 6.854a.5.5 0 1 1 .708-.708L15 14.293V10.5a.5.5 0 0 1 1 0v5z" />
+                                                  </svg></span>
+                                          </a>
+                                      </p>
+                                  </div>
+                                  <div class="text-end col-6">
+                                      <input class="btn fs-4" type="submit" value="Comentar" id="btn_color">
+                                  </div>
+                          </form>
+                      </div>
+                      <div class="collapse" id="collapseExample">
+                          @include('comments.list_2', ['comments' => $homework->comments])
+                          
+                          {{-- @foreach ($comments as $comment)
+                              <div class="card card-body mb-3">
+                                  <div class="col-12">
+                                      <div class="row">
+                                          <div class="col-1" id="img-card_bottom">
+                                              @if (Auth::user()->image)
+                                                  <img src="../../storage/images_users/{{ Auth::user()->image }}"
+                                                      class="rounded-circle" id="img-user">
+                                              @else
+                                                  <img src="{{ asset('images/user-profile.png') }}"
+                                                      class="rounded-circle" id="img-user">
+                                              @endif
+                                          </div>
+                                          <div class="col-6 ms-2 lh-1 pe-0">
+                                              <p class="fw-bold m-0 mt-2 fs-4">{{ $comment->user->name }}</p>
+                                              <p class="text-muted fs-5">
+                                                  {{ $comment->created_at->format('d M Y') }}
+                                              </p>
+                                          </div>
+                                      </div>
+                                      <p class="m-0">{{ $comment->body }}</p>
+                                      <div class="mb-3 mt-1">
+                                          <p class="mb-2">
+                                              <a class="btn btn-outline-secondary fs-4 " data-bs-toggle="collapse"
+                                                  href="#collapseExample{{ $i }}" role="button"
+                                                  aria-expanded="false" aria-controls="collapseExample">
+                                                  Responder
+                                              </a>
+                                          </p>
+                                          <div class="collapse" id="collapseExample{{ $i }}">
+                                              <div>
+                                                  <form action="{{ route('commentsHomework.store', $post) }}" method="POST">
+                                                      @csrf
+  
+                                                      @if (isset($comment->id))
+                                                          <input type="hidden" name="parent_id"
+                                                              value="{{ $comment->id }}">
+                                                      @endif
+  
+                                                      <input type="hidden" name="user_id"
+                                                          value="{{ Auth::user()->id }}">
+  
+                                                      <textarea class="form-control fs-4 mt-2" name="body" id="body" rows="3"></textarea>
+                                                      <div class="text-end mt-2">
+                                                          <input class="btn fs-4" type="submit" value="Comentar"
+                                                              id="btn-color">
+                                                      </div>
+                                                  </form>
+                                              </div>
+                                          </div>
+                                          @if ($comment->replies)
+                                              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A eveniet eum tempora, unde laboriosam, quidem error quisquam quo mollitia veritatis ea deserunt. Architecto, praesentium! Magnam harum tempora corporis officiis doloribus!</p>
+                                          @endif
+                                      </div>
+                                  </div>
+                              </div>
+                              @php
+                                  $i++;
+                              @endphp
+                          @endforeach --}}
+                      </div>
+                  </div>
+              </div>
+              </div>
+          </div>            
+      </section>
   
       </main>
   

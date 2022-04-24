@@ -19,6 +19,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @livewireStyles
+
+    {{-- @stack('css') --}}
+
 </head>
 {{-- <body>
     <div id="app">
@@ -74,6 +77,7 @@
                                         @livewireScripts
                                         @stack('scripts')
                                     </div>
+                                    {{-- @stack('js') --}}
                                 {{--</div>
                             </li>
                         @endguest
@@ -81,8 +85,8 @@
                 </div>
             </div>
         </nav> --}}
-
             @yield('content')
     </div>
+    
 </body>
 </html>

@@ -69,10 +69,11 @@
                 </li>
                 <li class="nav-item d-none d-lg-block">
                   <a class="nav-link dropdown ps-lg-4 pe-lg-5"id="navbarDropdown"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    <img
-                      class="rounded-circle"
-                      id="img-user"
-                      src="{{ asset('images/user-profile.png') }}"/>              
+                    @if (Auth::user()->image)
+                                  <img src="../storage/images_users/{{ Auth::user()->image }}" class="rounded-circle" id="img-user">
+                                @else
+                                  <img class="rounded-circle" id="img-user" src="{{ asset('images/user-profile.png') }}" />
+                                @endif           
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item fs-5"href="{{ url('profile-alumno/user') }}">Cuenta</a>
                     <a class="dropdown-item fs-5" href="{{ route('logout') }}"
@@ -135,7 +136,7 @@
                                 </div>
         
                                 <div>
-                                    <label for="semester" class="form-label mb-0 mt-2"><span><img src="{{asset('images/semester-icon.png')}}"></span>{{ __('Ingresa tu semestre *') }} </label>
+                                    <label for="semester" class="form-label mb-0 mt-2"><span><img src="{{asset('images/semester-icon.png')}}"></span>{{ __('Ingresa tu semestre ') }}<b>*</b> </label>
         
                                     <div class="">
                                         <select class="form-select @error('semester') is-invalid @enderror" name="semester" id="semester" value="{{ $user->semester }}">
@@ -156,7 +157,7 @@
                                 </div>
 
                                 <div>
-                                    <label for="group" class="form-label mb-0 mt-2"><span><img src="{{asset('images/group-icon.png')}}"></span>{{ __('Ingresa tu grupo *') }}</label>
+                                    <label for="group" class="form-label mb-0 mt-2"><span><img src="{{asset('images/group-icon.png')}}"></span>{{ __('Ingresa tu grupo ') }}<b>*</b></label>
         
                                     <div class="">
                                         <select class="form-select @error('group') is-invalid @enderror" name="group" id="group" >

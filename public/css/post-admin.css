@@ -9,6 +9,10 @@ header nav .nav-item #img-user{
     width: 40px;
     height: 40px;
 }
+section #img-card_bottom #img-user{
+    width: 45px;
+    height: 45px;
+}
 #image_container-m{
     width: 95%;
     height: 200px;
@@ -43,6 +47,14 @@ main #btn_color{
 #footer a{
     text-decoration: none;
     color: #fff;
+}
+
+
+#comments:hover{
+    background-color: #c9c9c9;
+}
+#comments:active{
+    background-color: #818181;
 }
 
 

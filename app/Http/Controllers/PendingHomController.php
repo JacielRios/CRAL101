@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CommentHomework;
 use Illuminate\Http\Request;
 use App\Models\Homework_send;
 use App\Models\Homework;
 use Illuminate\Support\Facades\DB;
+
 
 class PendingHomController extends Controller
 {
@@ -68,10 +70,31 @@ class PendingHomController extends Controller
                 $homeworks[] = $ph;
             }
         }
+        // dd($homeworks[0]->id);
+        
         if (isset($homeworks)) {
-            return view('pending-user', compact('homeworks'));
+            $homeworks = Homework::where('id', '=', $homeworks[0]->id)
+        ->get();
+        // dd($homeworks);
+        foreach ($homeworks as $homework) {
+            $comments = CommentHomework::where('homework_id', '=', $homework->id)
+                //->whereNull('parent_id')
+                ->latest()
+                ->get();
+            // dd($comments);
+            $count[] = count($comments);
+        }
+            if (isset($count)) {
+                return view('pending-user', compact('homeworks', 'count'));
+            } else {
+                return view('pending-user', compact('homeworks'));
+            }
         }else{
-            return view('pending-user');
+            if (isset($count)) {
+                return view('pending-user', compact('count'));
+            } else {
+                return view('pending-user');
+            }
         }
             
     }

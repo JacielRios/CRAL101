@@ -35,4 +35,8 @@ class Homework extends Model
     {
         return $this->hasMany(Homework_send::class);
     }
+    public function comments() 
+    {
+        return $this->hasMany(CommentHomework::class)->whereNull('parent_id');
+    }
 }

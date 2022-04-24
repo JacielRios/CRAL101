@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CommentHomework;
 use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use App\Models\Homework_send;
@@ -19,32 +20,48 @@ class CompletedHomController extends Controller
     {
         $id_user = auth()->user()->id;
         $exist = DB::table('homework_sends')
-        ->where( 'user_id', '=', $id_user)
-        ->get();
+            ->where('user_id', '=', $id_user)
+            ->get();
 
         // dd($exist);
 
-        foreach ($exist as $exists){
+        foreach ($exist as $exists) {
             $id_homework[] = ['homework_id' => $exists->homework_id];
         }
 
         // dd($id_homework);
 
-        if(isset($id_homework)) {
-            foreach($id_homework as $id){
+        if (isset($id_homework)) {
+            foreach ($id_homework as $id) {
                 $homework = DB::table('Homework')
-                ->where('id', '=', $id['homework_id'])
-                ->get();
+                    ->where('id', '=', $id['homework_id'])
+                    ->get();
                 $homeworks[] = $homework[0];
-                }
-        
-                // dd($homeworks);
-        
+            }
+            $homeworks = Homework::where('id', '=', $homeworks[0]->id)
+                ->get();
+            // dd($homeworks);
+            // dd($homeworks);
+            foreach ($homeworks as $homework) {
+                $comments = CommentHomework::where('homework_id', '=', $homework->id)
+                    //->whereNull('parent_id')
+                    ->latest()
+                    ->get();
+                // dd($comments);
+                $count[] = count($comments);
+            }
+            if (isset($count)) {
+                return view('completed-user', compact('homeworks', 'count'));
+            } else {
                 return view('completed-user', compact('homeworks'));
-        }else{
-            return view('completed-user');
+            }
+        } else {
+            if (isset($count)) {
+                return view('completed-user', compact('count'));
+            } else {
+                return view('completed-user');
+            }
         }
-        
     }
 
     /**
