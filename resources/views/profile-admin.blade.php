@@ -210,7 +210,7 @@
                       </label>
                   </div>
                   <div class="text-center">
-                      <input type="submit" value="Subir" class="btn" id="btn-color">
+                      <input type="submit" value="Subir" class="btn" id="btn-user">
                   </div>
               </form>
             </div>
@@ -224,7 +224,7 @@
                             {{-- <p class="card-text m-0"> <span class="text-muted fs-4">Semestre y grupo</span>  <br><span class=" fs-5 fw-bold ps-2">   {{ Auth::user()->semester }} <span> - </span>{{ Auth::user()->group }} </span> </p> --}}
                             {{-- <p class="card-text m-0"><span class="text-muted fs-4">Turno</span>  <br><span class="fs-5 fw-bold ps-2">  {{ Auth::user()->role }}  </span></p> --}}
                             <p class="card-text m-0"><span class="text-muted fs-4">Correo electrónico</span>  <br><span class="fs-5 fw-bold ps-2">  {{ Auth::user()->email }}  </span></p>
-                        <div class="text-end"><a href="{{ route('profilead.edit', $user = auth::user()->id) }}" id="btn-user" class="btn btn-primary">Editar</a></div>
+                        <div class="text-end"><a href="{{ route('profilead.edit', $user = auth::user()->id) }}" id="btn-user" class="btn">Editar</a></div>
                         </div>
                     </div>
                 </div>
