@@ -43,9 +43,16 @@
                                 <a class="nav-link ps-lg-5" href="{{ route('grades-user') }}">Historial de
                                     calificaciones</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link ps-lg-5" href="{{ url('chat') }}">Mensajes</a>
-                            </li>
+                            <li class="nav-item d-none d-lg-block">
+                                <a class="nav-link ps-lg-5" href="{{ route('chat.index') }}"
+                                  >Mensajes</a
+                                >
+                              </li>
+                              <li class="nav-item d-lg-none">
+                                <a class="nav-link ps-lg-5" href="{{ route('chatm.index') }}"
+                                  >Mensajes</a
+                                >
+                              </li>
                             <li class="nav-item d-lg-none">
                                 <a class="nav-link ps-lg-5 pe-lg-5" href="{{ url('profile-alumno/user') }}">Cuenta</a>
                             </li>
@@ -114,9 +121,16 @@
                                     <a class="nav-link ps-lg-5" href="{{ url('calificaciones/admin') }}">Historial de
                                         calificaciones</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link ps-lg-5" href="{{ url('chat') }}">Mensajes</a>
-                                </li>
+                                <li class="nav-item d-none d-lg-block">
+                                    <a class="nav-link ps-lg-5" href="{{ route('chat.index') }}"
+                                      >Mensajes</a
+                                    >
+                                  </li>
+                                  <li class="nav-item d-lg-none">
+                                    <a class="nav-link ps-lg-5" href="{{ route('chatm.index') }}"
+                                      >Mensajes</a
+                                    >
+                                  </li>
                                 <li class="nav-item d-lg-none">
                                     <a class="nav-link ps-lg-5 pe-lg-5"
                                         href="{{ url('profile-profesor/user') }}">Cuenta</a>
@@ -176,9 +190,16 @@
                                     <a class="nav-link active lg-ps-2" aria-current="page"
                                         href="{{ url('home-profesor/post') }}">Información general</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link ps-lg-5" href="{{ url('chat') }}">Mensajes</a>
-                                </li>
+                                <li class="nav-item d-none d-lg-block">
+                                    <a class="nav-link ps-lg-5" href="{{ route('chat.index') }}"
+                                      >Mensajes</a
+                                    >
+                                  </li>
+                                  <li class="nav-item d-lg-none">
+                                    <a class="nav-link ps-lg-5" href="{{ route('chatm.index') }}"
+                                      >Mensajes</a
+                                    >
+                                  </li>
                                 <li class="nav-item d-lg-none">
                                     <a class="nav-link ps-lg-5 pe-lg-5"
                                         href="{{ url('profile-profesor/user') }}">Cuenta</a>
