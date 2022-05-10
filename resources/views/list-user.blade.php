@@ -36,8 +36,15 @@
             <li class="nav-item">
               <a class="nav-link ps-lg-5" href="{{ route('grades-user') }}">Historial de calificaciones</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link ps-lg-5" href="{{ url('chat') }}">Mensajes</a>
+            <li class="nav-item d-none d-lg-block">
+              <a class="nav-link ps-lg-5" href="{{ route('chat.index') }}"
+                >Mensajes</a
+              >
+            </li>
+            <li class="nav-item d-lg-none">
+              <a class="nav-link ps-lg-5" href="{{ route('chatm.index') }}"
+                >Mensajes</a
+              >
             </li>
             <li class="nav-item d-lg-none">
               <a class="nav-link ps-lg-5 pe-lg-5" href="{{ url('profile-alumno/user') }}">Cuenta</a>
@@ -114,10 +121,10 @@
                             <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fw-bold text-center pt-2">{{ $partial_3[0][$student->name] }}</td>
                             <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fw-bold text-center pt-2">{{ $prom[0][$student->name] }}</td>
                             @else
-                            <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fw-bold text-center pt-2">{{ $partial_1[0][$student->name] }}</td>
-                            <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fw-bold text-center pt-2">{{ $partial_2[0][$student->name] }}</td>
-                            <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fw-bold text-center pt-2">{{ $partial_3[0][$student->name] }}</td>
-                            <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fw-bold text-center pt-2">{{ $prom[0][$student->name] }}</td>
+                            <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fw-bold text-center pt-2"></td>
+                            <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fw-bold text-center pt-2"></td>
+                            <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fw-bold text-center pt-2"></td>
+                            <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fw-bold text-center pt-2"></td>
                             @endif
                         </tr>
                         @endforeach
@@ -169,10 +176,10 @@
                             <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fs-3 fw-bold text-center pt-4">{{ $partial_3[0][$student->name] }}</td>
                             <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fs-3 fw-bold text-center pt-4">{{ $prom[0][$student->name] }}</td>
                             @else
-                            <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fs-3 fw-bold text-center pt-4">{{ $partial_1[0][$student->name] }}</td>
-                            <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fs-3 fw-bold text-center pt-4">{{ $partial_2[0][$student->name] }}</td>
-                            <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fs-3 fw-bold text-center pt-4">{{ $partial_3[0][$student->name] }}</td>
-                            <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fs-3 fw-bold text-center pt-4">{{ $prom[0][$student->name] }}</td>
+                            <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fs-3 fw-bold text-center pt-4"></td>
+                            <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fs-3 fw-bold text-center pt-4"></td>
+                            <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fs-3 fw-bold text-center pt-4"></td>
+                            <td class="p-0 border-dark border-start-0 border-top-0 border-bottom-0 border-2 fs-3 fw-bold text-center pt-4"></td>
                             @endif
                         </tr>
                         @endforeach

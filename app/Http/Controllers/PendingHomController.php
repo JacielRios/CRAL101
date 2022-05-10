@@ -70,24 +70,24 @@ class PendingHomController extends Controller
                 $homeworks[] = $ph;
             }
         }
-        // dd($homeworks[0]->id);
         
         if (isset($homeworks)) {
-            $homeworks = Homework::where('id', '=', $homeworks[0]->id)
-        ->get();
-        // dd($homeworks);
-        foreach ($homeworks as $homework) {
-            $comments = CommentHomework::where('homework_id', '=', $homework->id)
+            foreach($homeworks as $homework){
+                $homeworks_collect[] = Homework::where('id', '=', $homework->id)->get();
+            }
+        // dd($homeworks_collect);
+        foreach ($homeworks_collect as $homework) {
+            
+            $comments = CommentHomework::where('homework_id', '=', $homework[0]->id)
                 //->whereNull('parent_id')
                 ->latest()
                 ->get();
-            // dd($comments);
             $count[] = count($comments);
         }
             if (isset($count)) {
-                return view('pending-user', compact('homeworks', 'count'));
+                return view('pending-user', compact('homeworks_collect', 'count'));
             } else {
-                return view('pending-user', compact('homeworks'));
+                return view('pending-user', compact('homeworks_collect'));
             }
         }else{
             if (isset($count)) {
@@ -96,6 +96,6 @@ class PendingHomController extends Controller
                 return view('pending-user');
             }
         }
-            
+
     }
 }

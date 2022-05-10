@@ -36,14 +36,14 @@ class CompletedHomController extends Controller
                 $homework = DB::table('Homework')
                     ->where('id', '=', $id['homework_id'])
                     ->get();
-                $homeworks[] = $homework[0];
+                $test[] = $homework[0];
             }
-            $homeworks = Homework::where('id', '=', $homeworks[0]->id)
-                ->get();
-            // dd($homeworks);
+            foreach($test as $homework){
+                $homeworks[] = Homework::where('id', '=', $homework->id)->get();
+            }
             // dd($homeworks);
             foreach ($homeworks as $homework) {
-                $comments = CommentHomework::where('homework_id', '=', $homework->id)
+                $comments = CommentHomework::where('homework_id', '=', $homework[0]->id)
                     //->whereNull('parent_id')
                     ->latest()
                     ->get();

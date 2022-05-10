@@ -21,6 +21,11 @@ header nav .nav-item #img-user{
     width: 40px;
     height: 40px;
 }
+
+#img-user_chat{
+    height: 45px;
+    width: 45px;
+}
 main,html,body{
     background-color: #f5f5f5;
 }
@@ -32,6 +37,86 @@ section #btn-color{
     color: #fff;
     background-color: #01276d;
 }
+
+#main-container{
+    height: 8rem;
+    background-color: #0e9389;
+}
+#container-bottom{
+    position: absolute;
+    left: 0px;
+    top: 8rem;
+    width: 100%;
+}
+#container-bottom_mobile{
+    position: absolute;
+    left: 0px;
+    top: 6.5rem;
+    width: 100%;
+}
+#color-gray_50{
+    border-radius: 10px;
+    background-color: #fafafd;
+    border: 2px #ececf0;
+}
+#color-gray_100{
+    background-color: #f4f4f8;
+}
+#chats-container{
+    height: calc(100vh - 22rem);
+    border-color: 4px #cecece;
+}
+#chats-container_mobile{
+    height: calc(100vh - 17rem);
+    border-color: 4px #cecece;
+}
+#main-chat_container{
+    border-right: 4px #cecece;
+}
+#img-default{
+    height: 100%;
+    width: 100%;
+}
+img{
+    object-fit: cover;
+    object-position: center;
+}
+li{
+    cursor: pointer;
+}
+#top-chat_container{
+    width: 100%;
+    background-color: #f4f4f8;
+}
+#message-container{
+    height: calc(100vh - 21rem);
+}
+#message-container_mobile{
+    height: calc(100vh - 16rem);
+}
+#color-gray_100_2{
+    background-color: #f4f4f8;
+    height: 5rem;
+}
+#color-gray_mobile{
+    background-color: #f4f4f8;
+    height: 4rem;
+}
+#color-gray_100_2 input {
+    width: 100%;
+    border-radius: 10px;
+    width: 90%; 
+}
+#color-send{
+    background-color: #dcfbe9;
+}
+#color-received{
+    background-color: #EEEEEE;
+}
+#flex-1{
+    width: calc(100% - 6rem);
+}
+
 
 @media (min-width: 800px) {
     header .navbar-brand #main-logo{

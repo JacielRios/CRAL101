@@ -47,9 +47,16 @@
                                 <a class="nav-link ps-lg-5" href="{{ url('calificaciones/admin') }}">Historial de
                                     calificaciones</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link ps-lg-5" href="{{ url('chat') }}">Mensajes</a>
-                            </li>
+                            <li class="nav-item d-none d-lg-block">
+                                <a class="nav-link ps-lg-5" href="{{ route('chat.index') }}"
+                                  >Mensajes</a
+                                >
+                              </li>
+                              <li class="nav-item d-lg-none">
+                                <a class="nav-link ps-lg-5" href="{{ route('chatm.index') }}"
+                                  >Mensajes</a
+                                >
+                              </li>
                             <li class="nav-item d-lg-none">
                                 <a class="nav-link ps-lg-5 pe-lg-5"
                                     href="{{ url('profile-profesor/user') }}">Cuenta</a>
@@ -58,7 +65,7 @@
                                 <a class="nav-link dropdown ps-lg-5 pe-lg-5" id="navbarDropdown" href="#" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (Auth::user()->image)
-                                        <img src="../storage/images_users/{{ Auth::user()->image }}"
+                                        <img src="../../storage/images_users/{{ Auth::user()->image }}"
                                             class="rounded-circle" id="img-user">
                                     @else
                                         <img class="rounded-circle" id="img-user"
@@ -108,9 +115,16 @@
                                 <a class="nav-link active lg-ps-2" aria-current="page"
                                     href="{{ url('home-profesor/post') }}">Información general</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link ps-lg-5" href="{{ url('chat') }}">Mensajes</a>
-                            </li>
+                            <li class="nav-item d-none d-lg-block">
+                                <a class="nav-link ps-lg-5" href="{{ route('chat.index') }}"
+                                  >Mensajes</a
+                                >
+                              </li>
+                              <li class="nav-item d-lg-none">
+                                <a class="nav-link ps-lg-5" href="{{ route('chatm.index') }}"
+                                  >Mensajes</a
+                                >
+                              </li>
                             <li class="nav-item d-lg-none">
                                 <a class="nav-link ps-lg-5 pe-lg-5"
                                     href="{{ url('profile-profesor/user') }}">Cuenta</a>
@@ -119,7 +133,7 @@
                                 <a class="nav-link dropdown ps-lg-5 pe-lg-5" id="navbarDropdown" href="#" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (Auth::user()->image)
-                                        <img src="../storage/images_users/{{ Auth::user()->image }}"
+                                        <img src="../../storage/images_users/{{ Auth::user()->image }}"
                                             class="rounded-circle" id="img-user">
                                     @else
                                         <img class="rounded-circle" id="img-user"
@@ -291,7 +305,7 @@
                         </div>
                         <div class="form-group">
                             <label class="fs-3 fw-bold">Contenido *</label>
-                            <textarea name="body" rows="4" class="form-control fs-3" id="editor" ></textarea>
+                            <textarea name="body" rows="4" class="form-control fs-3"  ></textarea>
                         </div>
                         <div class="row">
                             <div class="col-3">
@@ -422,9 +436,9 @@
         </section>
 
     </main>
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script> --}}
 
-    <script>
+    {{-- <script>
         ClassicEditor
             .create(document.querySelector('#editor'))
             .then(editor => {
@@ -433,7 +447,7 @@
             .catch(error => {
                 console.error(error);
             });
-    </script>
+    </script> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>

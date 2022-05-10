@@ -21,10 +21,10 @@ class CreateListsTable extends Migration
             $table->string('group')->nullable();
             $table->string('turn')->nullable();
             $table->string('course')->nullable();
-            $table->string('partial_1')->nullable();
-            $table->string('partial_2')->nullable();
-            $table->string('partial_3')->nullable();
-            $table->string('prom')->nullable();
+            $table->text('partial_1')->nullable();
+            $table->text('partial_2')->nullable();
+            $table->text('partial_3')->nullable();
+            $table->text('prom')->nullable();
             $table->string('carrer')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

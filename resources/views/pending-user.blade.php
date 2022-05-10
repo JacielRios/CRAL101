@@ -60,8 +60,13 @@
             <li class="nav-item">
               <a class="nav-link ps-lg-5" href="{{ route('grades-user') }}">Historial de calificaciones</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link ps-lg-5" href="{{ url('chat') }}"
+            <li class="nav-item d-none d-lg-block">
+              <a class="nav-link ps-lg-5" href="{{ route('chat.index') }}"
+                >Mensajes</a
+              >
+            </li>
+            <li class="nav-item d-lg-none">
+              <a class="nav-link ps-lg-5" href="{{ route('chatm.index') }}"
                 >Mensajes</a
               >
             </li>
@@ -120,25 +125,25 @@
 @endphp
         @if(isset($homeworks))
         <section class="container mt-2 d-lg-none">
-          @foreach ($homeworks as $homework)
+          @foreach ($homeworks_collect as $homework)
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 ">
                     <div class="card mb-4 border-2 border-dark">
                         <div class="card-body">
-                            <h5 class="card-title fw-bold">{{ $homework->title }}</h5>
-                            <p class="card-text mb-0">{{ $homework->body }}</p>
-                            <a href="{{ route('homeworks.show',$homework->id) }}" class="btn btn-sm btn-outline-primary">Leer más..</a>
+                            <h5 class="card-title fw-bold">{{ $homework[0]->title }}</h5>
+                            <p class="card-text mb-0">{{ $homework[0]->body }}</p>
+                            <a href="{{ route('homeworks.show',$homework[0]->id) }}" class="btn btn-sm btn-outline-primary">Leer más..</a>
                             <p class="text-muted mb-0">
                                 <strong>
                                   Materia: Ingles <br>
-                                  Turno: {{ $homework->turn }} <br>
-                                  Grupo : {{ $homework->grade }}-{{ $homework->group }}
+                                  Turno: {{ $homework[0]->turn }} <br>
+                                  Grupo : {{ $homework[0]->grade }}-{{ $homework[0]->group }}
                                 </strong><br>
-                                    Fecha de entrega:  {{ date('j F, Y', strtotime($homework->date))}}
+                                    Fecha de entrega:  {{ date('j F, Y', strtotime($homework[0]->date))}}
                             </p>
                         </div>
                         <div class="col-12 text-start p-0">
-                          <a class="btn pt-0 " href="{{ route('homeworks.show', $homework) }}" id="comments" >
+                          <a class="btn pt-0 " href="{{ route('homeworks.show', $homework[0]) }}" id="comments" >
                             <span class=""><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
                             <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                           </svg></span> 
@@ -157,27 +162,27 @@
         @php
           $c = 0;
         @endphp
-        @if (isset($homeworks))
+        @if (isset($homeworks_collect))
         <section class="container mt-2 fs-3 d-none d-lg-block">
-          @foreach($homeworks as $homework)
+          @foreach($homeworks_collect as $homework)
             <div class="row justify-content-center">
                 <div class="col-10">
                     <div class="card mb-4 border-2 border-dark">
                         <div class="card-body pb-0">
-                            <h2 class="card-title fw-bold">{{ $homework->title }}</h2>
-                            <p class="card-text mb-0">{{ $homework->body }} </p>
-                            <a href="{{ route('homeworks.show',$homework->id) }}" class="btn btn-outline-primary fs-3">Leer más..</a>
+                            <h2 class="card-title fw-bold">{{ $homework[0]->title }}</h2>
+                            <p class="card-text mb-0">{{ $homework[0]->body }} </p>
+                            <a href="{{ route('homeworks.show',$homework[0]->id) }}" class="btn btn-outline-primary fs-3">Leer más..</a>
                             <p class="text-muted mb-0">
                                 <strong>
                                     Materia: Ingles <br>
-                                    Turno: {{ $homework->turn }} <br>
-                                    Grupo : {{ $homework->grade }}-{{ $homework->group }}
+                                    Turno: {{ $homework[0]->turn }} <br>
+                                    Grupo : {{ $homework[0]->grade }}-{{ $homework[0]->group }}
                                 </strong><br>
-                                    Fecha de entrega: {{ date('j F, Y', strtotime($homework->date))}}
+                                    Fecha de entrega: {{ date('j F, Y', strtotime($homework[0]->date))}}
                             </p>
                         </div>
                         <div class="mt-2" >
-                          <a class="btn fs-4" href="{{ route('homeworks.show', $homework) }}" id="comments" ><span class="pe-2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
+                          <a class="btn fs-4" href="{{ route('homeworks.show', $homework[0]) }}" id="comments" ><span class="pe-2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
                             <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                           </svg></span> <span class="text-muted">{{ $count[$c] }}</span> Comentarios</a>
                         </div>

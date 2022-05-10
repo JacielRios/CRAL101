@@ -59,8 +59,13 @@
                   <li class="nav-item">
                     <a class="nav-link ps-lg-5" href="{{ route('grades-user') }}">Historial de calificaciones</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link ps-lg-5" href="{{ url('chat') }}"
+                  <li class="nav-item d-none d-lg-block">
+                    <a class="nav-link ps-lg-5" href="{{ route('chat.index') }}"
+                      >Mensajes</a
+                    >
+                  </li>
+                  <li class="nav-item d-lg-none">
+                    <a class="nav-link ps-lg-5" href="{{ route('chatm.index') }}"
                       >Mensajes</a
                     >
                   </li>
@@ -289,7 +294,7 @@
                                       </div>
                                       <div class="col-11">
                                           <p class="text-muted fs-4 m-0">
-                                              {{ $post->body }}
+                                            {!! html_entity_decode($post->body) !!}
                                           </p>
                                           @if ($post->image)
                                               <div class="mb-3 mt-2 d-flex justify-content-center card-img-top"
@@ -339,7 +344,7 @@
                       <div class="col-md-7 col-lg-9 mb-3">
                           <div class="card">
                               <div class="text-muted mt-2 ms-3 fs-5">
-                                  <p class="m-0">Comentar como <b>{{ Auth::user()->name }}</b></p>
+                                  <p class="m-0 fs-5">Comentar como <b>{{ Auth::user()->name }}</b></p>
                               </div>
                               <div class="card-body pt-0 fs-4">
                                   <form action="{{ route('comments.store', $post) }}" method="POST">

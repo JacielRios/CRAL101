@@ -4,24 +4,69 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Facades\Storage;
 
 class Chat extends Model
 {
     use HasFactory;
-    protected $table = "chat";
+
     protected $fillable = [
-        "usuario", "mensaje"
+        'name',
+        'image_url',
+        'is_group'
     ];
 
-    public function scopeHour($query, $hour)    
+    //Mutadores
+    public function name(): Attribute
     {
-        if ($hour == "") {
-            return $query->orderBy('created_at', 'desc');
-        }
+        return new Attribute(
+            get: function($value){
+                if($this->is_group){
+                    return $value;
+                }
+
+                $user = $this->users->where('id', '!=', auth()->id())->first();
+                $contact = auth()->user()->contacts()->where('contact_id', $user->id)->first();
+
+                return $contact ? $contact->name : $user->email;
+            }
+        );
     }
 
-    public function user()
+    public function imageChat(): Attribute
     {
-        return $this->belongsTo(User::class);
+        return new Attribute(
+            get: function(){
+                if($this->is_group){
+                    return Storage::url($this->image_url);
+                }
+                $user = $this->users->where('id', '!=', auth()->id())->first();
+                
+                return $user->image;
+            }
+        );
+    }
+
+    public function lastMessageAt(): Attribute
+    {
+        return new Attribute(
+            get: function (){
+                return $this->messages->last()->created_at;
+            }
+        );
+    }
+
+    //Relacion uno a muchos 
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    //Relacion muchos a muchos
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 }
+

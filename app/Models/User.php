@@ -76,8 +76,22 @@ class User extends Authenticatable
     {
         return $this->hasMany(Lists::class);
     }
-    // public function chat()
-    // {
-    //     return $this->hasMany(Chat::class);
-    // }
+
+    //Relacion uno a muchos
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class);
+    }
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    //Relacion muchos a muchos
+    public function chats()
+    {
+        return $this->belongsToMany(Chat::class)
+                    ->withPivot('color', 'active')
+                    ->withTimestamps();
+    }
 }

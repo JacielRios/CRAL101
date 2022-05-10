@@ -38,8 +38,15 @@
             <li class="nav-item">
               <a class="nav-link ps-lg-5" href="{{ url('calificaciones/admin') }}">Historial de calificaciones</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link ps-lg-5" href="{{ url('chat') }}">Mensajes</a>
+            <li class="nav-item d-none d-lg-block">
+              <a class="nav-link ps-lg-5" href="{{ route('chat.index') }}"
+                >Mensajes</a
+              >
+            </li>
+            <li class="nav-item d-lg-none">
+              <a class="nav-link ps-lg-5" href="{{ route('chatm.index') }}"
+                >Mensajes</a
+              >
             </li>
             <li class="nav-item d-lg-none">
               <a class="nav-link ps-lg-5 pe-lg-5" href="{{ url('profile-profesor/user') }}">Cuenta</a>
@@ -76,7 +83,7 @@
     <section class="container mt-3 mb-3 d-md-none">
       <div class="row">
         <div class="col-12 mt-2 ">
-          <div class="card border-0 ">
+          <div class="card border-0 rounded-pill">
             <a href="{{ route('lists.index') }}" class="card-body text-start btn btn-outline-primary p-2 rounded-pill">
               <p class="text-center p-2 m-0">LISTAS CREADAS</p>
             </a>
@@ -88,7 +95,7 @@
     <section class="container mt-3 mb-3 d-md-none">
       <div class="row">
         <div class="col-12 mt-2 ">
-          <div class="card border-0 ">
+          <div class="card border-0 rounded-pill">
             <a href="#" class="card-body btn btn-outline-primary p-2 rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal2" id="scale">
               <p class="text-center p-2 m-0">CREAR NUEVA LISTA</p>
             </a>
@@ -171,9 +178,9 @@
     </section>
 
     <section class="container mt-4 mb-3 d-none d-md-block">
-      <div class="row justify-content-center">
+      <div class="row justify-content-center ">
         <div class="col-md-11 col-xl-8 mt-2">
-          <div class="card border-0">
+          <div class="card border-0 rounded-pill">
             <a href="{{ route('lists.index') }}" class="card-body text-start btn btn-outline-primary pb-0 rounded-pill" id="scale">
               <p class="fs-1 text-center p-4">LISTAS CREADAS</p>
             </a>
@@ -184,7 +191,7 @@
     <section class="container mt-5 mb-3 d-none d-md-block" id="scale">
       <div class="row justify-content-center">
         <div class="col-md-11 col-xl-8 mt-2">
-          <div class="card border-0">
+          <div class="card border-0 rounded-pill">
             <a href="#" class="card-body text-start btn btn-outline-primary pb-0 rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal" id="scale">
               <p class="fs-1 text-center p-4">CREAR NUEVA LISTA</p>
             </a>

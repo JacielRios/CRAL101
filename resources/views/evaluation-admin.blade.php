@@ -62,8 +62,13 @@
             <li class="nav-item">
               <a class="nav-link ps-lg-5" href="{{ url('calificaciones/admin') }}">Historial de calificaciones</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link ps-lg-5" href="{{ url('chat') }}"
+            <li class="nav-item d-none d-lg-block">
+              <a class="nav-link ps-lg-5" href="{{ route('chat.index') }}"
+                >Mensajes</a
+              >
+            </li>
+            <li class="nav-item d-lg-none">
+              <a class="nav-link ps-lg-5" href="{{ route('chatm.index') }}"
                 >Mensajes</a
               >
             </li>
@@ -75,7 +80,7 @@
             <li class="nav-item d-none d-lg-block">
               <a class="nav-link dropdown ps-lg-5 pe-lg-5"id="navbarDropdown"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 @if (Auth::user()->image)
-                <img src="../storage/images_users/{{ Auth::user()->image }}" class="rounded-circle" id="img-user">
+                <img src="../../../storage/images_users/{{ Auth::user()->image }}" class="rounded-circle" id="img-user">
               @else
                 <img class="rounded-circle" id="img-user" src="{{ asset('images/user-profile.png') }}" />
               @endif

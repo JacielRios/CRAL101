@@ -22,6 +22,9 @@ use App\Http\Controllers\ListController;
 use App\Http\Controllers\ListsController;
 use App\Http\Controllers\ListaController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactController;
+use App\Http\Livewire\ChatComponent;
+use App\Http\Livewire\ChatComponentMobile;
 
 Auth::routes();
 
@@ -111,8 +114,6 @@ Route::POST('comments-homework/{homework}', [CommentController::class, 'homework
 ->name('commentsHomework.store')
 ->middleware('auth');
 
-# VISTA CHAT #
-Route::resource('/chat', ChatController::class);
 
 # VISTA TAREAS ALUMNOS #
 Route::resource('/homeworks', HomeworkController::class)
@@ -240,3 +241,16 @@ Route::resource('list/admin', ListaController::class)
     ])
     ->middleware('auth')
     ->middleware('admin');
+
+    ## RUTAS PARA LA VISTA DE MENSAJES ##
+
+Route::resource('contacts', ContactController::class)
+->middleware('auth');
+
+Route::get('/chat', ChatComponent::class)
+->middleware('auth')
+->name('chat.index');
+
+Route::get('/chatm', ChatComponentMobile::class)
+->middleware('auth')
+->name('chatm.index');
