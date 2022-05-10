@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Comment;
+use App\Models\CommentHomework;
 use Livewire\Component;
 use App\Models\Homework;
 use Illuminate\Support\Facades\Storage;
@@ -24,6 +26,14 @@ class ConfirmAlert extends Component
         if($homework->image){
             unlink(storage_path('../public/storage/homeworks/'.$homework->image));
         }
+
+        $comments = CommentHomework::where('homework_id', '=', $homework->id)
+        ->get();
+
+        // dd($comments);
+        
+        // $comment->replies->sortDesc()->each->delete();
+        $comments->sortKeysDesc()->each->delete();
         $homework->delete();
         return redirect()->route('homework.index');
     }  
