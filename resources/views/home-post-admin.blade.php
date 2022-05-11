@@ -205,9 +205,9 @@
                           <div class="row">
                               <div class="col-2" id="img-card_bottom">
                                   @if ($post->user->image)
-                                  <img src="{{ asset('images/user-profile.png') }}" class="rounded-circle ms-2" id="img-user">
+                                  <img src="../../storage/images_users/{{ $post->user->image }}" class="rounded-circle ms-2" id="img-user">  
                                   @else
-                                  <img src="../../storage/images_users/{{ $post }}" class="rounded-circle" id="img-user">  
+                                  <img src="{{ asset('images/user-profile.png') }}" class="rounded-circle ms-2" id="img-user">
                                   @endif
                               </div>
                               <div class="col-6 ms-2 lh-1 pe-0">

@@ -343,7 +343,11 @@
                         <div class="col-12">
                           <div class="row">
                               <div class="col-2" id="img-card_bottom">
-                                  <a href="{{ url('chat/user') }}"><img src="{{ asset('images/user-profile.png') }}" class="rounded-circle ms-2" id="img-user"></a>
+                                @if ($post->user->image)
+                                  <img src="../storage/images_users/{{ $post->user->image }}" class="rounded-circle ms-2" id="img-user">    
+                                @else
+                                  <img src="{{ asset('images/user-profile.png') }}" class="rounded-circle ms-2" id="img-user">
+                                @endif
                               </div>
                               <div class="col-6 ms-2 lh-1 pe-0">
                                   <p class="fw-bold m-0 mt-2 fs-6"> <a class="text-dark" href="{{ url('chat/user') }}">{{ $post->user->name }}</a></p>
