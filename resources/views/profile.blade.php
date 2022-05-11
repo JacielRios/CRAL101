@@ -113,18 +113,18 @@
             <div class="row">
                 <div class="col">
                     <div class="card border-dark mb-3 mt-1 ">
-                        <div class="card-body text-dark">
+                        <div class="card-body text-dark ">
                             <p class="card-title m-0"> <span class="text-muted fs-6"> Nombre de usario</span> <br><span
                                     class="fs-5 fw-bold ps-2">{{ Auth::user()->name }} </span></p>
                             <p class="card-text m-0"><span class="text-muted fs-6"> Número de control</span> <br><span
                                     class="fs-5 fw-bold ps-2"> {{ Auth::user()->no_control }} </span></p>
                             <p class="card-text m-0"><span class="text-muted fs-6">Especialidad</span> <br><span
-                                    class=" fs-5 fw-bold ps-2"> {{ Auth::user()->role }} </span></p>
+                                    class=" fs-5 fw-bold ps-2"> {{ Auth::user()->carrer }} </span></p>
                             <p class="card-text m-0"> <span class="text-muted fs-6">Semestre y grupo</span> <br><span
                                     class=" fs-5 fw-bold ps-2"> {{ Auth::user()->semester }} <span> -
                                     </span>{{ Auth::user()->group }} </span> </p>
                             <p class="card-text m-0"><span class="text-muted fs-6">Turno</span> <br><span
-                                    class="fs-5 fw-bold ps-2"> {{ Auth::user()->role }} </span></p>
+                                    class="fs-5 fw-bold ps-2"> {{ Auth::user()->turn }} </span></p>
                             <p class="card-text m-0"><span class="text-muted fs-6">Correo electrónico</span> <br><span
                                     class="fs-5 fw-bold ps-2"> {{ Auth::user()->email }} </span></p>
                             <div class="text-end"><a
