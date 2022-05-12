@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Homework extends Model
 {
     use HasFactory;
-
-    protected $table= "homework";
     
     protected $fillable = [
         'title',
@@ -29,6 +27,7 @@ class Homework extends Model
     protected $dates = [
 
     ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

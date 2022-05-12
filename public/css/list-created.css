@@ -16,7 +16,10 @@ section #btn-color{
     color: #fff;
     background-color: #01276d;
 }
-
+img{
+    object-fit: cover;
+    object-position: center;
+}
 
 
 @media (min-width: 800px) {

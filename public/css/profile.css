@@ -28,6 +28,10 @@ main,html,body{
     width: 100px;
     height: 100px;
 }
+img{
+    object-fit: cover;
+    object-position: center;
+}
 .inputfile {
     width: 0.1px;
     height: 0.1px;

@@ -21,7 +21,10 @@ main #btn_color{
     background-color: #01276d;
     color: #fff;
 }
-
+img{
+    object-fit: cover;
+    object-position: center;
+}
 #image_container-m{
     width: 95%;
     height: 200px;

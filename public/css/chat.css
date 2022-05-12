@@ -67,7 +67,7 @@ section #btn-color{
     border-color: 4px #cecece;
 }
 #chats-container_mobile{
-    height: calc(100vh - 19rem);
+    height: calc(100vh - 20rem);
     border-color: 4px #cecece;
 }
 #main-chat_container{
@@ -92,7 +92,7 @@ li{
     height: calc(100vh - 21rem);
 }
 #message-container_mobile{
-    height: calc(100vh - 18rem);
+    height: calc(100vh - 20rem);
 }
 #color-gray_100_2{
     background-color: #f4f4f8;

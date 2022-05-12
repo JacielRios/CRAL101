@@ -12,7 +12,10 @@ header{
     transform: scale(1.1);
     color: #fff;
 }
-
+img{
+    object-fit: cover;
+    object-position: center;
+}
 
 input:focus, select:focus, select, a.btn:focus {
     outline:none !important;

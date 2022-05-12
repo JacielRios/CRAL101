@@ -20,7 +20,10 @@ main,html,body{
     text-decoration: none;
     color: #fff;
 }
-
+img{
+    object-fit: cover;
+    object-position: center;
+}
 
 @media (min-width: 800px) {
     header .navbar-brand #main-logo{

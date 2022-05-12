@@ -20,7 +20,10 @@ header span #logo-remaster{
     width: 170px;
     height: auto;
 }
-
+img{
+    object-fit: cover;
+    object-position: center;
+}
 
 #footer{
     background-color: #01276d;
