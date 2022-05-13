@@ -133,38 +133,50 @@
             $c_m = 0;
         @endphp
         <section class="container mt-2 d-md-none">
-          @foreach ($homeworks as $homework)
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-10 ">
-                    <div class="card mb-4 border-2 border-dark">
-                        <div class="card-body pb-2">
-                            <h5 class="card-title fw-bold">{{ $homework->title }}</h5>
-                            <p class="card-text mb-0">{{ $homework->body }}</p>
-                            <a href="{{ route('homework.show', $homework) }}" class="btn btn-outline-primary">Leer más..</a>
-                            <p class="text-muted mb-0">
-                                <strong>
-                                  Materia: {{ $homework->course }} <br>
-                                  Turno: {{ $homework->turn }} <br>
-                                  Grupo: {{ $homework->grade }}-{{ $homework->group }}
-                                </strong><br>
-                                    Fecha de entrega: {{ date('j F, Y', strtotime($homework->date))}}
-                            </p>
-                            
-                        </div>
-                        <div class="col-12 text-start p-0">
-                          <a class="btn pt-0 " href="{{ route('homework.show', $homework) }}" id="comments" >
-                            <span class=""><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
-                            <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                          </svg></span> 
-                          <span class="text-muted">{{ $count[$c_m] }}</span> Comentarios</a>
-                        </div>
-                    </div>
-                </div>
+
+          @if ((count($homeworks)) == 0)
+          <div class="alert alert-warning d-flex align-items-center" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </svg>
+            <div class="">
+              ¡Ups! parece que no hay tareas creadas
             </div>
-            @php
-                $c_m++;
-            @endphp
-            @endforeach
+          </div>
+          @else
+          @foreach ($homeworks as $homework)
+          <div class="row justify-content-center">
+              <div class="col-12 col-md-10 ">
+                  <div class="card mb-4 border-2 border-dark">
+                      <div class="card-body pb-2">
+                          <h5 class="card-title fw-bold">{{ $homework->title }}</h5>
+                          <p class="card-text mb-0">{{ $homework->body }}</p>
+                          <a href="{{ route('homework.show', $homework) }}" class="btn btn-outline-primary">Leer más..</a>
+                          <p class="text-muted mb-0">
+                              <strong>
+                                Materia: {{ $homework->course }} <br>
+                                Turno: {{ $homework->turn }} <br>
+                                Grupo: {{ $homework->grade }}-{{ $homework->group }}
+                              </strong><br>
+                                  Fecha de entrega: {{ date('j F, Y', strtotime($homework->date))}}
+                          </p>
+                          
+                      </div>
+                      <div class="col-12 text-start p-0">
+                        <a class="btn pt-0 " href="{{ route('homework.show', $homework) }}" id="comments" >
+                          <span class=""><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
+                          <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                        </svg></span> 
+                        <span class="text-muted">{{ $count[$c_m] }}</span> Comentarios</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          @php
+              $c_m++;
+          @endphp
+          @endforeach
+          @endif
             <div >
               {{ $homeworks->links() }}
             </div>
@@ -174,35 +186,47 @@
               $c = 0;
             @endphp
         <section class="container mt-2 d-none d-md-block">
-        @foreach ($homeworks as $homework)
-            <div class="row justify-content-center">
-                <div class="col-10">
-                    <div class="card mb-4 border-2 border-dark">
-                        <div class="card-body pb-0">
-                            <h2 class="card-title fw-bold">{{ $homework->title }}</h2>
-                            <p class="card-text fs-3">{{ $homework->body }}</p>
-                            <a href="{{ route('homework.show', $homework)  }}" class="btn btn-outline-primary fs-4">Leer más..</a>
-                            <p class="text-muted mb-0 fs-4">
-                                <strong>
-                                    Materia: {{ $homework->course }} <br>
-                                    Turno: {{ $homework->turn }} <br>
-                                    Grupo:  {{ $homework->grade }}-{{ $homework->group }}
-                                </strong><br>
-                                    Fecha de entrega: {{ date('j F, Y', strtotime($homework->date))}}
-                            </p>
-                            <div class="mt-3" >
-                              <a class="btn fs-4" href="{{ route('homework.show', $homework) }}" id="comments" ><span class="pe-2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
-                                <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                              </svg></span> <span class="text-muted">{{ $count[$c] }}</span> Comentarios</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+          @if ((count($homeworks)) == 0)
+          <div class="alert alert-warning d-flex align-items-center" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </svg>
+            <div class="fs-4">
+              ¡Ups! parece que no hay tareas creadas
             </div>
-            @php
-                $c++;
-            @endphp
-            @endforeach
+          </div>  
+          @else
+          @foreach ($homeworks as $homework)
+          <div class="row justify-content-center">
+              <div class="col-10">
+                  <div class="card mb-4 border-2 border-dark">
+                      <div class="card-body pb-0">
+                          <h2 class="card-title fw-bold">{{ $homework->title }}</h2>
+                          <p class="card-text fs-3">{{ $homework->body }}</p>
+                          <a href="{{ route('homework.show', $homework)  }}" class="btn btn-outline-primary fs-4">Leer más..</a>
+                          <p class="text-muted mb-0 fs-4">
+                              <strong>
+                                  Materia: {{ $homework->course }} <br>
+                                  Turno: {{ $homework->turn }} <br>
+                                  Grupo:  {{ $homework->grade }}-{{ $homework->group }}
+                              </strong><br>
+                                  Fecha de entrega: {{ date('j F, Y', strtotime($homework->date))}}
+                          </p>
+                          <div class="mt-3" >
+                            <a class="btn fs-4" href="{{ route('homework.show', $homework) }}" id="comments" ><span class="pe-2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
+                              <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                            </svg></span> <span class="text-muted">{{ $count[$c] }}</span> Comentarios</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          @php
+              $c++;
+          @endphp
+          @endforeach
+          @endif
             <div class="fs-3 ms-5 ps-5">
               {{ $homeworks->links() }}
             </div>

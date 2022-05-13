@@ -54,6 +54,7 @@ class PageAdController extends Controller
         // dd($comments);
         $count[] = count($comments);
         }
+        
         // dd($count);
         if(isset($count)){
             return view('home-admin', compact('posts', 'count'));

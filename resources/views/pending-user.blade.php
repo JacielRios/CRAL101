@@ -123,13 +123,13 @@
 @php
     $c_m = 0;
 @endphp
-        @if(isset($homeworks))
+        @if(isset($homeworks_collect))
         <section class="container mt-2 d-lg-none">
           @foreach ($homeworks_collect as $homework)
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 ">
                     <div class="card mb-4 border-2 border-dark">
-                        <div class="card-body">
+                        <div class="card-body p-2">
                             <h5 class="card-title fw-bold">{{ $homework[0]->title }}</h5>
                             <p class="card-text mb-0">{{ $homework[0]->body }}</p>
                             <a href="{{ route('homeworks.show',$homework[0]->id) }}" class="btn btn-sm btn-outline-primary">Leer más..</a>
@@ -157,6 +157,20 @@
             $c_m++;
         @endphp
             @endforeach
+
+        @else 
+        <div class="d-lg-none d-flex justify-content-center">
+          <div class="row col-11 p-0">
+              <div class="alert alert-warning d-flex align-items-center" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                  <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg>
+                <div class="">
+                  ¡Ups! parece que no hay tareas pendientes
+                </div>
+              </div>
+          </div>
+        </div>
         @endif
 
         @php
@@ -194,6 +208,22 @@
             @endphp
             @endforeach
         </section>
+
+        @else
+        <div class="d-none d-lg-block justify-content-center">
+          <div class="d-flex justify-content-center">
+            <div class="row col-8 p-0">
+              <div class="alert alert-warning d-flex align-items-center" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                  <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg>
+                <div class="fs-3">
+                  ¡Ups! parece que no hay tareas pendientes
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         @endif
     </main>
     

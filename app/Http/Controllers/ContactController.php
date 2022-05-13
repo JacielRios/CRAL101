@@ -62,7 +62,7 @@ class ContactController extends Controller
 
         alert()->success('¡Éxito!', '¡Has creado un nuevo contacto!')->showConfirmButton('Bien', '#01276d');
 
-        return redirect()->route('contacts.edit', $contact);
+        return redirect()->route('contacts.index', $contact);
     }
 
     /**
@@ -116,7 +116,7 @@ class ContactController extends Controller
 
         alert()->success('¡Éxito!', '¡Has actualizado este contacto!')->showConfirmButton('Bien', '#01276d');
 
-        return redirect()->route('contacts.edit', $contact);
+        return redirect()->route('contacts.index', $contact);
     }
 
     /**
