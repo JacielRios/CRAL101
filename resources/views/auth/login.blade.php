@@ -20,7 +20,48 @@
             <a class="btn" href="{{ url('/') }}"><span><img id="logo-remaster" src="{{ asset('images/Logo-Cral.png') }}" alt=""></span></a>
         </section>
     </header>
-
+    <div class="container d-md-none mt-2">
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </symbol>
+          </svg>
+          
+          <div class="alert alert-primary d-flex align-items-center mb-2 p-2" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+            <p class="m-0">
+              <strong>¡Atención!</strong> asegúrese de tener la última versión de Google Chrome
+            </p>
+          </div>
+    </div>
+    <div class="container col-7 mt-2 d-none d-md-block d-lg-none">
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </symbol>
+          </svg>
+          
+          <div class="alert alert-primary d-flex align-items-center mb-2 p-2" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+            <p class="m-0">
+              <strong>¡Atención!</strong> asegúrese de tener la última versión de Google Chrome
+            </p>
+          </div>
+    </div>
+    <div class="container col-5 mt-2 d-none d-lg-block">
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </symbol>
+          </svg>
+          
+          <div class="alert alert-primary d-flex align-items-center mb-2 p-2" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+            <p class="m-0">
+              <strong>¡Atención!</strong> asegúrese de tener la última versión de Google Chrome
+            </p>
+          </div>
+    </div>
     <section class="container container col-11 col-md-8 col-xl-6 mx-auto rounded-3 mt-4" id="main-section">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -101,7 +142,7 @@
         </div>
     </section>
     
-    <footer id="footer" class="pt-4 pb-4 col-12 d-md-none mt-4">
+    <footer id="footer" class="pt-4 pb-4 col-12 d-md-none mt-4 ">
         <div class="container">
             <div class="row text-center">
                 <div class="col-12 pt-1 ps-1 p-0">
@@ -117,7 +158,22 @@
         </div> 
     </footer>
 
-    <footer id="footer" class="pt-4 pb-4 col-12 d-none d-md-block mt-3  position-absolute bottom-0">
+    <footer id="footer" class="pt-4 pb-4 col-12 d-none d-md-block d-lg-none mt-3 ">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-12">
+                    <p class="p-0 fs-3 text-center" id="logo-lg">CRAL101 </p>
+                </div>
+                <div class="col-12  fs-4 col-lg-12 pe-0">
+                    <a class="" href="#">Contactanos</a>
+                </div>
+                <div class="col-12 fs-4 col-lg-12 pe-0">
+                    <a class="" href="#">Preguntas frecuentes</a>
+                </div>
+            </div>
+        </div> 
+    </footer>
+    <footer id="footer" class="pt-4 pb-4 col-12 d-none d-lg-block mt-3  position-absolute bottom-0">
         <div class="container">
             <div class="row text-center">
                 <div class="col-12">

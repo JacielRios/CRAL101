@@ -347,8 +347,8 @@
                                                         @endif
                                                     </figure>
         
-                                                    <div class="">
-                                                        <div class="d-flex align-items-center">
+                                                    <div class="" id="flex-1">
+                                                        <div class="d-flex align-items-center justify-content-between">
                                                             <p class="fs-6 fw-bold m-0">
                                                                 {{ $chatItem->name }}
                                                             </p>
