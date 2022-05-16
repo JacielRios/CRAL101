@@ -254,17 +254,25 @@
     
                                                 <div class="" id="flex-1">
                                                     <div class="d-flex align-items-center justify-content-between">
+                                                       <div>
                                                         <p class="fs-4 fw-bold m-0">
                                                             {{ $chatItem->name }}
                                                         </p>
-                                                        <p class="fs-5 text-muted m-0">
-                                                            {{ $chatItem->last_message_at->format('h:i A') }}
+                                                        <p class="fs-4 text-truncate">
+                                                            {{ $chatItem->messages->last()->body }}
                                                         </p>
+                                                       </div>
+                                                        <div class="text-end fs-5">
+                                                            <p class="text-muted m-0">
+                                                                {{ $chatItem->last_message_at->format('h:i A') }}
+                                                            </p>
+                                                            @if ( $chatItem->unread_messages)
+                                                                <span class="badge bg-primary rounded-pill">{{ $chatItem->unread_messages }}</span>
+                                                            @endif
+                                                        </div>
                                                     </div>
     
-                                                    <p class="fs-4 text-truncate">
-                                                        {{ $chatItem->messages->last()->body }}
-                                                    </p>
+                                                    
     
                                                 </div>
                                             </div>
@@ -312,9 +320,15 @@
                                             {{ $contactChat->name }}
                                         @endif
                                     </p>
-                                    <p class="text-success fw-bold fs-5 m-0" x-show="chat_id != typingChatId">
-                                        online
+                                    @if ($this->active)
+                                    <p class="fw-bold fs-5 m-0" x-show="chat_id != typingChatId" id="online">
+                                        En línea
                                     </p>
+                                    @else
+                                    <p class="fw-bold fs-5 m-0" x-show="chat_id != typingChatId" id="offline">
+                                        Desconectado
+                                    </p>
+                                    @endif
                                     <p class="text-secondary fw-bold fs-5 m-0" x-show="chat_id == typingChatId">
                                         Escribiendo ...
                                     </p>
@@ -332,6 +346,9 @@
                                                 </p>
                                                 <p class="text-muted fs-5 text-end mt-1">
                                                     {{ $message->created_at->format('h:i A') }}
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-all {{ $message->is_read ? 'text-primary' : 'text-secondary' }}" viewBox="0 0 16 16">
+                                                        <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992a.252.252 0 0 1 .02-.022zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486-.943 1.179z"/>
+                                                      </svg>
                                                 </p>
                                             </div>
                                         @else

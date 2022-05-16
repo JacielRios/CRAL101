@@ -16,6 +16,13 @@ class ChatComponent extends Component
 
     public $bodyMessage;
 
+    public $users;
+
+    public function mount()
+    {
+        $this->users = collect();
+    }
+
     //Oyentes
 
     public function getListeners()
@@ -24,6 +31,9 @@ class ChatComponent extends Component
 
         return [
             "echo-notification:App.Models.User.{$user_id},notification" => 'render',
+            "echo-presence:chat.1,here" => 'chatHere',
+            "echo-presence:chat.1,joining" => 'chatJoining',
+            "echo-presence:chat.1,leaving" => 'chatLeaving',
         ];  
     }
 
@@ -54,7 +64,12 @@ class ChatComponent extends Component
 
     public function getUsersNotificationsProperty()
     {
-        return $this->chat ? $this->chat->users->where('id', '!=', auth()->id()) : [];
+        return $this->chat ? $this->chat->users->where('id', '!=', auth()->id()) : collect();
+    }
+
+    public function getActiveProperty()
+    {
+        return $this->users->contains($this->users_notifications->first()->id);
     }
 
     //Ciclo de vida
@@ -96,6 +111,7 @@ class ChatComponent extends Component
         $this->chat = $chat;
         $this->chat_id = $chat->id;
         $this->reset('contactChat', 'bodyMessage');
+
     }
 
     public function sendMessage(){
@@ -119,10 +135,33 @@ class ChatComponent extends Component
         $this->reset('bodyMessage', 'contactChat',);
     }
 
+    public function chatHere($users)
+    {
+        $this->users = collect($users)->pluck('id');
+    }
+
+    public function chatJoining($user)
+    {
+        $this->users->push($user['id']);
+    }
+
+    public function chatLeaving($user)
+    {
+        $this->users = $this->users->filter(function($id) use ($user){
+            return $id != $user['id'];
+        });
+    }
+
     public function render()
     {
 
         if($this->chat){
+            $this->chat->messages()->where('user_id', '!=', auth()->id())->where('is_read', false)->update([
+                'is_read' => true
+            ]);
+    
+            Notification::send($this->users_notifications, new \App\Notifications\NewMessage());
+            
             $this->emit('scrollIntoView');
         }
 
