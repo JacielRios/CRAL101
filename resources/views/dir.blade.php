@@ -119,36 +119,38 @@
             </div>
         </section>
 
-        <footer id="footer" class="pt-4 pb-4 col-12 d-lg-none ">
-            <div class="container">
+        <footer id="footer" class="pt-4 mt-2 pb-4 col-12 d-md-none">
+            <section class="container">
                 <div class="row text-center">
                     <div class="col-12 pt-1 ps-1 p-0">
-                        <p class="btn text-white p-0 fs-5" id="logo" class="text-white">CRAL101</p>
+                        <img class="p-0 pb-2" src="{{asset('images/Logo-Cral.png')}}" style="height:50px; width:120px;" alt="">
                     </div>
                     <div class="col-12 col-lg pe-0">
-                        <a href="#">Contactanos</a>
-                    </div>
-                    <div class="col-12 col-lg pe-0">
-                        <a href="#">Preguntas frecuentes</a>
+                        <a href="mailto:jaciel@cral101.com">Contáctanos</a>
                     </div>
                 </div>
-            </div> 
+            </section> 
+            <section class="text-center fs-6 text-muted">
+                <hr>
+                <p class="m-0">© 2022 CRAL101. Todos los derechos reservados.</p>
+            </section>
         </footer>
     
-        <footer id="footer" class="pt-4 pb-4 col-12 d-none d-lg-block mt-3 ">
-            <div class="container">
+        <footer id="footer" class="pt-4 mt-2 pb-4 col-12 d-none d-md-block ">
+            <section class="container">
                 <div class="row text-center">
-                    <div class="col-12">
-                        <p class="p-0 fs-3 text-center" id="logo-lg">CRAL101 </p>
+                    <div class="col-12 col-lg">
+                        <img class="p-0 pb-2" src="{{asset('images/Logo-Cral.png')}}" style="height:50px; width:120px;" alt="">
                     </div>
-                    <div class="col-12  fs-4 col-lg-12 pe-0">
-                        <a class="" href="#">Contactanos</a>
-                    </div>
-                    <div class="col-12 fs-4 col-lg-12 pe-0">
-                        <a class="" href="#">Preguntas frecuentes</a>
+                    <div class="col-12 col-lg pe-0 fs-5">
+                        <a href="mailto:jaciel@cral101.com">Contáctanos</a>
                     </div>
                 </div>
-            </div> 
+            </section>
+            <hr>
+             <section class="text-center fs-6 text-muted">
+                 <p class="m-0">© 2022 CRAL101. Todos los derechos reservados.</p>
+             </section>
         </footer>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>

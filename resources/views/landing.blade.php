@@ -194,7 +194,7 @@
                         <h2 class="text-white mt-3 text-center fs-1 p-0">Funciones <br> para alumnos</h2>
                         <div class="card mt-2 mb-3 me-4 col-5 rounded" id="section-card">
                             <div>
-                                <img src="{{asset('images/card-icon.png')}}" alt="">
+                                <img src="{{asset('images/card-icon-white.png')}}" alt="">
                             </div>
                             <div class="card-body text-dark p-0 pt-2 ps-1 " >
                                 <h2 class="text-white">Información general</h2>
@@ -203,7 +203,7 @@
                         </div>
                         <div class="card mt-2 mb-3 col-5 rounded" id="section-card">
                             <div>
-                                <img src="{{asset('images/card-icon.png')}}" alt="">
+                                <img src="{{asset('images/card-icon-white.png')}}" alt="">
                             </div>
                             <div class="card-body text-dark p-0 pt-2 ps-1">
                                 <h2 class="text-white">Historial de calificaciones</h2>
@@ -212,7 +212,7 @@
                         </div>
                         <div class="card mt-2 mb-3 col-5 rounded" id="section-card">
                             <div>
-                                <img src="{{asset('images/card-icon.png')}}" alt="">
+                                <img src="{{asset('images/card-icon-white.png')}}" alt="">
                             </div>
                             <div class="card-body text-dark p-0 pt-2 ps-1">
                                 <h2 class="text-white">Tareas</h2>
@@ -233,25 +233,25 @@
                         <h4 class="mt-3 text-center text-white">Funciones <br> para profesores</h4>
                         <div class="card mt-2 mb-3 col-10 rounded" id="section-card-2">
                             <div>
-                                <img src="{{asset('images/card-icon.png')}}" alt="">
+                                <img src="{{asset('images/card-icon-white.png')}}" alt="">
                             </div>
                             <div class="card-body p-0 pt-2 ps-1">
                                 <h5 class="text-white">Información general</h5>
-                                <p class="text-muted">Podrá subir avisos de manera más organizada eligiendo cual grupo desea que lo vea.</p>
+                                <p class="text-muted">Podrá crear avisos de manera más organizada eligiendo diferentes asuntos.</p>
                             </div>
                         </div>
                         <div class="card mt-2 mb-3 col-10 rounded" id="section-card-2">
                             <div>
-                                <img src="{{asset('images/card-icon.png')}}" alt="">
+                                <img src="{{asset('images/card-icon-white.png')}}" alt="">
                             </div>
                             <div class="card-body p-0 pt-2 ps-1">
                                 <h5 class="text-white">Historial de calificaciones</h5>
-                                <p class="text-muted">Apartado donde podrá calcular el promedio automáticamente al ingresar la calificación de cada actividad.</p>
+                                <p class="text-muted">Apartado donde podrá crear nuevas listas de calificaciones.</p>
                             </div>
                         </div>
                         <div class="card mt-2 mb-3 col-10 rounded" id="section-card-2">
                             <div>
-                                <img src="{{asset('images/card-icon.png')}}" alt="">
+                                <img src="{{asset('images/card-icon-white.png')}}" alt="">
                             </div>
                             <div class="card-body p-0 pt-2 ps-1">
                                 <h5 class="text-white">Tareas</h5>
@@ -273,25 +273,25 @@
                         <h4 class="mt-3 text-center fs-1 text-white">Funciones <br> para profesores</h4>
                         <div class="card mt-2 mb-3 me-5 col-5 rounded" id="section-card-2">
                             <div>
-                                <img src="{{asset('images/card-icon.png')}}" alt="">
+                                <img src="{{asset('images/card-icon-white.png')}}" alt="">
                             </div>
                             <div class="card-body p-0 pt-2 ps-1">
                                 <h2 class="text-white">Información general</h2>
-                                <p class="text-muted">Podrá subir avisos de manera más organizada eligiendo cual grupo desea que lo vea.</p>
+                                <p class="text-muted">Podrá crear avisos de manera más organizada eligiendo diferentes asuntos.</p>
                             </div>
                         </div>
                         <div class="card mt-2 mb-3 col-5 rounded" id="section-card-2">
                             <div>
-                                <img src="{{asset('images/card-icon.png')}}" alt="">
+                                <img src="{{asset('images/card-icon-white.png')}}" alt="">
                             </div>
                             <div class="card-body p-0 pt-2 ps-1">
                                 <h2 class="text-white">Historial de calificaciones</h2>
-                                <p class="text-muted">Apartado donde podrá calcular el promedio automáticamente al ingresar la calificación de cada actividad.</p>
+                                <p class="text-muted">Apartado donde podrá crear nuevas listas de calificaciones.</p>
                             </div>
                         </div>
                         <div class="card mt-2 mb-3 col-5 rounded" id="section-card-2">
                             <div>
-                                <img src="{{asset('images/card-icon.png')}}" alt="">
+                                <img src="{{asset('images/card-icon-white.png')}}" alt="">
                             </div>
                             <div class="card-body p-0 pt-2 ps-1">
                                 <h2 class="text-white">Tareas</h2>
@@ -307,35 +307,37 @@
     </main>
     
     <footer id="footer" class="pt-4 pb-4 col-12 d-md-none">
-        <div class="container">
+        <section class="container">
             <div class="row text-center">
                 <div class="col-12 pt-1 ps-1 p-0">
-                    <p class="btn text-white p-0 fs-5" id="logo" class="text-white">CRAL101</p>
+                    <img class="p-0 pb-2" src="{{asset('images/Logo-Cral.png')}}" style="height:50px; width:120px;" alt="">
                 </div>
                 <div class="col-12 col-lg pe-0">
-                    <a href="#">Contactanos</a>
-                </div>
-                <div class="col-12 col-lg pe-0">
-                    <a href="#">Preguntas frecuentes</a>
+                    <a href="mailto:jaciel@cral101.com">Contáctanos</a>
                 </div>
             </div>
-        </div> 
+        </section> 
+        <section class="text-center fs-6 text-muted">
+            <hr>
+            <p class="m-0">© 2022 CRAL101. Todos los derechos reservados.</p>
+        </section>
     </footer>
 
     <footer id="footer" class="pt-4 pb-4 col-12 d-none d-md-block ">
-        <div class="container">
+        <section class="container">
             <div class="row text-center">
                 <div class="col-12 col-lg">
-                    <p class="p-0" id="logo-lg">CRAL101 </p>
+                    <img class="p-0 pb-2" src="{{asset('images/Logo-Cral.png')}}" style="height:40px; width:120px;" alt="">
                 </div>
                 <div class="col-12 col-lg pe-0">
-                    <a href="#">Contactanos</a>
-                </div>
-                <div class="col-12 col-lg pe-0">
-                    <a href="#">Preguntas frecuentes</a>
+                    <a href="mailto:jaciel@cral101.com">Contáctanos</a>
                 </div>
             </div>
-        </div> 
+        </section>
+        <hr>
+         <section class="text-center fs-4 text-muted">
+             <p class="m-0">© 2022 CRAL101. Todos los derechos reservados.</p>
+         </section>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
