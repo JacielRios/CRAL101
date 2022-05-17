@@ -156,9 +156,11 @@ class ChatComponentMobile extends Component
     {
 
         if($this->chat){
-            $this->chat->messages()->where('user_id', '!=', auth()->id())->where('is_read', false)->update([
-                'is_read' => true
-            ]);
+            $this->chat->messages()->where('user_id', '!=', auth()->id())
+                                    ->update([
+                                        'is_read' => true,
+                                    ])
+                                    ->where('is_read', false);
     
             Notification::send($this->users_notifications, new \App\Notifications\NewMessage());
             
