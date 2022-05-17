@@ -156,13 +156,13 @@ class ChatComponentMobile extends Component
     {
 
         if($this->chat){
-            $this->chat->messages()->where('user_id', '!=', auth()->id())
-                                    ->update([
-                                        'is_read' => true,
-                                    ])
-                                    ->where('is_read', false);
+            // $this->chat->messages()->where('user_id', '!=', auth()->id())
+            //                         ->where('is_read', false)
+            //                         ->update([
+            //                             'is_read' => true,
+            //                         ]);
     
-            Notification::send($this->users_notifications, new \App\Notifications\NewMessage());
+            // Notification::send($this->users_notifications, new \App\Notifications\NewMessage());
             
             $this->emit('scrollIntoView');
         }
