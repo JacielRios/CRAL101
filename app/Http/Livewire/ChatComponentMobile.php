@@ -80,6 +80,12 @@ class ChatComponentMobile extends Component
             {
                 Notification::send($this->users_notifications, new \App\Notifications\UserTyping($this->contactChat->id));
             }else{
+                $this->chat->messages()->where('user_id', '!=', auth()->id())
+                ->where('is_read', false)
+                ->update([
+                    'is_read' => true
+                ]);
+
                 Notification::send($this->users_notifications, new \App\Notifications\UserTyping($this->chat->id));
             }
         }
@@ -112,6 +118,13 @@ class ChatComponentMobile extends Component
         $this->chat_id = $chat->id;
         $this->reset('contactChat', 'bodyMessage');
 
+        $chat->messages()->where('user_id', '!=', auth()->id())
+        ->where('is_read', false)
+        ->update([
+            'is_read' => true
+        ]);
+
+        Notification::send($this->users_notifications, new \App\Notifications\NewMessage());
     }
 
     public function sendMessage(){
@@ -156,14 +169,6 @@ class ChatComponentMobile extends Component
     {
 
         if($this->chat){
-            // $this->chat->messages()->where('user_id', '!=', auth()->id())
-            //                         ->where('is_read', false)
-            //                         ->update([
-            //                             'is_read' => true,
-            //                         ]);
-    
-            // Notification::send($this->users_notifications, new \App\Notifications\NewMessage());
-            
             $this->emit('scrollIntoView');
         }
 
