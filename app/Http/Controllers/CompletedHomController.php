@@ -33,7 +33,7 @@ class CompletedHomController extends Controller
 
         if (isset($id_homework)) {
             foreach ($id_homework as $id) {
-                $homework = DB::table('Homework')
+                $homework = DB::table('homework')
                     ->where('id', '=', $id['homework_id'])
                     ->get();
                 $test[] = $homework[0];
