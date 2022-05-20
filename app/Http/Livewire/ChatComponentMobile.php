@@ -69,7 +69,16 @@ class ChatComponentMobile extends Component
 
     public function getActiveProperty()
     {
-        return $this->users->contains($this->users_notifications->first()->id);
+        if($this->chat){
+            return $this->users->contains($this->users_notifications->first()->id);            
+        }else{
+            $ids = $this->users;
+            if($ids[0] != auth()->id()){
+                return $ids[1];
+            }else{
+                return $ids[0];
+            }
+        }
     }
 
     //Ciclo de vida
