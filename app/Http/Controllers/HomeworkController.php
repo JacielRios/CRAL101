@@ -110,13 +110,13 @@ class HomeworkController extends Controller
 
         if (isset($id_homework)) {
             foreach ($id_homework as $id) {
-                $all = DB::table('Homework')
+                $all = DB::table('homework')
                     ->where('id', '=', $id['homework_id'])
                     ->get();
                 $alls[] = $all[0];
             }
 
-            $tareas = DB::table('Homework')->get();
+            $tareas = DB::table('homework')->get();
 
             $pending_homework = json_decode($tareas);
             foreach ($pending_homework as $ph) {
